@@ -16,6 +16,8 @@ export interface PortfolioProject {
   image: string;
   description: Record<Language, string>;
   details: Record<Language, string[]>;
+  keySpaces?: { name: Record<Language, string>; size: string }[];
+  deliverables?: Record<Language, string[]>;
 }
 
 export interface ServiceItem {

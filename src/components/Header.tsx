@@ -98,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-100 transition-colors duration-300">
-        <div className="max-w-5xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-6 h-14 md:h-16 flex items-center justify-between">
           
           {/* Logo Brand: Sleek vector SVG logo */}
           <div 
@@ -108,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <svg 
               viewBox="0 0 100 100" 
-              className="w-10 h-10 stroke-current text-gray-900 group-hover:text-gray-600 transition-colors duration-300" 
+              className="w-7 h-7 stroke-current text-gray-900 group-hover:text-gray-600 transition-colors duration-300" 
               strokeWidth="7" 
               fill="none" 
               strokeLinecap="square"
@@ -131,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({
               <line x1="55" y1="55" x2="55" y2="90" />
               <line x1="55" y1="90" x2="90" y2="90" />
             </svg>
-            <span className="font-logo text-[11px] font-normal tracking-wide text-gray-900 mt-1.5 lowercase group-hover:text-gray-600 transition-colors duration-300">
+            <span className="font-logo text-[9.5px] font-normal tracking-wide text-gray-900 mt-0.5 lowercase group-hover:text-gray-600 transition-colors duration-300">
               spacenine architects
             </span>
           </div>
@@ -343,7 +343,7 @@ export const Header: React.FC<HeaderProps> = ({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden fixed top-20 left-0 w-full bg-white z-40 border-b border-gray-200 shadow-xl overflow-hidden"
+            className="md:hidden fixed top-14 left-0 w-full bg-white z-40 border-b border-gray-200 shadow-xl overflow-hidden"
             id="mobile-menu-panel"
           >
             <div className="px-6 py-8 flex flex-col space-y-6">

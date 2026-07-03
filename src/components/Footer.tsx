@@ -197,7 +197,7 @@ const footerTranslations = {
 };
 
 export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) => {
-  const [isDarkMode, setIsDarkMode] = React.useState(true);
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
   const [email, setEmail] = React.useState('');
   const [isSubscribed, setIsSubscribed] = React.useState(false);
 
@@ -223,57 +223,58 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
   const ft = footerTranslations;
 
   return (
-    <footer className="relative border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 transition-colors duration-300">
+    <footer className="relative border-t border-zinc-200/60 dark:border-zinc-800/60 bg-[#fafafa] dark:bg-[#080808] text-zinc-800 dark:text-zinc-300 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           
           {/* 1. Newsletter Column */}
           <div className="relative">
-            <h2 className="mb-4 text-2xl font-serif tracking-tight font-medium">
+            <h2 className="mb-4 text-xl font-serif tracking-tight font-medium text-zinc-900 dark:text-white">
               {ft.stayConnected[currentLang]}
             </h2>
             <p className="mb-6 text-sm text-zinc-500 dark:text-zinc-400 font-light leading-relaxed">
               {ft.newsletterDesc[currentLang]}
             </p>
             {isSubscribed ? (
-              <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 text-sm py-2 px-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
+              <div className="flex items-center space-x-2 text-emerald-700 dark:text-emerald-400 text-sm py-2 px-3 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
                 <Check className="w-4 h-4" />
                 <span>{ft.successSub[currentLang]}</span>
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="relative">
+              <form onSubmit={handleSubscribe} className="relative z-10">
                 <Input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={ft.enterEmail[currentLang]}
-                  className="pr-12 bg-white dark:bg-zinc-900"
+                  className="pr-12 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border-zinc-200 dark:border-zinc-800 placeholder:text-zinc-400 focus:ring-zinc-800 dark:focus:ring-zinc-300 focus:border-zinc-800 dark:focus:border-zinc-300"
                   required
                 />
                 <Button
                   type="submit"
                   size="icon"
-                  className="absolute right-1 top-1 h-8 w-8 rounded-full bg-zinc-900 text-zinc-50 hover:scale-105 transition-transform dark:bg-zinc-50 dark:text-zinc-950"
+                  className="absolute right-1 top-1 h-8 w-8 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:scale-105 hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-transform z-20 cursor-pointer"
                 >
-                  <Send className="h-4.5 w-4.5" />
+                  <Send className="h-4 w-4" />
                   <span className="sr-only">{ft.subscribe[currentLang]}</span>
                 </Button>
               </form>
             )}
-            <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-zinc-900/5 dark:bg-white/5 blur-2xl pointer-events-none" />
+            <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-zinc-200/30 dark:bg-zinc-800/10 blur-2xl pointer-events-none" />
           </div>
 
           {/* 2. Quick Links Column */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold tracking-wider font-mono text-zinc-500 dark:text-zinc-400 uppercase">
+            <h3 className="mb-4 text-xs font-semibold tracking-wider font-mono text-zinc-400 dark:text-zinc-500 uppercase">
               {ft.quickLinks[currentLang]}
             </h3>
             <nav className="space-y-3 text-sm">
               {navItems.map((item) => (
                 <button
                   key={item.id}
+                  type="button"
                   onClick={() => scrollToSection(item.id)}
-                  className="block text-left w-full text-zinc-600 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors font-medium cursor-pointer"
+                  className="block text-left w-full text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors font-medium cursor-pointer"
                 >
                   {item.label[currentLang]}
                 </button>
@@ -283,12 +284,12 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
 
           {/* 3. Contact Us Column */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold tracking-wider font-mono text-zinc-500 dark:text-zinc-400 uppercase">
+            <h3 className="mb-4 text-xs font-semibold tracking-wider font-mono text-zinc-400 dark:text-zinc-500 uppercase">
               {ft.contactUs[currentLang]}
             </h3>
-            <address className="space-y-3 text-sm not-italic text-zinc-600 dark:text-zinc-400 font-light leading-relaxed">
-              <p className="font-serif">{translations.contact.address[currentLang]}</p>
-              <p className="font-mono text-zinc-900 dark:text-zinc-200 font-medium">
+            <address className="space-y-3 text-sm not-italic text-zinc-500 dark:text-zinc-400 font-light leading-relaxed">
+              <p className="font-serif text-zinc-600 dark:text-zinc-300">{translations.contact.address[currentLang]}</p>
+              <p className="font-mono text-zinc-900 dark:text-zinc-100 font-medium">
                 {translations.contact.phone[currentLang]}
               </p>
               <p className="font-mono text-zinc-500 dark:text-zinc-400">
@@ -299,7 +300,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
 
           {/* 4. Follow Us & Theme Toggle Column */}
           <div className="relative">
-            <h3 className="mb-4 text-sm font-semibold tracking-wider font-mono text-zinc-500 dark:text-zinc-400 uppercase">
+            <h3 className="mb-4 text-xs font-semibold tracking-wider font-mono text-zinc-400 dark:text-zinc-500 uppercase">
               {ft.followUs[currentLang]}
             </h3>
             <div className="mb-6 flex space-x-3">
@@ -310,7 +311,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
                       href="https://facebook.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-950 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 transition-all text-zinc-500 dark:text-zinc-400"
+                      className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-700 transition-all text-zinc-400 dark:text-zinc-500 cursor-pointer"
                     >
                       <Facebook className="h-4.5 w-4.5" />
                       <span className="sr-only">Facebook</span>
@@ -329,7 +330,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
                       href="https://twitter.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-950 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 transition-all text-zinc-500 dark:text-zinc-400"
+                      className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-700 transition-all text-zinc-400 dark:text-zinc-500 cursor-pointer"
                     >
                       <Twitter className="h-4.5 w-4.5" />
                       <span className="sr-only">Twitter</span>
@@ -348,7 +349,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
                       href="https://instagram.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-950 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 transition-all text-zinc-500 dark:text-zinc-400"
+                      className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-700 transition-all text-zinc-400 dark:text-zinc-500 cursor-pointer"
                     >
                       <Instagram className="h-4.5 w-4.5" />
                       <span className="sr-only">Instagram</span>
@@ -367,7 +368,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
                       href="https://linkedin.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 bg-white hover:bg-zinc-100 hover:text-zinc-950 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 transition-all text-zinc-500 dark:text-zinc-400"
+                      className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-700 transition-all text-zinc-400 dark:text-zinc-500 cursor-pointer"
                     >
                       <Linkedin className="h-4.5 w-4.5" />
                       <span className="sr-only">LinkedIn</span>
@@ -381,7 +382,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
             </div>
             
             {/* Theme Switcher Toggle */}
-            <div className="flex items-center space-x-2 bg-zinc-50 dark:bg-zinc-900/60 p-2.5 rounded-xl border border-zinc-150 dark:border-zinc-800/80 w-fit">
+            <div className="flex items-center space-x-2 bg-zinc-100 dark:bg-zinc-900/60 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800/80 w-fit">
               <Sun className={`h-4 w-4 transition-colors ${!isDarkMode ? 'text-amber-500' : 'text-zinc-400'}`} />
               <Switch
                 id="dark-mode"
@@ -398,18 +399,18 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
         </div>
 
         {/* Footer Fine Print bottom segment */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-zinc-200 dark:border-zinc-800 pt-8 text-center md:flex-row">
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 font-light">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-zinc-200/60 dark:border-zinc-800/60 pt-8 text-center md:flex-row">
+          <p className="text-xs text-zinc-400 dark:text-zinc-500 font-light">
             &copy; {new Date().getFullYear()} spacenine architects. {translations.footer.rights[currentLang]}
           </p>
-          <nav className="flex gap-6 text-xs text-zinc-500 dark:text-zinc-400">
-            <a href="#privacy" className="transition-colors hover:text-zinc-950 dark:hover:text-white">
+          <nav className="flex gap-6 text-xs text-zinc-400 dark:text-zinc-500">
+            <a href="#privacy" className="transition-colors hover:text-zinc-900 dark:hover:text-white">
               {ft.privacy[currentLang]}
             </a>
-            <a href="#terms" className="transition-colors hover:text-zinc-950 dark:hover:text-white">
+            <a href="#terms" className="transition-colors hover:text-zinc-900 dark:hover:text-white">
               {ft.terms[currentLang]}
             </a>
-            <a href="#cookies" className="transition-colors hover:text-zinc-950 dark:hover:text-white">
+            <a href="#cookies" className="transition-colors hover:text-zinc-900 dark:hover:text-white">
               {ft.cookies[currentLang]}
             </a>
           </nav>

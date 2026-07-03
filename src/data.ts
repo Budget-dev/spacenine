@@ -397,156 +397,274 @@ export const portfolioProjects: PortfolioProject[] = [
   {
     id: 'project-1',
     title: {
-      EN: 'Custom Oak Wardrobe & Vanity Chamber',
-      RU: 'Индивидуальная гардеробная с туалетным столиком',
-      ES: 'Cámara de Vestidor y Tocador de Roble'
+      EN: 'Narendar Residence',
+      RU: 'Резиденция Нарендара',
+      ES: 'Residencia Narendar'
     },
     category: 'residential',
-    categoryLabel: { EN: 'Residential Space', RU: 'Жилой интерьер', ES: 'Espacio Residencial' },
-    location: { EN: 'Malabar Hill, Mumbai', RU: 'Малабар Хиллс, Мумбаи', ES: 'Malabar Hill, Mumbai' },
-    area: '42 sq.m',
+    categoryLabel: { EN: 'Villa', RU: 'Вилла', ES: 'Villa' },
+    location: { EN: 'Ramayanpet, Telangana', RU: 'Рамаянпет, Телангана', ES: 'Ramayanpet, Telangana' },
+    area: '3 Floors + Lawn',
     year: '2025',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1600',
+    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1600',
     description: {
-      EN: 'A private dressing room styled with warm ambient illumination, premium bronze tinted glass doors, and tailored wood drawers. This design focuses on seamless integrated storage and high-end texture alignment, reflecting a boutique-hotel environment.',
-      RU: 'Индивидуальная гардеробная комната, оформленная теплым скрытым освещением, фасадами из тонированного бронзового стекла и ящиками из массива дуба. Особое внимание уделено скрытым системам хранения и сочетанию благородных фактур в стиле роскошного бутик-отеля.',
-      ES: 'Un vestidor privado diseñado con iluminación ambiental cálida, puertas de vidrio tintado en bronce de alta gama y cajones de madera hechos a medida. Se centra en el almacenamiento integrado sin costuras y la alineación de texturas.'
+      EN: 'A multi-generational home designed to give every member of the household their own ground to stand on. The plan distributes privacy across three floors — ground-level living for parents, upper floors for the younger household — with a private lift threading them together. A 27-foot open lawn anchors the front, bringing sky and garden into the daily experience of the house.',
+      RU: 'Дом для нескольких поколений семьи, спроектированный так, чтобы у каждого члена семьи было свое личное пространство. Планировка распределяет приватность по трем этажам: первый этаж отведен для родителей, верхние этажи — для младшего поколения, а соединяет их частный лифт. Открытый газон длиной 27 футов украшает фасад, привнося небо и сад в повседневную жизнь.',
+      ES: 'Un hogar multifamiliar diseñado para dar a cada miembro de la casa su propio espacio. El plano distribuye la privacidad en tres plantas: planta baja para los padres y plantas superiores para los jóvenes, conectados por un ascensor privado. Un jardín abierto de 27 pies corona el frente, integrando el cielo y la naturaleza en la vida diaria.'
     },
     details: {
       EN: [
-        'Custom built-in warm LED profile backlighting with high color rendering (CRI > 95)',
-        'Bronze tinted structural glass with narrow aluminum framing profiles',
-        'Built-in center island with jewelry drawer system, felt linings, and safety-glass top',
-        'Custom integrated air purification and humidity controller unit'
+        '4 × Floor Plans',
+        'Exterior Render',
+        'Construction Drawings',
+        'Private Lift'
       ],
       RU: [
-        'Встроенная светодиодная подсветка профилей с высоким индексом цветопередачи (CRI > 95)',
-        'Тонированное бронзовое стекло в тончайшем алюминиевом профиле',
-        'Центральный остров с выдвижными ящиками для аксессуаров и отделкой фетром',
-        'Скрытая система очистки и кондиционирования воздуха с датчиками влажности'
+        '4 × Планировочных решения',
+        'Экстерьерный рендер',
+        'Рабочие строительные чертежи',
+        'Частный лифт'
       ],
       ES: [
-        'Retroiluminación LED cálida integrada de perfil personalizado con alta reproducción (CRI > 95)',
-        'Vidrio estructural tintado de bronce con marcos de aluminio delgados',
-        'Isla central integrada con sistema de cajón para joyería y superficie de vidrio templado',
-        'Unidad integrada de purificación de aire y controlador de humedad a medida'
+        '4 × Planos de Planta',
+        'Render Exterior',
+        'Planos de Construcción',
+        'Ascensor Privado'
+      ]
+    },
+    keySpaces: [
+      { name: { EN: 'Dining & Living', RU: 'Столовая и гостиная', ES: 'Comedor y Estar' }, size: "22'3\" × 13'6\"" },
+      { name: { EN: 'Parents Bedroom', RU: 'Спальня родителей', ES: 'Dormitorio de los Padres' }, size: "15'3\" × 13'9\"" },
+      { name: { EN: 'Master Bedroom', RU: 'Мастер-спальня', ES: 'Dormitorio Principal' }, size: "15'3\" × 13'9\"" },
+      { name: { EN: 'Lawn', RU: 'Газон и сад', ES: 'Césped' }, size: "27'0\" × 18'9\"" },
+      { name: { EN: 'Sitout', RU: 'Терраса для отдыха', ES: 'Terraza' }, size: "27'0\" × 8'0\"" },
+      { name: { EN: 'Drawing Room', RU: 'Кабинет / Гостиная', ES: 'Sala de Estar' }, size: "10'0\" × 10'3\"" }
+    ],
+    deliverables: {
+      EN: [
+        '4 × Floor Plans',
+        'Exterior Render',
+        'Construction Drawings',
+        'Private Lift'
+      ],
+      RU: [
+        '4 × Планировочных решения',
+        'Экстерьерный рендер',
+        'Рабочие строительные чертежи',
+        'Частный лифт'
+      ],
+      ES: [
+        '4 × Planos de Planta',
+        'Render Exterior',
+        'Planos de Construcción',
+        'Ascensor Privado'
       ]
     }
   },
   {
     id: 'project-2',
     title: {
-      EN: 'Minimalist Penthouse Living Lounge',
-      RU: 'Минималистичная гостиная в пентхаусе',
-      ES: 'Salón de Penthouse Minimalista'
+      EN: 'Sudeep Reddy',
+      RU: 'Резиденция Судипа Редди',
+      ES: 'Residencia Sudeep Reddy'
     },
     category: 'residential',
-    categoryLabel: { EN: 'Residential Space', RU: 'Жилой интерьер', ES: 'Espacio Residencial' },
-    location: { EN: 'Lutyens\' Delhi, New Delhi', RU: 'Лютьенс Дели, Нью-Дели', ES: 'Delhi de Lutyens, Nueva Delhi' },
-    area: '115 sq.m',
+    categoryLabel: { EN: 'Luxury Villa', RU: 'Роскошная вилла', ES: 'Villa de Lujo' },
+    location: { EN: 'Hyderabad, Telangana', RU: 'Хайдарабад, Телангана', ES: 'Hyderabad, Telangana' },
+    area: 'Premium Residential Villa',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1600',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1600',
     description: {
-      EN: 'An expansive open-space layout integrating dining and lounge areas. Features a custom monolithic fireplace clad in grey Calacatta marble, floating wooden panel ceilings, and panoramic city-view windows designed for ultimate tranquility.',
-      RU: 'Просторная гостиная свободной планировки, объединенная со столовой зоной. Изюминка проекта — монолитный камин в отделке серым мрамором Calacatta, парящие деревянные потолочные панели и панорамное остекление с видом на город.',
-      ES: 'Una distribución de espacio abierto expansiva que integra comedor y sala de estar. Cuenta con una chimenea monolítica revestida de mármol Calacatta gris, techos de paneles de madera flotantes y ventanales panorámicos.'
+      EN: 'A residence designed for living at its fullest scale. The 38-foot double-height lounge is the centre of gravity — generously proportioned, lit carefully, and opening directly onto a 34-foot balcony that spans the entire first-floor frontage. Every interior choice was validated through detailed Enscape renders before anything was specified, which is why the finished rooms feel deliberate rather than assembled.',
+      RU: 'Резиденция, созданная для масштабной жизни. Двусветная гостиная высотой 38 футов является центром притяжения — просторная, с тщательно продуманным освещением, выходящая на балкон длиной 34 фута во весь фасад второго этажа. Каждая деталь интерьера была проверена в Enscape перед утверждением, поэтому готовые пространства выглядят цельно и гармонично.',
+      ES: 'Una residencia diseñada para vivir a gran escala. El salón de doble altura de 38 pies es el centro de gravedad: de proporciones generosas, iluminado cuidadosamente y con salida directa a un balcón de 34 pies que abarca toda la fachada del primer piso. Cada elección interior se validó mediante renders detallados de Enscape.'
     },
     details: {
       EN: [
-        'Wall cladding in solid Bookmatch Calacatta Marble panels',
-        'Flush-mounted dynamic ceiling warm diffuser and ventilation slots',
-        'Italian low-profile designer sofas with custom premium linen covers',
-        'Custom automated Roman shades integrated into smart home controls'
+        '4-Page Presentation',
+        '3 × Exterior Renders',
+        '5 × Interior Renders',
+        'Home Theater',
+        'Private Lift'
       ],
       RU: [
-        'Облицовка каминной зоны цельными слэбами мрамора Calacatta с раскладкой "бабочка"',
-        'Скрытые диффузоры вентиляции и кондиционирования на потолке',
-        'Итальянские низкопрофильные диваны в премиальной обивке из натурального льна',
-        'Автоматические римские шторы с интеграцией в систему "Умный дом"'
+        '4-страничная презентация проекта',
+        '3 × Экстерьерных рендера',
+        '5 × Интерьерных рендеров',
+        'Зал домашнего кинотеатра',
+        'Частный лифт'
       ],
       ES: [
-        'Revestimiento de muros en paneles de mármol macizo Bookmatch Calacatta',
-        'Difusor de techo dinámico empotrado y rejillas de ventilación de confort',
-        'Sofás italianos de perfil bajo con fundas de lino premium personalizadas',
-        'Persianas romanas automatizadas integradas en el control inteligente de la casa'
+        'Presentación de 4 Páginas',
+        '3 × Renders Exteriores',
+        '5 × Renders Interiores',
+        'Cine en Casa',
+        'Ascensor Privado'
+      ]
+    },
+    keySpaces: [
+      { name: { EN: 'Lounge', RU: 'Гостиная-лаунж', ES: 'Salón Principal' }, size: "38'0\" × 14'10\"" },
+      { name: { EN: 'Master Bedroom', RU: 'Мастер-спальня', ES: 'Dormitorio Principal' }, size: "16'9\" × 14'0\"" },
+      { name: { EN: 'Balcony', RU: 'Панорамный балкон', ES: 'Balcón Grande' }, size: "5'9\" × 34'9\"" },
+      { name: { EN: 'Home Theater', RU: 'Домашний кинотеатр', ES: 'Cine en Casa' }, size: "19'3\" × 14'0\"" },
+      { name: { EN: 'Ground Bedroom', RU: 'Спальня на 1-м этаже', ES: 'Dormitorio Planta Baja' }, size: "16'9\" × 13'0\"" },
+      { name: { EN: 'Sitout', RU: 'Зона отдыха', ES: 'Terraza Estar' }, size: "19'6\" × 13'0\"" }
+    ],
+    deliverables: {
+      EN: [
+        '4-Page Presentation',
+        '3 × Exterior Renders',
+        '5 × Interior Renders',
+        'Home Theater',
+        'Private Lift'
+      ],
+      RU: [
+        '4-страничная презентация проекта',
+        '3 × Экстерьерных рендера',
+        '5 × Интерьерных рендеров',
+        'Зал домашнего кинотеатра',
+        'Частный лифт'
+      ],
+      ES: [
+        'Presentación de 4 Páginas',
+        '3 × Renders Exteriores',
+        '5 × Renders Interiores',
+        'Cine en Casa',
+        'Ascensor Privado'
       ]
     }
   },
   {
     id: 'project-3',
     title: {
-      EN: 'Modern Brass & Marble Culinary Kitchen',
-      RU: 'Современная кухня из мрамора с латунными акцентами',
-      ES: 'Cocina Culinaria Moderna de Mármol y Latón'
+      EN: 'Suresh Residence',
+      RU: 'Резиденция Суреша',
+      ES: 'Residencia Suresh'
     },
     category: 'residential',
-    categoryLabel: { EN: 'Residential Space', RU: 'Жилой интерьер', ES: 'Espacio Residencial' },
-    location: { EN: 'Boat Club Road, Pune', RU: 'Бот Клаб Роуд, Пуна', ES: 'Boat Club Road, Pune' },
-    area: '38 sq.m',
-    year: '2024',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600',
+    categoryLabel: { EN: 'Family Home', RU: 'Семейный дом', ES: 'Casa Familiar' },
+    location: { EN: 'Nalgonda, Telangana', RU: 'Налгонда, Телангана', ES: 'Nalgonda, Telangana' },
+    area: 'Practical & Warm Estate',
+    year: '2026',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1600',
     description: {
-      EN: 'A kitchen designed for both culinary artistry and elegant entertaining. Dark structural oak cabinets create a bold contrast with bright, warm marble islands, lit beautifully by linear minimalist brass pendants.',
-      RU: 'Кухня, спроектированная как для кулинарного искусства, так и для элегантного приема гостей. Темные дубовые фасады контрастируют со светлым мраморным островом.',
-      ES: 'Una cocina diseñada tanto para el arte culinario como para el entretenimiento elegante. Los armarios de roble oscuro crean un contraste audaz con las islas de mármol brillante.'
+      EN: 'A well-resolved family home where every square foot earns its keep. The brief asked for practicality and warmth in equal measure — the floor plan delivers both with a master suite, dedicated puja room, and living spaces that breathe without sprawling. This is a home built for the rhythm of daily life, not for the occasional photograph.',
+      RU: 'Рациональный семейный дом, где каждый квадратный метр используется с умом. В задании требовались практичность и теплота в равной степени: планировка обеспечивает и то, и другое благодаря мастер-спальне, выделенной комнате для пуджи и гостиной, которая дышит уютом. Это дом, построенный для ритма повседневной жизни.',
+      ES: 'Una casa familiar bien resuelta donde cada metro cuadrado cuenta. El encargo pedía practicidad y calidez por igual: el plano de planta ofrece ambas con una suite principal, sala de puja dedicada y espacios de estar que respiran sin expandirse. Es un hogar construido para el ritmo de la vida diaria.'
     },
     details: {
       EN: [
-        'Anti-fingerprint polymeric matte finishes with real oiled oak inserts',
-        'Solid marble kitchen island countertop with induction stove hidden underneath the stone',
-        'Hand-polished natural brass linear designer pendants',
-        'Premium fully-integrated built-in appliances with push-to-open mechanics'
+        'Floor Plan',
+        'Exterior Render',
+        'Site Documentation'
       ],
       RU: [
-        'Матовые полимерные фасады против отпечатков пальцев, вставки из шпона дуба',
-        'Столешница кухонного острова из цельного мрамора со скрытой индукционной плитой под камнем',
-        'Дизайнерские линейные светильники из полированной вручную натуральной латуни',
-        'Встроенная бытовая техника премиум-класса с механизмом открывания по нажатию'
+        'Чертеж планировки этажа',
+        'Экстерьерный 3D-рендер',
+        'Исполнительная документация'
       ],
       ES: [
-        'Acabados mate poliméricos antihuellas con detalles de roble aceitado real',
-        'Isla de cocina con encimera de mármol macizo y placa de inducción oculta',
-        'Lámparas colgantes lineales personalizadas de latón pulido a mano',
-        'Electrodomésticos premium totalmente integrados con apertura al tacto'
+        'Plano de Planta',
+        'Render de Exterior',
+        'Documentación del Sitio'
+      ]
+    },
+    keySpaces: [
+      { name: { EN: 'Master Bedroom', RU: 'Мастер-спальня', ES: 'Dormitorio Principal' }, size: "13'0\" × 15'6\"" },
+      { name: { EN: 'Living Area', RU: 'Гостиная зона', ES: 'Área de Estar' }, size: "11'0\" × 13'6\"" },
+      { name: { EN: 'Kitchen', RU: 'Кухня', ES: 'Cocina' }, size: "11'0\" × 13'9\"" },
+      { name: { EN: 'Puja Room', RU: 'Молельная (Пуджа)', ES: 'Sala de Puja' }, size: "6'0\" × 5'0\"" },
+      { name: { EN: 'Balcony', RU: 'Балкон', ES: 'Balcón' }, size: "3'6\" wide" },
+      { name: { EN: 'Bedroom', RU: 'Спальня', ES: 'Dormitorio' }, size: "13'0\" × 10'0\"" }
+    ],
+    deliverables: {
+      EN: [
+        'Floor Plan',
+        'Exterior Render',
+        'Site Documentation'
+      ],
+      RU: [
+        'Чертеж планировки этажа',
+        'Экстерьерный 3D-рендер',
+        'Исполнительная документация'
+      ],
+      ES: [
+        'Plano de Planta',
+        'Render de Exterior',
+        'Documentación del Sitio'
       ]
     }
   },
   {
     id: 'project-4',
     title: {
-      EN: 'Executive Lounge & Creative HQ',
-      RU: 'Представительский лаунж и креативный штаб',
-      ES: 'Salón Ejecutivo y Sede Creativa'
+      EN: 'Venkat Reddy',
+      RU: 'Резиденция Венката Редди',
+      ES: 'Residencia Venkat Reddy'
     },
-    category: 'commercial',
-    categoryLabel: { EN: 'Commercial Space', RU: 'Коммерческий интерьер', ES: 'Espacio Comercial' },
-    location: { EN: 'UB City, Bangalore', RU: 'Ю-Би Сити, Бангалор', ES: 'UB City, Bangalore' },
-    area: '240 sq.m',
+    category: 'residential',
+    categoryLabel: { EN: 'Grand Villa', RU: 'Гранд-вилла', ES: 'Gran Villa' },
+    location: { EN: 'Hyderabad, Telangana', RU: 'Хайдарабад, Телангана', ES: 'Hyderabad, Telangana' },
+    area: 'Studio\'s Most Ambitious Estate',
     year: '2025',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1600',
     description: {
-      EN: 'A highly functional, premium executive office space. Emphasizes acoustic comfort with fluted wall panels, luxurious meeting tables with integrated wireless interfaces, and adaptive glare-free light grids.',
-      RU: 'Высокофункциональный представительский офис премиум-класса. Особое внимание уделено акустическому комфорту за счет стеновых фрезерованных панелей, а также эргономичному конференц-столу с беспроводными зарядками.',
-      ES: 'Un espacio de oficina ejecutivo de alta gama y muy funcional. Enfatiza el confort acústico con paneles estriados, lujosas mesas de reuniones con interfaces y rejillas antideslumbrantes.'
+      EN: "The studio's most ambitious private commission to date. The drawing room makes an impression on arrival; the 24-foot dining hall takes over from there. An 18-square-foot family living room, a full home theater, and a commissioned mural wall round out a home designed for a family that entertains with generosity and retreats with real comfort. Six detailed Enscape renders guided every material decision from stone to joinery.",
+      RU: 'Самый амбициозный частный проект студии на сегодняшний день. Просторная приемная впечатляет с порога, за ней следует обеденный зал длиной 24 фута. Семейная гостиная, полноценный домашний кинотеатр и художественная роспись на стене дополняют дом, созданный для семьи, которая любит принимать гостей и ценит настоящий комфорт.',
+      ES: 'El encargo privado más ambicioso de nuestro estudio hasta la fecha. La sala de estar impresiona a la llegada y el comedor de 24 pies toma el control desde allí. Una sala de estar familiar, cine en casa completo y una pared con un mural artístico completan una casa diseñada para recibir visitas con generosidad.'
     },
     details: {
       EN: [
-        'High-density micro-perforated acoustic timber backing panels',
-        'Executive custom 4-meter meeting table finished in dark walnut wood and natural leather',
-        'Human-centric smart ceiling lighting that mimics natural sky light temperature shifts',
-        'Fully automated multi-zone smart climate control and noise isolation barriers'
+        '2 × Floor Plans',
+        '2 × Elevations',
+        '6 × Enscape Renders',
+        'Home Theater',
+        'Mural Feature'
       ],
       RU: [
-        'Микроперфорированные акустические панели высокой плотности для поглощения эха',
-        'Индивидуальный 4-метровый стол для совещаний в отделке американским орехом и кожей',
-        'Биодинамическое освещение с автоматическим изменением цветовой температуры в течение дня',
-        'Мультизональный климат-контроль с высокой степенью шумоизоляции перегородок'
+        '2 × Чертежа планировки',
+        '2 × Чертежа фасадов',
+        '6 × Визуализаций Enscape',
+        'Домашний кинотеатр',
+        'Авторское настенное панно'
       ],
       ES: [
-        'Paneles de madera acústicos microperforados de alta densidad',
-        'Mesa de reuniones ejecutiva de 4 metros con acabados en nogal oscuro y cuero',
-        'Iluminación inteligente que imita las transiciones de luz natural del día',
-        'Control de clima inteligente de múltiples zones y barreras de aislamiento de ruido'
+        '2 × Planos de Planta',
+        '2 × Elevaciones',
+        '6 × Renders Enscape',
+        'Cine en Casa',
+        'Mural Artístico'
+      ]
+    },
+    keySpaces: [
+      { name: { EN: 'Drawing Room', RU: 'Парадная гостиная', ES: 'Sala de Estar' }, size: "18'8\" × 11'6\"" },
+      { name: { EN: 'Dining Area', RU: 'Обеденный зал', ES: 'Comedor Grande' }, size: "24'8\" × 14'10\"" },
+      { name: { EN: 'Family Living', RU: 'Семейная гостиная', ES: 'Estar Familiar' }, size: "18'0\" × 18'0\"" },
+      { name: { EN: 'P. Bedroom', RU: 'Спальня родителей', ES: 'Dormitorio de Padres' }, size: "18'6\" × 14'0\"" },
+      { name: { EN: 'C. Bedroom', RU: 'Детская спальня', ES: 'Dormitorio Infantil' }, size: "16'9\" × 13'0\"" },
+      { name: { EN: 'Mural Art Wall', RU: 'Художественное панно', ES: 'Pared de Mural Artístico' }, size: "Feature" }
+    ],
+    deliverables: {
+      EN: [
+        '2 × Floor Plans',
+        '2 × Elevations',
+        '6 × Enscape Renders',
+        'Home Theater',
+        'Mural Feature'
+      ],
+      RU: [
+        '2 × Чертежа планировки',
+        '2 × Чертежа фасадов',
+        '6 × Визуализаций Enscape',
+        'Домашний кинотеатр',
+        'Авторское настенное панно'
+      ],
+      ES: [
+        '2 × Planos de Planta',
+        '2 × Elevaciones',
+        '6 × Renders Enscape',
+        'Cine en Casa',
+        'Mural Artístico'
       ]
     }
   }
