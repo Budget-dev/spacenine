@@ -1,0 +1,6 @@
+{
+  "name": "spacenine architects",
+  "description": "A premium, high-fidelity digital showcase for spacenine architects, a full-cycle luxury interior design studio specializing in private and commercial spaces.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

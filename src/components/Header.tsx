@@ -1,0 +1,453 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Menu, X, ChevronDown, Send, MessageSquare } from 'lucide-react';
+import { Language, ServicePageId } from '../types';
+import { navItems } from '../data';
+
+interface HeaderProps {
+  currentLang: Language;
+  setLang: (lang: Language) => void;
+  activeSection: string;
+  scrollToSection: (id: string) => void;
+  selectedService: ServicePageId;
+  setSelectedService: (service: ServicePageId) => void;
+}
+
+const individualServices = [
+  {
+    id: 'architectural-design' as const,
+    label: {
+      EN: 'Architectural Design',
+      RU: 'Архитектурное проектирование',
+      ES: 'Diseño Arquitectónico'
+    },
+    description: {
+      EN: 'Custom spatial planning, master planning, and facade styling.',
+      RU: 'Индивидуальное планирование, генеральные планы и дизайн фасадов.',
+      ES: 'Planificación espacial a medida, diseño de fachadas y planos.'
+    },
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400'
+  },
+  {
+    id: 'interior-design' as const,
+    label: {
+      EN: 'Interior Design',
+      RU: 'Дизайн интерьера',
+      ES: 'Diseño de Interiores'
+    },
+    description: {
+      EN: 'Sleek minimalist penthouses and lounges styled to the millimeter.',
+      RU: 'Минималистичные пентхаусы и лаунж-зоны, проработанные до миллиметра.',
+      ES: 'Penthouses minimalistas y salones de lujo diseñados al milímetro.'
+    },
+    image: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=400'
+  },
+  {
+    id: 'architecture-build' as const,
+    label: {
+      EN: 'Architecture – Build and Finish',
+      RU: 'Строительство и отделка зданий',
+      ES: 'Arquitectura: Construcción y Acabado'
+    },
+    description: {
+      EN: 'Precision contracting, concrete framing, masonry, and facades.',
+      RU: 'Профессиональный подряд, монолитные работы и премиальные фасады.',
+      ES: 'Contratación de precisión, marcos de hormigón y fachadas.'
+    },
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=400'
+  },
+  {
+    id: 'interiors-build' as const,
+    label: {
+      EN: 'Interiors – Build and Finish',
+      RU: 'Монтаж и чистовая отделка',
+      ES: 'Interiores: Construcción y Acabado'
+    },
+    description: {
+      EN: 'Custom millwork, marble cladding, and complete handover.',
+      RU: 'Собственное производство мебели, укладка мрамора и сдача под ключ.',
+      ES: 'Carpintería a medida, revestimiento de mármol y entrega premium.'
+    },
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=400'
+  }
+];
+
+export const Header: React.FC<HeaderProps> = ({
+  currentLang,
+  setLang,
+  activeSection,
+  scrollToSection,
+  selectedService,
+  setSelectedService,
+}) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+
+  const toggleLang = (lang: Language) => {
+    setLang(lang);
+    setIsLangDropdownOpen(false);
+  };
+
+  const handleNavClick = (id: string) => {
+    scrollToSection(id);
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <>
+      <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-100 transition-colors duration-300">
+        <div className="max-w-5xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between">
+          
+          {/* Logo Brand: Sleek vector SVG logo */}
+          <div 
+            className="flex flex-col items-center justify-center cursor-pointer group"
+            onClick={() => handleNavClick('home')}
+            id="logo-container"
+          >
+            <svg 
+              viewBox="0 0 100 100" 
+              className="w-10 h-10 stroke-current text-gray-900 group-hover:text-gray-600 transition-colors duration-300" 
+              strokeWidth="7" 
+              fill="none" 
+              strokeLinecap="square"
+              strokeLinejoin="miter"
+            >
+              {/* Top border */}
+              <line x1="10" y1="10" x2="90" y2="10" />
+              {/* Right border */}
+              <line x1="90" y1="10" x2="90" y2="90" />
+              {/* Left top border */}
+              <line x1="10" y1="10" x2="10" y2="45" />
+              
+              {/* E: Left bottom vertical line + 3 horizontal bars */}
+              <line x1="10" y1="55" x2="10" y2="90" />
+              <line x1="10" y1="55" x2="45" y2="55" />
+              <line x1="10" y1="72.5" x2="40" y2="72.5" />
+              <line x1="10" y1="90" x2="45" y2="90" />
+              
+              {/* L: Right bottom vertical line + bottom bar connecting to right */}
+              <line x1="55" y1="55" x2="55" y2="90" />
+              <line x1="55" y1="90" x2="90" y2="90" />
+            </svg>
+            <span className="font-logo text-[11px] font-normal tracking-wide text-gray-900 mt-1.5 lowercase group-hover:text-gray-600 transition-colors duration-300">
+              spacenine architects
+            </span>
+          </div>
+
+          {/* Desktop Nav Items */}
+          <nav className="hidden md:flex items-center" id="desktop-nav">
+            <ul className="flex items-center gap-8">
+              {navItems.map((item) => {
+                if (item.id === 'services') {
+                  return (
+                    <li 
+                      key={item.id} 
+                      className="relative"
+                      onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                      onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                    >
+                      <button
+                        onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
+                        id="nav-services"
+                        className={`text-xs tracking-widest uppercase transition-colors py-2 px-1 font-medium cursor-pointer relative flex items-center gap-1 ${
+                          activeSection === 'services' 
+                            ? 'text-black font-semibold' 
+                            : 'text-gray-500 hover:text-black'
+                        }`}
+                      >
+                        <span>{item.label[currentLang]}</span>
+                        <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`} />
+                        {activeSection === 'services' && (
+                          <motion.div
+                            layoutId="navUnderline"
+                            className="absolute bottom-0 left-0 w-full h-[2px] bg-black"
+                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                          />
+                        )}
+                      </button>
+
+                      <AnimatePresence>
+                        {isServicesDropdownOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                            className="absolute left-1/2 -translate-x-1/2 mt-3 w-[680px] bg-white border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.08)] rounded-2xl overflow-hidden z-50 p-5 grid grid-cols-2 gap-4"
+                            id="services-dropdown-menu"
+                          >
+                            {individualServices.map((srv) => (
+                              <button
+                                key={srv.id}
+                                onClick={() => {
+                                  scrollToSection(srv.id);
+                                  setIsServicesDropdownOpen(false);
+                                }}
+                                className="group flex items-center gap-4 p-2.5 rounded-xl hover:bg-gray-50/70 border border-transparent hover:border-gray-100 transition-all duration-300 text-left cursor-pointer"
+                                id={`srv-opt-${srv.id}`}
+                              >
+                                {/* Thumbnail Image */}
+                                <div className="w-24 h-16 shrink-0 overflow-hidden rounded-lg bg-gray-100 border border-gray-100/60 relative">
+                                  <img 
+                                    src={srv.image} 
+                                    alt={srv.label[currentLang]} 
+                                    referrerPolicy="no-referrer"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                  />
+                                  <div className="absolute inset-0 bg-black/[0.02] pointer-events-none" />
+                                </div>
+
+                                {/* Content */}
+                                <div className="space-y-1">
+                                  <div className="text-xs font-bold font-mono tracking-wider text-gray-900 group-hover:text-black uppercase flex items-center gap-1.5">
+                                    <span>{srv.label[currentLang]}</span>
+                                    {selectedService === srv.id && (
+                                      <span className="w-1.5 h-1.5 bg-black rounded-full" />
+                                    )}
+                                  </div>
+                                  <p className="text-[10px] text-gray-400 font-light leading-relaxed line-clamp-2">
+                                    {srv.description[currentLang]}
+                                  </p>
+                                </div>
+                              </button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </li>
+                  );
+                }
+
+                return (
+                  <li key={item.id} className="relative">
+                    <button
+                      onClick={() => handleNavClick(item.id)}
+                      id={`nav-${item.id}`}
+                      className={`text-xs tracking-widest uppercase transition-colors py-2 px-1 font-medium cursor-pointer relative ${
+                        activeSection === item.id 
+                          ? 'text-black font-semibold' 
+                          : 'text-gray-500 hover:text-black'
+                      }`}
+                    >
+                      {item.label[currentLang]}
+                      {activeSection === item.id && (
+                        <motion.div
+                          layoutId="navUnderline"
+                          className="absolute bottom-0 left-0 w-full h-[2px] bg-black"
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* Social icons + Language selector */}
+          <div className="hidden md:flex items-center space-x-6" id="desktop-actions">
+            
+            {/* Social channels (Telegram, WhatsApp) */}
+            <div className="flex items-center space-x-4 text-gray-600">
+              <a 
+                href="https://t.me/spacenine" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="hover:text-black transition-colors"
+                title="Telegram"
+                id="social-telegram"
+              >
+                <Send className="w-5 h-5 transform rotate-[-25deg] translate-y-[-2px]" />
+              </a>
+              <a 
+                href="https://wa.me/919952120021" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="hover:text-black transition-colors"
+                title="WhatsApp"
+                id="social-whatsapp"
+              >
+                <MessageSquare className="w-5 h-5" />
+              </a>
+            </div>
+
+            {/* Custom Interactive Dropdown for Lang */}
+            <div className="relative">
+              <button
+                onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                className="flex items-center space-x-1 text-xs font-semibold uppercase tracking-widest text-gray-600 hover:text-black py-2"
+                id="lang-selector-btn"
+              >
+                <span>{currentLang}</span>
+                <ChevronDown className="w-3 h-3 text-gray-400" />
+              </button>
+
+              <AnimatePresence>
+                {isLangDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute right-0 mt-1 w-20 bg-white border border-gray-100 shadow-xl rounded-md overflow-hidden z-50 py-1"
+                    id="lang-dropdown"
+                  >
+                    {(['EN', 'RU', 'ES'] as Language[]).map((lang) => (
+                      <button
+                        key={lang}
+                        onClick={() => toggleLang(lang)}
+                        className={`w-full px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider block hover:bg-gray-50 ${
+                          currentLang === lang 
+                            ? 'text-black bg-gray-50' 
+                            : 'text-gray-400'
+                        }`}
+                        id={`lang-opt-${lang}`}
+                      >
+                        {lang}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Mobile menu trigger */}
+          <div className="flex md:hidden items-center space-x-4">
+            {/* Quick Lang */}
+            <button
+              onClick={() => {
+                const next: Record<Language, Language> = { EN: 'RU', RU: 'ES', ES: 'EN' };
+                setLang(next[currentLang]);
+              }}
+              className="text-xs font-bold border border-gray-200 px-2 py-1 rounded"
+              id="mobile-lang-quick"
+            >
+              {currentLang}
+            </button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-gray-700 hover:text-black focus:outline-none"
+              id="mobile-menu-toggle"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden fixed top-20 left-0 w-full bg-white z-40 border-b border-gray-200 shadow-xl overflow-hidden"
+            id="mobile-menu-panel"
+          >
+            <div className="px-6 py-8 flex flex-col space-y-6">
+              {navItems.map((item) => {
+                if (item.id === 'services') {
+                  return (
+                    <div key={item.id} className="space-y-2">
+                      <button
+                        onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                        className={`w-full text-left text-base font-medium tracking-wide uppercase flex items-center justify-between ${
+                          activeSection === 'services' ? 'text-black border-l-2 border-black pl-3' : 'text-gray-500 pl-3'
+                        }`}
+                        id="mobile-nav-services"
+                      >
+                        <span>{item.label[currentLang]}</span>
+                        <ChevronDown className={`w-4 h-4 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      
+                      <AnimatePresence>
+                        {isMobileServicesOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="pl-6 space-y-2.5 overflow-hidden pt-1"
+                          >
+                            {individualServices.map((srv) => (
+                              <button
+                                key={srv.id}
+                                onClick={() => {
+                                  scrollToSection(srv.id);
+                                  setIsMobileMenuOpen(false);
+                                }}
+                                className="block text-left text-xs uppercase font-mono tracking-wider text-gray-500 hover:text-black py-1"
+                                id={`mobile-srv-${srv.id}`}
+                              >
+                                {srv.label[currentLang]}
+                              </button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`text-left text-base font-medium tracking-wide uppercase ${
+                      activeSection === item.id ? 'text-black border-l-2 border-black pl-3' : 'text-gray-500 pl-3'
+                    }`}
+                    id={`mobile-nav-${item.id}`}
+                  >
+                    {item.label[currentLang]}
+                  </button>
+                );
+              })}
+
+              <div className="border-t border-gray-100 pt-6 flex items-center justify-between">
+                <div className="flex flex-col items-start">
+                  <svg 
+                    viewBox="0 0 100 100" 
+                    className="w-9 h-9 stroke-current text-gray-900" 
+                    strokeWidth="7" 
+                    fill="none" 
+                    strokeLinecap="square"
+                    strokeLinejoin="miter"
+                  >
+                    {/* Top border */}
+                    <line x1="10" y1="10" x2="90" y2="10" />
+                    {/* Right border */}
+                    <line x1="90" y1="10" x2="90" y2="90" />
+                    {/* Left top border */}
+                    <line x1="10" y1="10" x2="10" y2="45" />
+                    
+                    {/* E: Left bottom vertical line + 3 horizontal bars */}
+                    <line x1="10" y1="55" x2="10" y2="90" />
+                    <line x1="10" y1="55" x2="45" y2="55" />
+                    <line x1="10" y1="72.5" x2="40" y2="72.5" />
+                    <line x1="10" y1="90" x2="45" y2="90" />
+                    
+                    {/* L: Right bottom vertical line + bottom bar connecting to right */}
+                    <line x1="55" y1="55" x2="55" y2="90" />
+                    <line x1="55" y1="90" x2="90" y2="90" />
+                  </svg>
+                  <span className="font-logo text-[10px] font-normal tracking-wide text-gray-900 mt-1 lowercase">
+                    spacenine architects
+                  </span>
+                </div>
+                <div className="flex items-center space-x-4 text-gray-600">
+                  <a href="https://t.me/spacenine" target="_blank" rel="noreferrer" className="hover:text-black transition-colors" id="mobile-tg">
+                    <Send className="w-5 h-5 transform rotate-[-25deg]" />
+                  </a>
+                  <a href="https://wa.me/919952120021" target="_blank" rel="noreferrer" className="hover:text-black transition-colors" id="mobile-wa">
+                    <MessageSquare className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
