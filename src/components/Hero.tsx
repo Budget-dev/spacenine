@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sun, Moon, ArrowDown } from 'lucide-react';
 import { Language } from '../types';
@@ -16,12 +16,153 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenConsultation,
 }) => {
   const [isNightMode, setIsNightMode] = useState(false);
+  const [mobileSlide, setMobileSlide] = useState(0);
   const t = translations.hero;
+
+  // Sync isNightMode with mobileSlide (0 = Day, 1 = Night)
+  useEffect(() => {
+    if (mobileSlide === 0 && isNightMode) {
+      setIsNightMode(false);
+    } else if (mobileSlide === 1 && !isNightMode) {
+      setIsNightMode(true);
+    }
+  }, [mobileSlide]);
+
+  // Sync mobileSlide with isNightMode when toggling on desktop
+  useEffect(() => {
+    if (isNightMode && mobileSlide === 0) {
+      setMobileSlide(1);
+    } else if (!isNightMode && mobileSlide === 1) {
+      setMobileSlide(0);
+    }
+  }, [isNightMode]);
+
+  // High-reliability ref-based swipe gesture handlers for mobile devices
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const touchEndRef = useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+    touchEndRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    touchEndRef.current = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY,
+    };
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartRef.current || !touchEndRef.current) return;
+
+    const diffX = touchEndRef.current.x - touchStartRef.current.x;
+    const diffY = touchEndRef.current.y - touchStartRef.current.y;
+
+    // Must be primarily a horizontal swipe and exceed 40px threshold
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+      if (diffX > 0) {
+        // Swipe Right -> Show Previous Slide
+        setMobileSlide((prev) => (prev - 1 + 5) % 5);
+      } else {
+        // Swipe Left -> Show Next Slide
+        setMobileSlide((prev) => (prev + 1) % 5);
+      }
+    }
+
+    // Reset coordinates
+    touchStartRef.current = null;
+    touchEndRef.current = null;
+  };
+
+  const handleTouchCancel = () => {
+    touchStartRef.current = null;
+    touchEndRef.current = null;
+  };
+
+  // Auto-scroll only the last three slides (2, 3, 4) every 10 seconds on mobile
+  useEffect(() => {
+    if (mobileSlide < 2) return;
+
+    const interval = setInterval(() => {
+      setMobileSlide((prev) => {
+        if (prev < 2) return 2; // Safeguard
+        return prev === 4 ? 2 : prev + 1;
+      });
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [mobileSlide]);
+
+  // Custom data for the 5 mobile slides
+  const mobileSlidesData = [
+    {
+      title: t.title,
+      subtitle: t.subtitle,
+    },
+    {
+      title: t.title,
+      subtitle: t.subtitle,
+    },
+    {
+      title: {
+        EN: 'Spaces That Inspire.',
+        RU: 'Пространства, которые вдохновляют.',
+        ES: 'Espacios que inspiran.',
+      },
+      subtitle: {
+        EN: 'Crafting timeless architecture and refined interiors that blend elegance, functionality, and natural light into every space.',
+        RU: 'Создание вневременной архитектуры и изысканных интерьеров, гармонично сочетающих элегантность, функциональность и естественный свет в каждом пространстве.',
+        ES: 'Creando arquitectura atemporal e interiores refinados que combinan elegancia, funcionalidad y luz natural en cada espacio.',
+      }
+    },
+    {
+      title: {
+        EN: 'Designed for Beautiful Living.',
+        RU: 'Создано для красивой жизни.',
+        ES: 'Diseñado para una vida hermosa.',
+      },
+      subtitle: {
+        EN: 'From elegant residences to sophisticated commercial spaces, we create timeless interiors where natural light, premium materials, and thoughtful craftsmanship come together.',
+        RU: 'От элегантных резиденций до изысканных коммерческих помещений мы создаем вневременные интерьеры, в которых сочетаются естественный свет, премиальные материалы и продуманное мастерство.',
+        ES: 'Desde elegantes residencias hasta sofisticados espacios comerciales, creamos interiores atemporales donde se unen la luz natural, los materiales de primera calidad y una cuidadosa artesanía.',
+      }
+    },
+    {
+      title: {
+        EN: 'Luxury Architecture & Interior Design',
+        RU: 'Роскошная архитектура и дизайн интерьера',
+        ES: 'Arquitectura de lujo y diseño de interiores',
+      },
+      subtitle: {
+        EN: 'Where Every Detail Defines Luxury. From iconic architecture to bespoke interiors, we create spaces that blend innovation, craftsmanship, and timeless elegance.',
+        RU: 'Где каждая деталь определяет роскошь. От легендарной архитектуры до эксклюзивных интерьеров мы создаем пространства, в которых сочетаются инновации, мастерство и вневременная элегантность.',
+        ES: 'Donde cada detalle define el lujo. Desde arquitectura icónica hasta interiores a medida, creamos espacios que combinan innovación, artesanía y elegancia atemporal.',
+      }
+    }
+  ];
+
+  const handleToggleLight = () => {
+    const targetNight = !isNightMode;
+    setIsNightMode(targetNight);
+    setMobileSlide(targetNight ? 1 : 0);
+  };
 
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 select-none"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 select-none cursor-grab active:cursor-grabbing"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchCancel}
     >
       {/* Immersive Day/Night Background Image Transitions */}
       <div className="absolute inset-0 z-0 bg-black">
@@ -52,10 +193,10 @@ export const Hero: React.FC<HeroProps> = ({
 
         {/* MOBILE IMAGES (block on mobile, hidden on md and larger) */}
         <div className="block md:hidden absolute inset-0">
-          {/* Day Background */}
+          {/* Day Background (Slide 0) */}
           <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-              isNightMode ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
             }`}
             style={{
               backgroundImage: `url('https://vennky.sirv.com/WhatsApp%20Image%202026-07-04%20at%208.06.59%20PM.jpeg')`,
@@ -63,13 +204,46 @@ export const Hero: React.FC<HeroProps> = ({
             aria-hidden="true"
           />
 
-          {/* Night Background (warmer, rich shadows, glowing wardrobes) */}
+          {/* Night Background (Slide 1) */}
           <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-              isNightMode ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}
             style={{
               backgroundImage: `url('https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2010_23_23%20AM.png')`,
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Inspiring Spaces Background (Slide 2) */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+            style={{
+              backgroundImage: `url('https://vennky.sirv.com/WhatsApp%20Image%202026-07-04%20at%208.07.00%20PM%20(1).jpeg')`,
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Designed for Beautiful Living Background (Slide 3) */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 3 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+            style={{
+              backgroundImage: `url('https://vennky.sirv.com/WhatsApp%20Image%202026-07-04%20at%208.07.00%20PM%20(2).jpeg')`,
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Luxury Architecture & Interior Design Background (Slide 4) */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 4 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+            style={{
+              backgroundImage: `url('https://vennky.sirv.com/WhatsApp%20Image%202026-07-04%20at%208.07.00%20PM.jpeg')`,
             }}
             aria-hidden="true"
           />
@@ -79,13 +253,13 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Daylight Overlay: Fresh cool vignette */}
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 bg-gradient-to-t from-gray-950/80 via-transparent to-gray-950/40 ${
-            !isNightMode ? 'opacity-100' : 'opacity-0'
+            !isNightMode && mobileSlide < 2 ? 'opacity-100' : 'opacity-0'
           }`} 
         />
         {/* Nightlight Overlay: Luxurious golden dark vignette */}
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 bg-gradient-to-t from-black via-black/45 to-black/55 ${
-            isNightMode ? 'opacity-100' : 'opacity-0'
+            isNightMode && mobileSlide < 2 ? 'opacity-100' : 'opacity-0'
           }`} 
         />
 
@@ -94,6 +268,7 @@ export const Hero: React.FC<HeroProps> = ({
           className={`absolute bottom-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl transition-opacity duration-1000 ${
             isNightMode ? 'opacity-100' : 'opacity-0'
           }`}
+          style={{ display: mobileSlide < 2 ? 'block' : 'none' }}
         />
       </div>
 
@@ -106,27 +281,65 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Central visual text console */}
         <div className="max-w-3xl mt-12 md:mt-24">
           <div className="space-y-6" id="hero-content">
-            {/* Heading in chosen language */}
-            <motion.h1 
-              key="hero-title"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-6xl font-serif text-white tracking-tight leading-[1.1] font-medium drop-shadow-md"
-            >
-              {t.title[currentLang]}
-            </motion.h1>
+            {/* Desktop-only Title/Subtitle */}
+            <div className="hidden md:block space-y-6">
+              <motion.h1 
+                key="hero-title-desktop"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl md:text-6xl font-serif text-white tracking-tight leading-[1.1] font-medium drop-shadow-md"
+              >
+                {t.title[currentLang]}
+              </motion.h1>
 
-            {/* Subheading text */}
-            <motion.p 
-              key="hero-sub"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-gray-200/90 text-sm md:text-base leading-relaxed max-w-2xl font-light"
-            >
-              {t.subtitle[currentLang]}
-            </motion.p>
+              <motion.p 
+                key="hero-sub-desktop"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-gray-200/90 text-sm md:text-base leading-relaxed max-w-2xl font-light"
+              >
+                {t.subtitle[currentLang]}
+              </motion.p>
+            </div>
+
+            {/* Mobile-only Title/Subtitle */}
+            <div className="block md:hidden min-h-[140px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`hero-slide-mobile-${mobileSlide}`}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="space-y-4"
+                >
+                  <h1 className="text-3xl font-serif text-white tracking-tight leading-[1.1] font-medium drop-shadow-md">
+                    {mobileSlidesData[mobileSlide].title[currentLang]}
+                  </h1>
+
+                  <p className="text-gray-200/90 text-xs leading-relaxed max-w-2xl font-light">
+                    {mobileSlidesData[mobileSlide].subtitle[currentLang]}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+
+              {mobileSlide >= 2 && (
+                <div className="flex space-x-1.5 pt-4">
+                  {[0, 1, 2, 3, 4].map((idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setMobileSlide(idx)}
+                      className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                        mobileSlide === idx ? 'w-4 bg-white' : 'w-1.5 bg-white/30'
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Action pill button */}
             <div className="h-16 flex items-center">
@@ -165,44 +378,63 @@ export const Hero: React.FC<HeroProps> = ({
 
           {/* Column 2: Interactive Lighting Control Dashboard - Simple & Small */}
           <div className="h-[72px] flex items-end">
-            <motion.div
-              key="lighting-panel"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="bg-black/40 backdrop-blur-md border border-white/10 px-4 py-3.5 rounded-2xl flex items-center justify-between w-full"
-            >
-              <div className="text-left">
-                <span className="text-[10px] font-mono tracking-wider text-white uppercase block font-semibold">
-                  {t.lightingControl[currentLang]}
-                </span>
-                <span className="text-white/60 text-[10px] font-light block mt-0.5">
-                  {isNightMode 
-                    ? (currentLang === 'RU' ? 'Вечерний свет' : currentLang === 'ES' ? 'Modo noche' : 'Evening ambient')
-                    : (currentLang === 'RU' ? 'Дневной свет' : currentLang === 'ES' ? 'Modo día' : 'Daylight')}
-                </span>
-              </div>
-              
-              <button
-                onClick={() => {
-                  setIsNightMode(!isNightMode);
-                }}
-                className="py-1.5 px-3 bg-white hover:bg-gray-100 text-black text-[9px] uppercase font-mono tracking-widest rounded-lg transition-all flex items-center space-x-1.5 shadow-md font-semibold cursor-pointer"
-                id="toggle-ambient-light"
-              >
-                {isNightMode ? (
-                  <>
-                    <Sun className="w-3 h-3 text-black" />
-                    <span>Day</span>
-                  </>
-                ) : (
-                  <>
-                    <Moon className="w-3 h-3 text-gray-700" />
-                    <span>Night</span>
-                  </>
-                )}
-              </button>
-            </motion.div>
+            <AnimatePresence mode="wait">
+              {mobileSlide < 2 && (
+                <motion.div
+                  key="lighting-panel"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 15 }}
+                  transition={{ duration: 0.4 }}
+                  className="bg-black/40 backdrop-blur-md border border-white/10 px-4 py-3.5 rounded-2xl flex items-center justify-between w-full"
+                >
+                  <div className="text-left">
+                    <span className="text-[10px] font-mono tracking-wider text-white uppercase block font-semibold">
+                      {t.lightingControl[currentLang]}
+                    </span>
+                    <span className="text-white/60 text-[10px] font-light block mt-0.5">
+                      {isNightMode 
+                        ? (currentLang === 'RU' ? 'Вечерний свет' : currentLang === 'ES' ? 'Modo noche' : 'Evening ambient')
+                        : (currentLang === 'RU' ? 'Дневной свет' : currentLang === 'ES' ? 'Modo día' : 'Daylight')}
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    {/* Mobile Slide Dots inside the panel for perfect UI consolidation */}
+                    <div className="flex md:hidden space-x-1.5">
+                      {[0, 1, 2, 3, 4].map((idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setMobileSlide(idx)}
+                          className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                            mobileSlide === idx ? 'w-4 bg-white' : 'w-1.5 bg-white/30'
+                          }`}
+                          aria-label={`Go to slide ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={handleToggleLight}
+                      className="py-1.5 px-2.5 bg-white hover:bg-gray-100 text-black text-[9px] uppercase font-mono tracking-widest rounded-lg transition-all flex items-center space-x-1 shadow-md font-semibold cursor-pointer"
+                      id="toggle-ambient-light"
+                    >
+                      {isNightMode ? (
+                        <>
+                          <Sun className="w-3 h-3 text-black" />
+                          <span>Day</span>
+                        </>
+                      ) : (
+                        <>
+                          <Moon className="w-3 h-3 text-gray-700" />
+                          <span>Night</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Column 3: Scroll Down Link */}
@@ -225,3 +457,4 @@ export const Hero: React.FC<HeroProps> = ({
     </section>
   );
 };
+
