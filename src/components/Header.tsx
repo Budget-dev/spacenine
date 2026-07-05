@@ -98,7 +98,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-100 transition-colors duration-300">
-        <div className="max-w-5xl mx-auto px-6 h-14 md:h-16 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-6 h-[68px] md:h-[77px] flex items-center justify-between relative">
           
           {/* Logo Brand: Sleek vector SVG logo */}
           <div 
@@ -137,7 +137,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden md:flex items-center" id="desktop-nav">
+          <nav className="hidden md:flex items-center md:absolute md:left-1/2 md:-translate-x-1/2" id="desktop-nav">
             <ul className="flex items-center gap-8">
               {navItems.map((item) => {
                 if (item.id === 'services') {
@@ -245,86 +245,8 @@ export const Header: React.FC<HeaderProps> = ({
             </ul>
           </nav>
 
-          {/* Social icons + Language selector */}
-          <div className="hidden md:flex items-center space-x-6" id="desktop-actions">
-            
-            {/* Social channels (Telegram, WhatsApp) */}
-            <div className="flex items-center space-x-4 text-gray-600">
-              <a 
-                href="https://t.me/spacenine" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="hover:text-black transition-colors"
-                title="Telegram"
-                id="social-telegram"
-              >
-                <Send className="w-5 h-5 transform rotate-[-25deg] translate-y-[-2px]" />
-              </a>
-              <a 
-                href="https://wa.me/919952120021" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="hover:text-black transition-colors"
-                title="WhatsApp"
-                id="social-whatsapp"
-              >
-                <MessageSquare className="w-5 h-5" />
-              </a>
-            </div>
-
-            {/* Custom Interactive Dropdown for Lang */}
-            <div className="relative">
-              <button
-                onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                className="flex items-center space-x-1 text-xs font-semibold uppercase tracking-widest text-gray-600 hover:text-black py-2"
-                id="lang-selector-btn"
-              >
-                <span>{currentLang}</span>
-                <ChevronDown className="w-3 h-3 text-gray-400" />
-              </button>
-
-              <AnimatePresence>
-                {isLangDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 mt-1 w-20 bg-white border border-gray-100 shadow-xl rounded-md overflow-hidden z-50 py-1"
-                    id="lang-dropdown"
-                  >
-                    {(['EN', 'RU', 'ES'] as Language[]).map((lang) => (
-                      <button
-                        key={lang}
-                        onClick={() => toggleLang(lang)}
-                        className={`w-full px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider block hover:bg-gray-50 ${
-                          currentLang === lang 
-                            ? 'text-black bg-gray-50' 
-                            : 'text-gray-400'
-                        }`}
-                        id={`lang-opt-${lang}`}
-                      >
-                        {lang}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-
           {/* Mobile menu trigger */}
           <div className="flex md:hidden items-center space-x-4">
-            {/* Quick Lang */}
-            <button
-              onClick={() => {
-                const next: Record<Language, Language> = { EN: 'RU', RU: 'ES', ES: 'EN' };
-                setLang(next[currentLang]);
-              }}
-              className="text-xs font-bold border border-gray-200 px-2 py-1 rounded"
-              id="mobile-lang-quick"
-            >
-              {currentLang}
-            </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-700 hover:text-black focus:outline-none"
@@ -343,7 +265,7 @@ export const Header: React.FC<HeaderProps> = ({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden fixed top-14 left-0 w-full bg-white z-40 border-b border-gray-200 shadow-xl overflow-hidden"
+            className="md:hidden fixed top-[68px] left-0 w-full bg-white z-40 border-b border-gray-200 shadow-xl overflow-hidden"
             id="mobile-menu-panel"
           >
             <div className="px-6 py-8 flex flex-col space-y-6">
@@ -404,8 +326,8 @@ export const Header: React.FC<HeaderProps> = ({
                 );
               })}
 
-              <div className="border-t border-gray-100 pt-6 flex items-center justify-between">
-                <div className="flex flex-col items-start">
+              <div className="border-t border-gray-100 pt-6 flex items-center justify-center">
+                <div className="flex flex-col items-center">
                   <svg 
                     viewBox="0 0 100 100" 
                     className="w-9 h-9 stroke-current text-gray-900" 
@@ -434,14 +356,6 @@ export const Header: React.FC<HeaderProps> = ({
                   <span className="font-logo text-[10px] font-normal tracking-wide text-gray-900 mt-1 lowercase">
                     spacenine architects
                   </span>
-                </div>
-                <div className="flex items-center space-x-4 text-gray-600">
-                  <a href="https://t.me/spacenine" target="_blank" rel="noreferrer" className="hover:text-black transition-colors" id="mobile-tg">
-                    <Send className="w-5 h-5 transform rotate-[-25deg]" />
-                  </a>
-                  <a href="https://wa.me/919952120021" target="_blank" rel="noreferrer" className="hover:text-black transition-colors" id="mobile-wa">
-                    <MessageSquare className="w-5 h-5" />
-                  </a>
                 </div>
               </div>
             </div>

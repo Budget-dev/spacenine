@@ -531,35 +531,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
             {service.subtitle[currentLang]}
           </p>
           
-          <div className="flex flex-wrap gap-4 pt-2">
-            <div className="flex items-center space-x-2 bg-gray-50 px-4 py-2 rounded-xl border border-gray-100">
-              <Compass className="w-4 h-4 text-gray-400" />
-              <span className="text-xs font-mono font-semibold uppercase text-gray-500">
-                {currentLang === 'RU' ? 'Точность:' : currentLang === 'ES' ? 'Precisión:' : 'Accuracy:'}
-              </span>
-              <span className="text-xs font-mono font-bold text-gray-900">
-                100%
-              </span>
-            </div>
-            <div className="flex items-center space-x-2 bg-gray-50 px-4 py-2 rounded-xl border border-gray-100">
-              <Layers className="w-4 h-4 text-gray-400" />
-              <span className="text-xs font-mono font-semibold uppercase text-gray-500">
-                {currentLang === 'RU' ? 'Класс:' : currentLang === 'ES' ? 'Clase:' : 'Tier:'}
-              </span>
-              <span className="text-xs font-mono font-bold text-gray-900">
-                {currentLang === 'RU' ? 'Ультра-Премиум' : currentLang === 'ES' ? 'Ultra Premium' : 'Ultra Premium'}
-              </span>
-            </div>
-            <div className="flex items-center space-x-2 bg-gray-50 px-4 py-2 rounded-xl border border-gray-100">
-              <Shield className="w-4 h-4 text-gray-400" />
-              <span className="text-xs font-mono font-semibold uppercase text-gray-500">
-                {currentLang === 'RU' ? 'Гарантия:' : currentLang === 'ES' ? 'Garantía:' : 'Warranty:'}
-              </span>
-              <span className="text-xs font-mono font-bold text-gray-900">
-                5 {currentLang === 'RU' ? 'Лет' : currentLang === 'ES' ? 'Años' : 'Years'}
-              </span>
-            </div>
-          </div>
+
         </div>
 
         <div className="lg:col-span-6">
@@ -649,15 +621,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 : 'Begin your premium design or build journey with spacenine architects. Submit your inquiry to schedule a customized architectural design consultation.'}
             </p>
 
-            <div className="border-t border-white/10 pt-4 space-y-2">
-              <span className="text-[10px] font-mono text-gray-400 uppercase tracking-wider block">
-                {currentLang === 'RU' ? 'Среднее время выполнения' : currentLang === 'ES' ? 'Plazo de Ejecución' : 'Project Turnaround Time'}
-              </span>
-              <div className="flex items-center space-x-2 text-white">
-                <Clock className="w-4 h-4 text-white" />
-                <span className="text-sm font-semibold tracking-wider">{service.duration[currentLang]}</span>
-              </div>
-            </div>
+
 
             <button
               onClick={handleInquire}

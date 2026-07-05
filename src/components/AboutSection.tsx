@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles, Compass, Award, Calendar, ChevronRight } from 'lucide-react';
+import { Calendar, ChevronRight } from 'lucide-react';
 import { Language } from '../types';
-import { translations, teamMembers } from '../data';
+import { translations } from '../data';
 
 interface AboutSectionProps {
   currentLang: Language;
@@ -52,7 +52,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-white text-gray-900 border-b border-gray-100">
+    <section id="about" className="py-24 bg-white text-gray-950 border-b border-gray-100 dark:bg-zinc-950 dark:text-zinc-50 dark:border-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* SECTION HEADER */}
@@ -64,70 +64,103 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
             transition={{ duration: 0.6 }}
             className="space-y-4"
           >
-            <span className="text-xs font-mono tracking-widest text-black uppercase block">
+            <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase block">
               CONCEPT STUDIO
             </span>
             <h2 className="text-3xl md:text-5xl font-serif tracking-tight font-medium">
               {t.heading[currentLang]}
             </h2>
-            <div className="h-[2px] w-16 bg-black" />
-            <p className="text-gray-500 text-sm md:text-base font-light leading-relaxed">
+            <div className="h-[2px] w-16 bg-black dark:bg-white" />
+            <p className="text-zinc-500 dark:text-zinc-400 text-sm md:text-base font-light leading-relaxed">
               {t.subheading[currentLang]}
             </p>
           </motion.div>
         </div>
 
         {/* STATS COUNT GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-10 mb-20 border-y border-gray-100" id="about-stats-grid">
+        <motion.div 
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.15
+              }
+            }
+          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 py-10 mb-20 border-y border-zinc-100 dark:border-zinc-900" 
+          id="about-stats-grid"
+        >
           <motion.div 
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
             whileHover={{ y: -5 }}
-            className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl"
+            className="flex flex-col items-center text-center p-6 bg-zinc-50 dark:bg-zinc-900/45 rounded-2xl"
           >
-            <span className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-2">
+            <span className="text-4xl md:text-5xl font-serif font-bold text-zinc-900 dark:text-zinc-50 mb-2">
               120+
             </span>
-            <span className="text-xs font-mono uppercase tracking-widest text-gray-400">
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">
               {t.stat1[currentLang]}
             </span>
           </motion.div>
           <motion.div 
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
             whileHover={{ y: -5 }}
-            className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl"
+            className="flex flex-col items-center text-center p-6 bg-zinc-50 dark:bg-zinc-900/45 rounded-2xl"
           >
-            <span className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-2">
+            <span className="text-4xl md:text-5xl font-serif font-bold text-zinc-900 dark:text-zinc-50 mb-2">
               8+
             </span>
-            <span className="text-xs font-mono uppercase tracking-widest text-gray-400">
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">
               {t.stat2[currentLang]}
             </span>
           </motion.div>
           <motion.div 
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
             whileHover={{ y: -5 }}
-            className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl"
+            className="flex flex-col items-center text-center p-6 bg-zinc-50 dark:bg-zinc-900/45 rounded-2xl"
           >
-            <span className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-2">
+            <span className="text-4xl md:text-5xl font-serif font-bold text-zinc-900 dark:text-zinc-50 mb-2">
               15+
             </span>
-            <span className="text-xs font-mono uppercase tracking-widest text-gray-400">
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">
               {t.stat3[currentLang]}
             </span>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* MAIN STUDIO STORY & INTERACTIVE TIMELINE */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24 items-start">
           
           {/* Philosophy text */}
-          <div className="lg:col-span-5 space-y-6">
-            <h3 className="text-2xl font-serif text-gray-900 font-medium">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 space-y-6"
+          >
+            <h3 className="text-2xl font-serif text-zinc-900 dark:text-zinc-100 font-medium">
               {t.storyTitle[currentLang]}
             </h3>
-            <p className="text-gray-600 text-sm md:text-base leading-relaxed font-light">
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base leading-relaxed font-light">
               {t.storyText[currentLang]}
             </p>
             
             {/* Curated points as clean, unified paragraphs */}
-            <div className="pt-4 text-gray-600 text-sm md:text-base leading-relaxed font-light space-y-4" id="philosophy-details">
+            <div className="pt-4 text-zinc-600 dark:text-zinc-400 text-sm md:text-base leading-relaxed font-light space-y-4" id="philosophy-details">
               <p>
                 {currentLang === 'RU' 
                   ? 'Наша архитектурная концепция определяется тонкой гармонией богатых природных текстур и точно выверенной световой геометрии. В работе мы отдаем предпочтение исключительно натуральным премиальным материалам — селективному дубу, изысканному мрамору Calacatta и полированной вручную латуни.'
@@ -145,12 +178,18 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
                 }
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Interactive Timeline Journey */}
-          <div className="lg:col-span-7 bg-gray-50 p-8 rounded-3xl border border-gray-100">
-            <h3 className="text-xl font-serif font-medium text-gray-900 mb-6 flex items-center space-x-2">
-              <Calendar className="w-5 h-5 text-black" />
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            className="lg:col-span-7 bg-zinc-50 dark:bg-zinc-900/30 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-900"
+          >
+            <h3 className="text-xl font-serif font-medium text-zinc-900 dark:text-zinc-100 mb-6 flex items-center space-x-2">
+              <Calendar className="w-5 h-5 text-zinc-900 dark:text-zinc-50" />
               <span>{t.timelineTitle[currentLang]}</span>
             </h3>
 
@@ -164,8 +203,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
                     onClick={() => setSelectedMilestone(idx)}
                     className={`px-4 py-3 text-left font-mono text-sm tracking-wider rounded-xl transition-all flex items-center justify-between min-w-[90px] md:min-w-0 ${
                       selectedMilestone === idx
-                        ? 'bg-black text-white font-semibold shadow-md'
-                        : 'bg-white hover:bg-gray-100 text-gray-400 border border-gray-100'
+                        ? 'bg-zinc-950 text-white dark:bg-zinc-100 dark:text-zinc-950 font-semibold shadow-md'
+                        : 'bg-white hover:bg-zinc-100 text-zinc-400 border border-zinc-100 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-800'
                     }`}
                   >
                     <span>{milestone.year}</span>
@@ -175,7 +214,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
               </div>
 
               {/* Milestone Details Container */}
-              <div className="md:col-span-8 bg-white p-6 rounded-2xl min-h-[160px] flex flex-col justify-between border border-gray-100">
+              <div className="md:col-span-8 bg-white dark:bg-zinc-900 p-6 rounded-2xl min-h-[160px] flex flex-col justify-between border border-zinc-100 dark:border-zinc-800">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={selectedMilestone}
@@ -185,13 +224,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
                     transition={{ duration: 0.3 }}
                     className="space-y-3"
                   >
-                    <span className="text-xs font-mono font-bold text-black tracking-widest uppercase">
+                    <span className="text-xs font-mono font-bold text-zinc-900 dark:text-zinc-50 tracking-widest uppercase">
                       YEAR {milestones[selectedMilestone].year}
                     </span>
-                    <h4 className="text-lg font-serif font-semibold text-gray-900">
+                    <h4 className="text-lg font-serif font-semibold text-zinc-900 dark:text-zinc-50">
                       {milestones[selectedMilestone].title[currentLang]}
                     </h4>
-                    <p className="text-sm text-gray-500 font-light leading-relaxed">
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 font-light leading-relaxed">
                       {milestones[selectedMilestone].desc[currentLang]}
                     </p>
                   </motion.div>
@@ -199,7 +238,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

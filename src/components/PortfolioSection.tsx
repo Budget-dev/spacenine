@@ -84,200 +84,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
     ES: 'NUESTROS PROYECTOS'
   };
 
-  // Separate Project Detail Page View
-  if (selectedProject) {
-    const testimonial = getProjectTestimonial(selectedProject.id);
-    return (
-      <section 
-        id="portfolio" 
-        className="py-16 md:py-24 bg-white text-zinc-900 border-b border-zinc-100 overflow-hidden relative"
-      >
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none select-none" />
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-amber-600/5 rounded-full blur-3xl pointer-events-none select-none" />
-
-        <div className="max-w-5xl mx-auto px-6 relative z-10" id="portfolio-detail-view">
-          
-          {/* Top navigation row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10 pb-6 border-b border-zinc-100">
-            <button
-              onClick={handleBackToGrid}
-              className="group flex items-center space-x-2.5 text-sm font-mono font-bold text-[#8a6f3e] hover:text-[#bca374] transition-colors focus:outline-none cursor-pointer"
-              id="back-to-portfolio"
-            >
-              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-              <span>{ft.back[currentLang]}</span>
-            </button>
-            
-            <div className="text-xs font-mono text-zinc-400 flex items-center space-x-1.5 select-none">
-              <span>{ft.breadcrumbHome[currentLang]}</span>
-              <span className="text-zinc-300">/</span>
-              <span className="text-zinc-600 font-medium">{selectedProject.categoryLabel[currentLang]}</span>
-              <span className="text-zinc-300">/</span>
-              <span className="text-zinc-900 font-bold">{selectedProject.title[currentLang]}</span>
-            </div>
-          </div>
-
-          {/* Separate page layout */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16"
-          >
-            {/* Left Column: Image & caption (occupies 7 columns on desktop) */}
-            <div className="md:col-span-7 space-y-6">
-              <div className="relative overflow-hidden rounded-3xl aspect-[16/10] sm:aspect-[4/3] bg-neutral-100 border border-neutral-200/60 shadow-[0_20px_50px_rgba(0,0,0,0.04)] group">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title[currentLang]}
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-102"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 pointer-events-none" />
-                <div className="absolute bottom-6 left-6 text-white z-10">
-                  <span className="text-[10px] font-mono tracking-widest text-[#bca374] uppercase font-bold">
-                    SPACENINE ARCHITECTS
-                  </span>
-                  <p className="text-xs font-light mt-1 text-zinc-100">
-                    &copy; {selectedProject.year} Premium Site Delivery
-                  </p>
-                </div>
-              </div>
-
-              {/* Extra visual metadata block */}
-              <div className="p-6 bg-zinc-50 border border-zinc-100 rounded-2xl space-y-3">
-                <div className="flex items-center space-x-2 text-zinc-400">
-                  <MapPin className="w-4 h-4 text-[#8a6f3e] shrink-0" />
-                  <span className="text-xs font-mono uppercase tracking-wider">{ft.specsLocation[currentLang]}</span>
-                </div>
-                <p className="text-sm font-medium text-zinc-800 font-serif">
-                  {selectedProject.location[currentLang]}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Column: details */}
-            <div className="md:col-span-5 space-y-8 bg-white">
-              
-              {/* Category & Title */}
-              <div className="space-y-3">
-                <span className="text-xs font-mono font-bold text-[#8a6f3e] tracking-widest uppercase block">
-                  {selectedProject.categoryLabel[currentLang]}
-                </span>
-                <h1 className="text-2xl md:text-3.5xl font-sans font-bold tracking-tight text-zinc-900 leading-tight">
-                  {selectedProject.title[currentLang]}
-                </h1>
-                <div className="h-[2px] w-12 bg-[#bca374] mt-2" />
-              </div>
-
-              {/* Specs metadata cards */}
-              <div className="grid grid-cols-3 gap-3">
-                <div className="p-3 bg-zinc-50/50 border border-zinc-150 rounded-xl text-center">
-                  <span className="text-[10px] font-mono text-zinc-400 block uppercase">
-                    {ft.specsArea[currentLang]}
-                  </span>
-                  <span className="text-xs font-bold text-zinc-800 font-mono mt-1 block">
-                    {selectedProject.area}
-                  </span>
-                </div>
-                <div className="p-3 bg-zinc-50/50 border border-zinc-150 rounded-xl text-center">
-                  <span className="text-[10px] font-mono text-zinc-400 block uppercase">
-                    {ft.specsLocation[currentLang]}
-                  </span>
-                  <span className="text-xs font-bold text-zinc-800 mt-1 block truncate px-1">
-                    {selectedProject.location[currentLang].split(',')[0]}
-                  </span>
-                </div>
-                <div className="p-3 bg-zinc-50/50 border border-zinc-150 rounded-xl text-center">
-                  <span className="text-[10px] font-mono text-zinc-400 block uppercase">
-                    {ft.specsYear[currentLang]}
-                  </span>
-                  <span className="text-sm font-bold text-zinc-800 font-mono mt-1 block">
-                    {selectedProject.year}
-                  </span>
-                </div>
-              </div>
-
-              {/* Description body */}
-              <div className="space-y-4">
-                <p className="text-sm text-zinc-600 font-light leading-relaxed font-sans">
-                  {selectedProject.description[currentLang]}
-                </p>
-              </div>
-
-              {/* Key Spaces section */}
-              {selectedProject.keySpaces && selectedProject.keySpaces.length > 0 && (
-                <div className="space-y-4 pt-4 border-t border-zinc-100">
-                  <span className="text-xs font-mono uppercase tracking-widest text-[#8a6f3e] font-semibold flex items-center space-x-1.5">
-                    <Compass className="w-3.5 h-3.5 text-[#8a6f3e]" />
-                    <span>{currentLang === 'RU' ? 'Ключевые пространства' : currentLang === 'ES' ? 'Espacios Clave' : 'Key Spaces'}</span>
-                  </span>
-                  
-                  <div className="grid grid-cols-2 gap-3" id="key-spaces-grid">
-                    {selectedProject.keySpaces.map((space, idx) => (
-                      <div key={idx} className="p-3 bg-zinc-50 border border-zinc-100 rounded-xl">
-                        <span className="text-[11px] font-medium text-zinc-800 block leading-tight">
-                          {space.name[currentLang]}
-                        </span>
-                        <span className="text-xs text-[#8a6f3e] font-mono mt-1 block">
-                          {space.size}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Specs check squares */}
-              <div className="space-y-4 pt-4 border-t border-zinc-100">
-                <span className="text-xs font-mono uppercase tracking-widest text-[#8a6f3e] font-semibold flex items-center space-x-1.5">
-                  <CheckSquare className="w-3.5 h-3.5 text-[#8a6f3e]" />
-                  <span>{ft.technicalFeatures[currentLang]}</span>
-                </span>
-                
-                <ul className="space-y-3" id="project-specs-list">
-                  {selectedProject.details[currentLang].map((detail, idx) => (
-                    <li key={idx} className="flex items-start space-x-3 text-xs text-zinc-600 font-sans">
-                      <CheckSquare className="w-4 h-4 text-[#8a6f3e] shrink-0 mt-0.5" />
-                      <span className="font-light leading-relaxed">{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Client testimonial */}
-              {testimonial && (
-                <div className="bg-amber-50/25 border border-amber-100/50 p-5 rounded-2xl space-y-3 pt-5 relative">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold text-[#8a6f3e] tracking-wider uppercase block">
-                      {ft.testimonialTitle[currentLang]}
-                    </span>
-                    <div className="flex items-center space-x-0.5 text-amber-500">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-amber-500 text-amber-500" />
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <p className="text-xs font-serif italic text-zinc-700 leading-relaxed">
-                    "{testimonial.text[currentLang]}"
-                  </p>
-                  
-                  <div className="pt-2 border-t border-zinc-200/50 flex items-center justify-between text-[10px] font-mono text-zinc-400">
-                    <span className="font-bold text-zinc-600">{testimonial.author}</span>
-                    <span>{testimonial.role[currentLang].split('(')[0]}</span>
-                  </div>
-                </div>
-              )}
-
-            </div>
-          </motion.div>
-
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section 
       id="portfolio" 
@@ -292,7 +98,13 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
         {/* DESIGN CONTEXT HEADER WITH METRICS */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-24 border-b border-zinc-100 pb-16">
           {/* Left Side: Editorial Typography Heading & Statement */}
-          <div className="lg:col-span-7 space-y-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 space-y-6"
+          >
             <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-zinc-900 leading-tight">
               {currentLang === 'RU' ? 'Жилые пространства, созданные с душой' : currentLang === 'ES' ? 'Espacios habitables creados con intención' : 'Living spaces shaped with intention'}
             </h2>
@@ -304,10 +116,16 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
                   ? 'Diseñamos hogares que albergan todo el peso de la vida familiar: los hábitos diarios, las celebraciones, la necesidad de paz. Cada proyecto comienza con una conversación y termina con un edificio con identidad propia.' 
                   : 'We design homes that hold the full weight of a family\'s life — the daily habits, the celebrations, the need for quiet. Every project begins with a conversation and ends with a building that earns its place.'}
             </p>
-          </div>
+          </motion.div>
 
           {/* Right Side: High-End Architecture Metrics */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-x-8 gap-y-10 self-center border-l border-zinc-100 lg:pl-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="lg:col-span-5 grid grid-cols-2 gap-x-8 gap-y-10 self-center border-l border-zinc-100 lg:pl-10"
+          >
             <div className="space-y-1.5">
               <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 block tracking-tight">4+</span>
               <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block leading-tight">
@@ -332,10 +150,10 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
             <div className="space-y-1.5">
               <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 block tracking-tight">01 — 04</span>
               <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block leading-tight">
-                {currentLang === 'RU' ? 'Избранные Проекты' : currentLang === 'ES' ? 'Proyectos Seleccionados' : 'Selected Projects'}
+                {currentLang === 'RU' ? 'Выдающиеся работы' : currentLang === 'ES' ? 'Diseños Destacados' : 'Featured Designs'}
               </span>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* ASYMMETRIC PORTFOLIO GRID */}

@@ -1,0 +1,26 @@
+# www.robotstxt.org
+# Professional Enterprise-Grade Robots.txt for Spacenine Architects
+# Hyderabad's Premier Luxury Architecture & Interior Design Studio
+
+# Global Rules for All Search Engine Crawlers
+User-agent: *
+
+# Allow crawling of all high-value public landing pages and assets
+Allow: /
+Allow: /assets/
+Allow: /sitemap.xml
+
+# Disallow indexing of administrative panels, dynamic query searches, and private paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /config/
+Disallow: /private/
+Disallow: /internal/
+Disallow: /drafts/
+Disallow: /search?*
+Disallow: /*?utm_source=*
+Disallow: /tmp/
+Disallow: /temp/
+
+# Sitemaps
+Sitemap: https://spacenine.in/sitemap.xml

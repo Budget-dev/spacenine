@@ -281,10 +281,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           {servicesData.map((srv, index) => {
             const isEven = index % 2 === 0;
             return (
-              <div 
+              <motion.div 
                 key={srv.id} 
                 id={`service-${srv.id}`} 
-                className="scroll-mt-28 border-b border-gray-100 pb-20 last:border-0 last:pb-0"
+                initial={{ opacity: 0, y: 45 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="scroll-mt-28 border-b border-zinc-100 dark:border-zinc-900 pb-20 last:border-0 last:pb-0"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
                   
@@ -393,7 +397,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   </div>
 
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

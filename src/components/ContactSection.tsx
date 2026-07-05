@@ -144,7 +144,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* LEFT COLUMN: STUDIO DETAILS & SOCIALS (Col span 5) */}
-          <div className="lg:col-span-5 space-y-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 space-y-8"
+          >
             
             {/* Quick Messengers buttons */}
             <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4">
@@ -243,10 +249,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               </div>
             </div>
 
-          </div>
+          </motion.div>
 
           {/* RIGHT COLUMN: CONSULTATION FORM & SUCCESS CARD (Col span 7) */}
-          <div className="lg:col-span-7" id="contact-form-container">
+          <motion.div 
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            className="lg:col-span-7" 
+            id="contact-form-container"
+          >
             <AnimatePresence mode="wait">
               {!isSuccess ? (
                 <motion.form
@@ -391,7 +404,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
 
         </div>
 
