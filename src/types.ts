@@ -14,6 +14,7 @@ export interface PortfolioProject {
   area: string;
   year: string;
   image: string;
+  gallery?: string[];
   description: Record<Language, string>;
   details: Record<Language, string[]>;
   keySpaces?: { name: Record<Language, string>; size: string }[];

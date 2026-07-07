@@ -14,39 +14,30 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
 
   const milestones = [
     {
-      year: '2018',
+      year: '2022',
       title: { EN: 'Studio Founded', RU: 'Основание студии', ES: 'Fundación del Estudio' },
       desc: {
-        EN: 'Founded in New Delhi with a focus on custom residential dressing rooms and minimalist high-contrast villas.',
-        RU: 'Основание студии в Нью-Дели со специализацией на авторских гардеробных и минималистичных загородных резиденциях.',
-        ES: 'Fundado en Nueva Delhi con un enfoque en vestidores a medida y villas minimalistas de alto contraste.'
+        EN: 'Founded with a focus on bespoke residential architecture, minimalist luxury design, and state-of-the-art spatial styling.',
+        RU: 'Основание студии со специализацией на авторской жилой архитектуре, изысканном минималистичном дизайне и современном стайлинге.',
+        ES: 'Fundado con un enfoque en arquitectura residencial a medida, diseño de lujo minimalista y estilismo espacial de vanguardia.'
       }
     },
     {
-      year: '2020',
-      title: { EN: 'Luxury Residence Award', RU: 'Премия за лучшую виллу', ES: 'Premio Residencia de Lujo' },
+      year: '2024',
+      title: { EN: 'Commercial & Luxury Expansion', RU: 'Выход в коммерческий сектор', ES: 'Expansión Comercial y de Lujo' },
       desc: {
-        EN: 'Awarded "Best Luxury Dressing Room Design" in international architectural competitions for our Malabar Hill project.',
-        RU: 'Победа в номинации "Лучший проект гардеробной" на международном конкурсе за объект в Малабар Хиллс.',
-        ES: 'Galardonado como "Mejor Diseño de Vestidor de Lujo" en competiciones internacionales por el proyecto de Malabar Hill.'
-      }
-    },
-    {
-      year: '2022',
-      title: { EN: 'Commercial Expansion', RU: 'Выход в коммерческий сектор', ES: 'Expansión Comercial' },
-      desc: {
-        EN: 'Expanded our operations to corporate HQs, premium offices, and high-end VIP lounges in UB City, Bangalore and BKC, Mumbai.',
-        RU: 'Расширение портфолио офисами представительского класса и лаунж-зонами в UB City (Бангалор) и BKC (Мумбаи).',
-        ES: 'Ampliación de operaciones a sedes corporativas, oficinas premium y salones VIP en UB City de Bangalore y BKC de Bombay.'
+        EN: 'Expanded our operations to high-end corporate headquarters, premium design offices, and luxury residential estates.',
+        RU: 'Расширение портфолио офисами представительского класса, дизайн-студиями премиум-уровня и роскошными резиденциями.',
+        ES: 'Ampliación de operaciones a sedes corporativas premium, oficinas de diseño de alta gama y fincas residenciales de lujo.'
       }
     },
     {
       year: '2025',
-      title: { EN: 'Global Digital Showcase', RU: 'Глобальное признание', ES: 'Escaparate Digital Global' },
+      title: { EN: 'Virtual Walkthroughs & Renders', RU: 'Виртуальные туры и Enscape-рендеры', ES: 'Recorridos Virtuales y Renders de Enscape' },
       desc: {
-        EN: 'Launched digital interior architectural consultancies serving premium clients globally with VR walk-throughs.',
-        RU: 'Запуск удаленного проектирования интерьеров и виртуальных VR-туров для клиентов по всему миру.',
-        ES: 'Lanzamiento de consultorías digitales de arquitectura de interiores con recorridos virtuales de RV a nivel global.'
+        EN: 'Launched digital interior architecture services with immersive VR walk-throughs and detailed Enscape renders.',
+        RU: 'Запуск удаленного проектирования с иммерсивными виртуальными турами (VR) и детализированной Enscape-визуализацией.',
+        ES: 'Lanzamiento de servicios de arquitectura digital con recorridos inmersivos de RV y renders detallados de Enscape.'
       }
     }
   ];
@@ -67,7 +58,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
             <span className="text-xs font-mono tracking-widest text-zinc-400 uppercase block">
               CONCEPT STUDIO
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif tracking-tight font-medium">
+            <h2 className="text-3xl md:text-5xl font-sans tracking-tight font-bold">
               {t.heading[currentLang]}
             </h2>
             <div className="h-[2px] w-16 bg-black dark:bg-white" />
@@ -91,7 +82,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
               }
             }
           }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 py-10 mb-20 border-y border-zinc-100 dark:border-zinc-900" 
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10 mb-20 border-y border-zinc-100 dark:border-zinc-900" 
           id="about-stats-grid"
         >
           <motion.div 
@@ -102,8 +93,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
             whileHover={{ y: -5 }}
             className="flex flex-col items-center text-center p-6 bg-zinc-50 dark:bg-zinc-900/45 rounded-2xl"
           >
-            <span className="text-4xl md:text-5xl font-serif font-bold text-zinc-900 dark:text-zinc-50 mb-2">
-              120+
+            <span className="text-4xl md:text-5xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 mb-2">
+              30+
             </span>
             <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">
               {t.stat1[currentLang]}
@@ -117,26 +108,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
             whileHover={{ y: -5 }}
             className="flex flex-col items-center text-center p-6 bg-zinc-50 dark:bg-zinc-900/45 rounded-2xl"
           >
-            <span className="text-4xl md:text-5xl font-serif font-bold text-zinc-900 dark:text-zinc-50 mb-2">
-              8+
+            <span className="text-4xl md:text-5xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 mb-2">
+              4+
             </span>
             <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">
               {t.stat2[currentLang]}
-            </span>
-          </motion.div>
-          <motion.div 
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-            }}
-            whileHover={{ y: -5 }}
-            className="flex flex-col items-center text-center p-6 bg-zinc-50 dark:bg-zinc-900/45 rounded-2xl"
-          >
-            <span className="text-4xl md:text-5xl font-serif font-bold text-zinc-900 dark:text-zinc-50 mb-2">
-              15+
-            </span>
-            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">
-              {t.stat3[currentLang]}
             </span>
           </motion.div>
         </motion.div>
@@ -152,7 +128,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 space-y-6"
           >
-            <h3 className="text-2xl font-serif text-zinc-900 dark:text-zinc-100 font-medium">
+            <h3 className="text-2xl font-sans text-zinc-900 dark:text-zinc-100 font-bold">
               {t.storyTitle[currentLang]}
             </h3>
             <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base leading-relaxed font-light">
@@ -188,7 +164,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
             className="lg:col-span-7 bg-zinc-50 dark:bg-zinc-900/30 p-8 rounded-3xl border border-zinc-100 dark:border-zinc-900"
           >
-            <h3 className="text-xl font-serif font-medium text-zinc-900 dark:text-zinc-100 mb-6 flex items-center space-x-2">
+            <h3 className="text-xl font-sans font-bold text-zinc-900 dark:text-zinc-100 mb-6 flex items-center space-x-2">
               <Calendar className="w-5 h-5 text-zinc-900 dark:text-zinc-50" />
               <span>{t.timelineTitle[currentLang]}</span>
             </h3>
@@ -227,7 +203,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
                     <span className="text-xs font-mono font-bold text-zinc-900 dark:text-zinc-50 tracking-widest uppercase">
                       YEAR {milestones[selectedMilestone].year}
                     </span>
-                    <h4 className="text-lg font-serif font-semibold text-zinc-900 dark:text-zinc-50">
+                    <h4 className="text-lg font-sans font-bold text-zinc-900 dark:text-zinc-50">
                       {milestones[selectedMilestone].title[currentLang]}
                     </h4>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400 font-light leading-relaxed">

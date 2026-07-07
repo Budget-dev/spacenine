@@ -346,7 +346,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
                 <Tooltip>
                   <TooltipTrigger>
                     <a
-                      href="https://instagram.com"
+                      href="https://www.instagram.com/spaceninearchitects?utm_source=qr"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-700 transition-all text-zinc-400 dark:text-zinc-500 cursor-pointer"

@@ -8,6 +8,7 @@ import { PortfolioSection } from './components/PortfolioSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ServiceDetailPage } from './components/ServiceDetailPage';
+import { ProjectDetailPage } from './components/ProjectDetailPage';
 import { Language, ServicePageId } from './types';
 
 // Professional enterprise-grade SEO metadata mapping (35-years industry standard)
@@ -148,15 +149,83 @@ const seoMetadata: Record<
     },
     ES: {
       title: "Contacto | Oficina de Spacenine Architects en Hyderabad",
-      description: "Póngase en contacto con los mejores arquitectos y diseñadores de interiores de Hyderabad. Comience a diseñar su proyecto de lujo hoy.",
+      description: "Póngase en contacto con los mejores arquitectos y дизайнеров de interiores de Hyderabad. Comience a diseñar su proyecto de lujo hoy.",
       keywords: "Contacto Spacenine, Oficinas de arquitectura Hyderabad, Contratar diseñador de interiores"
+    }
+  },
+  'project-1': {
+    EN: {
+      title: "Narendar Residence | Portfolio | Spacenine Architects",
+      description: "Explore Narendar Residence, a multi-generational modern luxury home designed and executed with precision by Spacenine Architects.",
+      keywords: "Narendar Residence, Luxury Home Telangana, Spacenine Portfolio, Multi-generational House"
+    },
+    RU: {
+      title: "Резиденция Нарендара | Портфолио | Spacenine Architects",
+      description: "Исследуйте Резиденцию Нарендара — современный элитный дом для всей семьи, созданный Spacenine Architects.",
+      keywords: "Резиденция Нарендара, Премиальный дом, Портфолио Spacenine, Архитектурное бюро Хайдарабад"
+    },
+    ES: {
+      title: "Residencia Narendar | Portafolio | Spacenine Architects",
+      description: "Explore la Residencia Narendar, un hogar multifamiliar moderno de lujo diseñado por Spacenine Architects.",
+      keywords: "Residencia Narendar, Casa de Lujo, Portafolio Spacenine, Arquitectos Hyderabad"
+    }
+  },
+  'project-2': {
+    EN: {
+      title: "Sudeep Reddy | Portfolio | Spacenine Architects",
+      description: "Discover Sudeep Reddy residence, designed for living at its fullest scale with double-height lounge and magnificent balcony details.",
+      keywords: "Sudeep Reddy, Luxury Villa Hyderabad, Spacenine Portfolio, Double height lounge"
+    },
+    RU: {
+      title: "Резиденция Судипа Редди | Портфолио | Spacenine Architects",
+      description: "Откройте для себя резиденцию Судипа Редди: роскошная вилла в Хайдарабаде с гостиной двойной высоты от Spacenine Architects.",
+      keywords: "Судип Редди, Роскошная вилла Хайдарабад, Портфолио Spacenine"
+    },
+    ES: {
+      title: "Residencia Sudeep Reddy | Portafolio | Spacenine Architects",
+      description: "Descubra la residencia Sudeep Reddy, diseñada para vivir a gran escala con salón de doble altura por Spacenine Architects.",
+      keywords: "Sudeep Reddy, Villa de Lujo Hyderabad, Portafolio Spacenine"
+    }
+  },
+  'project-3': {
+    EN: {
+      title: "Suresh Residence | Portfolio | Spacenine Architects",
+      description: "Explore Suresh Residence, a warm family home where every square foot earns its keep by Spacenine Architects.",
+      keywords: "Suresh Residence, Nalgonda Telangana, Spacenine Portfolio, Family Home"
+    },
+    RU: {
+      title: "Резиденция Суреша | Портфолио | Spacenine Architects",
+      description: "Исследуйте Резиденцию Суреша: теплый и рациональный семейный дом в Налгонде от Spacenine Architects.",
+      keywords: "Резиденция Суреша, Семейный дом Налгонда, Портфолио Spacenine"
+    },
+    ES: {
+      title: "Residencia Suresh | Portafolio | Spacenine Architects",
+      description: "Explore la Residencia Suresh, una casa familiar cálida y práctica construida por Spacenine Architects.",
+      keywords: "Residencia Suresh, Casa Familiar, Portafolio Spacenine"
+    }
+  },
+  'project-4': {
+    EN: {
+      title: "Venkat Reddy | Portfolio | Spacenine Architects",
+      description: "Discover Venkat Reddy Grand Villa, the studio's most ambitious private commission designed for supreme comfort.",
+      keywords: "Venkat Reddy, Grand Villa Hyderabad, Spacenine Portfolio, Ambitious Estate"
+    },
+    RU: {
+      title: "Резиденция Венката Редди | Портфолио | Spacenine Architects",
+      description: "Исследуйте Гранд-виллу Венката Редди — самый амбициозный частный проект студии Spacenine Architects.",
+      keywords: "Венкат Редди, Гранд вилла, Элитная архитектура, Портфолио Spacenine"
+    },
+    ES: {
+      title: "Residencia Venkat Reddy | Portafolio | Spacenine Architects",
+      description: "Descubra la Gran Villa de Venkat Reddy, el encargo privado más ambicioso de Spacenine Architects.",
+      keywords: "Venkat Reddy, Gran Villa, Portafolio Spacenine, Residencia de Lujo"
     }
   }
 };
 
 export default function App() {
   const [currentLang, setLang] = useState<Language>('EN');
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'portfolio' | 'contact' | ServicePageId>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'portfolio' | 'contact' | ServicePageId | 'project-1' | 'project-2' | 'project-3' | 'project-4'>('home');
   const [activeSection, setActiveSection] = useState<string>('home');
   const [selectedService, setSelectedService] = useState<ServicePageId>('architectural-design');
   const [prefilledBrief, setPrefilledBrief] = useState<string>('');
@@ -300,6 +369,15 @@ export default function App() {
       } else if (hash === 'contact') {
         setCurrentPage('contact');
         setActiveSection('contact');
+        window.scrollTo({ top: 0 });
+      } else if (
+        hash === 'project-1' ||
+        hash === 'project-2' ||
+        hash === 'project-3' ||
+        hash === 'project-4'
+      ) {
+        setCurrentPage(hash as any);
+        setActiveSection('portfolio');
         window.scrollTo({ top: 0 });
       } else if (
         hash === 'architectural-design' || 
@@ -547,6 +625,31 @@ export default function App() {
                 }}
                 onBackToHome={() => {
                   window.location.hash = 'home';
+                }}
+              />
+            </motion.div>
+          )}
+
+          {(currentPage === 'project-1' ||
+            currentPage === 'project-2' ||
+            currentPage === 'project-3' ||
+            currentPage === 'project-4') && (
+            <motion.div
+              key={currentPage}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="pt-20 md:pt-24"
+            >
+              <ProjectDetailPage
+                currentLang={currentLang}
+                projectId={currentPage}
+                onBackToPortfolio={() => {
+                  window.location.hash = 'portfolio';
+                }}
+                onOpenConsultation={(brief) => {
+                  handleOpenConsultationWithEstimate(brief);
                 }}
               />
             </motion.div>

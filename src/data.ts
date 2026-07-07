@@ -50,9 +50,9 @@ export const translations = {
       ES: 'Diseño a medida, diseñado para una ejecución impecable.'
     },
     subheading: {
-      EN: 'For over 12 years, spacenine architects has crafted ultra-high-end private residences, boutique commercial spaces, and custom architectural masterpieces.',
-      RU: 'Более 12 лет spacenine architects создает ультра-премиальные частные резиденции, коммерческие интерьеры и авторские архитектурные проекты.',
-      ES: 'Durante más de 12 años, spacenine architects ha creado residencias privadas de ultra-gama alta, espacios comerciales boutique y obras maestras arquitectónicas.'
+      EN: 'Established in 2022, spacenine architects has crafted ultra-high-end private residences, boutique commercial spaces, and custom architectural masterpieces.',
+      RU: 'Основанная в 2022 году, студия spacenine architects создает ультра-премиальные частные резиденции, коммерческие интерьеры и авторские архитектурные проекты.',
+      ES: 'Establecido en 2022, spacenine architects ha creado residencias privadas de ultra-gama alta, espacios comerciales boutique y obras maestras arquitectónicas.'
     },
     stat1: {
       EN: 'Projects Delivered',
@@ -90,9 +90,9 @@ export const translations = {
       ES: 'Las Mentes Detrás de las Obras Maestras'
     },
     text1: {
-      EN: 'For over 12 years, spacenine architects has crafted ultra-high-end private residences, boutique commercial spaces, and custom architectural masterworks. Our signature approach is absolute fidelity — delivering spaces that match original design visual concepts down to the millimeter, with zero tolerances for deviation.',
-      RU: 'Более 12 лет spacenine architects создает ультра-премиальные частные резиденции, коммерческие интерьеры и авторские архитектурные проекты. Наша визитная карточка — абсолютная точность: реализация объектов на 100% соответствует первоначальным 3D-визуализациям.',
-      ES: 'Durante más de 12 años, spacenine architects ha creado residencias privadas de ultra-gama alta, espacios comerciales boutique y obras maestras arquitectónicas personalizadas. Nuestro enfoque distintivo es la fidelidad absoluta: entregar espacios que coincidan con los conceptos visuales originales al milímetro.'
+      EN: 'Since our founding in 2022, spacenine architects has crafted ultra-high-end private residences, boutique commercial spaces, and custom architectural masterworks. Our signature approach is absolute fidelity — delivering spaces that match original design visual concepts down to the millimeter, with zero tolerances for deviation.',
+      RU: 'С момента основания в 2022 году студия spacenine architects создает ультра-премиальные частные резиденции, коммерческие интерьеры и авторские архитектурные проекты. Наша визитная карточка — абсолютная точность: реализация объектов на 100% соответствует первоначальным 3D-визуализациям.',
+      ES: 'Desde nuestra fundación en 2022, spacenine architects ha creado residencias privadas de ultra-gama alta, espacios comerciales boutique y obras maestras arquitectónicas personalizadas. Nuestro enfoque distintivo es la fidelidad absoluta: entregar espacios que coincidan con los conceptos visuales originales al milímetro.'
     },
     text2: {
       EN: 'We combine rigorous architectural mathematics with sophisticated interior art. By handling every stage from primary sketch to custom cabinet manufacturing, engineering documentation, and styling delivery, we establish a flawless, turnkey transition to your new luxury environment.',
@@ -406,7 +406,7 @@ export const portfolioProjects: PortfolioProject[] = [
     location: { EN: 'Ramayanpet, Telangana', RU: 'Рамаянпет, Телангана', ES: 'Ramayanpet, Telangana' },
     area: '3 Floors + Lawn',
     year: '2025',
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1600',
+    image: 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/Narendar/day%20view.jpg',
     description: {
       EN: 'A multi-generational home designed to give every member of the household their own ground to stand on. The plan distributes privacy across three floors — ground-level living for parents, upper floors for the younger household — with a private lift threading them together. A 27-foot open lawn anchors the front, bringing sky and garden into the daily experience of the house.',
       RU: 'Дом для нескольких поколений семьи, спроектированный так, чтобы у каждого члена семьи было свое личное пространство. Планировка распределяет приватность по трем этажам: первый этаж отведен для родителей, верхние этажи — для младшего поколения, а соединяет их частный лифт. Открытый газон длиной 27 футов украшает фасад, привнося небо и сад в повседневную жизнь.',
@@ -473,7 +473,15 @@ export const portfolioProjects: PortfolioProject[] = [
     location: { EN: 'Hyderabad, Telangana', RU: 'Хайдарабад, Телангана', ES: 'Hyderabad, Telangana' },
     area: 'Premium Residential Villa',
     year: '2024',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1600',
+    image: 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/night%20view.jpg',
+    gallery: [
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/night%20view.jpg',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/interiors/Enscape_2024-08-29-23-55-39_Enscape%20scene%205.png',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/interiors/Enscape_2024-08-29-23-55-39_Enscape%20scene%207.png',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/interiors/Enscape_2024-08-29-23-55-39_Enscape%20scene%2010.png',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/interiors/Enscape_2024-08-30-00-04-53_Enscape%20scene%2011.png',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/interiors/Enscape_2024-08-30-00-04-53_Enscape%20scene%2023.png'
+    ],
     description: {
       EN: 'A residence designed for living at its fullest scale. The 38-foot double-height lounge is the centre of gravity — generously proportioned, lit carefully, and opening directly onto a 34-foot balcony that spans the entire first-floor frontage. Every interior choice was validated through detailed Enscape renders before anything was specified, which is why the finished rooms feel deliberate rather than assembled.',
       RU: 'Резиденция, созданная для масштабной жизни. Двусветная гостиная высотой 38 футов является центром притяжения — просторная, с тщательно продуманным освещением, выходящая на балкон длиной 34 фута во весь фасад второго этажа. Каждая деталь интерьера была проверена в Enscape перед утверждением, поэтому готовые пространства выглядят цельно и гармонично.',
@@ -546,7 +554,11 @@ export const portfolioProjects: PortfolioProject[] = [
     location: { EN: 'Nalgonda, Telangana', RU: 'Налгонда, Телангана', ES: 'Nalgonda, Telangana' },
     area: 'Practical & Warm Estate',
     year: '2026',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1600',
+    image: 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/suresh/day%20view1.jpg',
+    gallery: [
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/suresh/day%20view1.jpg',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/suresh/IMG_3898%20(1).PNG'
+    ],
     description: {
       EN: 'A well-resolved family home where every square foot earns its keep. The brief asked for practicality and warmth in equal measure — the floor plan delivers both with a master suite, dedicated puja room, and living spaces that breathe without sprawling. This is a home built for the rhythm of daily life, not for the occasional photograph.',
       RU: 'Рациональный семейный дом, где каждый квадратный метр используется с умом. В задании требовались практичность и теплота в равной степени: планировка обеспечивает и то, и другое благодаря мастер-спальне, выделенной комнате для пуджи и гостиной, которая дышит уютом. Это дом, построенный для ритма повседневной жизни.',
@@ -605,9 +617,19 @@ export const portfolioProjects: PortfolioProject[] = [
     category: 'residential',
     categoryLabel: { EN: 'Grand Villa', RU: 'Гранд-вилла', ES: 'Gran Villa' },
     location: { EN: 'Hyderabad, Telangana', RU: 'Хайдарабад, Телангана', ES: 'Hyderabad, Telangana' },
-    area: 'Studio\'s Most Ambitious Estate',
+    area: "Studio's Most Ambitious Estate",
     year: '2025',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1600',
+    image: 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/elevation%202.jpg',
+    gallery: [
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/elevation%202.jpg',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/elevation3.jpg',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-03-23-53-19_Enscape%20scene%201.png',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-03-23-53-19_Enscape%20scene%202.png',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-04-13-22-56_Enscape%20scene%206.jpg',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-07-13-07-51_Enscape%20scene%2024.jpg',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-07-13-07-51_Enscape%20scene%2026.jpg',
+      'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-07-13-07-51_Enscape%20scene%2027.jpg'
+    ],
     description: {
       EN: "The studio's most ambitious private commission to date. The drawing room makes an impression on arrival; the 24-foot dining hall takes over from there. An 18-square-foot family living room, a full home theater, and a commissioned mural wall round out a home designed for a family that entertains with generosity and retreats with real comfort. Six detailed Enscape renders guided every material decision from stone to joinery.",
       RU: 'Самый амбициозный частный проект студии на сегодняшний день. Просторная приемная впечатляет с порога, за ней следует обеденный зал длиной 24 фута. Семейная гостиная, полноценный домашний кинотеатр и художественная роспись на стене дополняют дом, созданный для семьи, которая любит принимать гостей и ценит настоящий комфорт.',
@@ -712,22 +734,22 @@ export const serviceDivisions: ServiceDivision[] = [
         },
         features: {
           EN: [
-            'Ergonomic spatial flow layout plans',
-            'Full volume drafting & structural alignment',
-            'Slick modern facade & envelope configurations',
-            'Sunlight exposure mapping & orientation blueprints'
+            'Floor planning and conceptual elevations',
+            'MVP drawings and working drawings',
+            'Full structural framing blueprints',
+            'Natural light optimization and landscape orientation'
           ],
           RU: [
-            'Эргономичные планировочные решения и логика перемещений',
-            'Чертежи объемов здания и конструктивная привязка',
-            'Современный дизайн фасадов и ограждающих конструкций',
-            'Расчет инсоляции и привязка к сторонам света'
+            'Планировочные решения и концептуальные фасады',
+            'Чертежи MVP и рабочие чертежи проекта',
+            'Полные конструктивные чертежи и схемы каркаса',
+            'Оптимизация естественного света и привязка к ландшафту'
           ],
           ES: [
-            'Planos de distribución ergonómica del flujo espacial',
-            'Redacción de volumen completo y alineación estructural',
-            'Diseños modernos de fachadas y envolventes',
-            'Mapeo de exposición a la luz solar y planos de orientación'
+            'Planos de planta y elevaciones conceptuales',
+            'Planos MVP y dibujos de trabajo',
+            'Planos completos de estructura y marcos',
+            'Optimización de luz natural y orientación al paisaje'
           ]
         }
       },
@@ -741,22 +763,22 @@ export const serviceDivisions: ServiceDivision[] = [
         },
         features: {
           EN: [
-            'Photorealistic 3D cinematic rendering visualizations',
-            'Tactile material pairings & custom marble selections',
-            'Custom dresser, vanity & integrated kitchen designs',
-            'Lighting geometry setups & custom switch plans'
+            'Cinematic rendering and lighting setups',
+            'Furniture layout planning and tactile material pairing',
+            'Carpentry drawings and modular drawings',
+            'False ceiling and lighting details'
           ],
           RU: [
-            'Фотореалистичные кинематографичные 3D-визуализации',
-            'Гармоничный подбор тактильных материалов и сортов мрамора',
-            'Проектирование индивидуальных кухонь, гардеробных и островов',
-            'Сценарии освещения и планы привязки выключателей'
+            'Кинематографичная визуализация и сценарии освещения',
+            'Планировка мебели и подбор тактильных материалов',
+            'Столярные чертежи и модульные конструкции',
+            'Чертежи подвесных потолков и детализация освещения'
           ],
           ES: [
-            'Visualizaciones cinematográficas fotorrealistas en 3D',
-            'Combinaciones de materiales táctiles y mármol selecto',
-            'Diseños de vestidores, tocadores y cocinas integradas a medida',
-            'Configuraciones de geometría de iluminación y esquemas de interruptores'
+            'Renderizado cinematográfico y configuraciones de luz',
+            'Planificación de mobiliario y combinación de materiales',
+            'Dibujos de carpintería y planos modulares',
+            'Detalles de techos falsos y esquemas de iluminación'
           ]
         }
       }
@@ -772,36 +794,36 @@ export const serviceDivisions: ServiceDivision[] = [
       ES: 'Realización física impecable guiada por una ingeniería sin concesiones.'
     },
     description: {
-      EN: 'We transition effortlessly from pixels to physical structures. spacenine architects manages the complete general contracting workflow, utilizing high-density acoustic components, certified engineers, and strict building tolerances.',
-      RU: 'Мы легко переходим от пикселей к физическим формам. spacenine architects управляет всем процессом генерального подряда, используя звукоизоляционные материалы высокой плотности, сертифицированных инженеров и строжайшие допуски.',
-      ES: 'Hacemos la transición sin esfuerzo de los píxeles a las estructuras físicas. spacenine architects gestiona todo el flujo de trabajo de la contratación general, utilizando componentes acústicos y tolerancias estrictas.'
+      EN: 'We transition effortlessly from pixels to physical structures. spacenine architects manages the complete civil contracting workflow, utilizing high-density acoustic components, certified engineers, and strict building tolerances.',
+      RU: 'Мы легко переходим от пикселей к физическим формам. spacenine architects управляет всем процессом гражданского строительства, используя звукоизоляционные материалы высокой плотности, сертифицированных инженеров и строжайшие допуски.',
+      ES: 'Hacemos la transición sin esfuerzo de los píxeles a las estructuras físicas. spacenine architects gestiona todo el flujo de trabajo de la contratación civil, utilizando componentes acústicos y tolerancias estrictas.'
     },
-    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2008_56_57%20PM.png',
     offerings: [
       {
         id: 'arch-build',
         title: { EN: 'Architecture – Build and Finish', RU: 'Строительство архитектурных объектов', ES: 'Construcción y Acabado de Arquitectura' },
         description: {
-          EN: 'High-end hard construction including deep-set foundation engineering, monolithic concrete framing, structural steel, climate-insulated brickwork, and panoramic minimal-profile glazing installations.',
-          RU: 'Премиальное капитальное строительство, включая устройство фундаментов, монолитных железобетонных каркасов, кирпичную кладку и установку панорамного остекления.',
-          ES: 'Construcción pesada de alta gama que incluye cimentaciones profundas, estructuras de hormigón monolítico, acero estructural, mampostería termoaislante y acristalamiento panorámico.'
+          EN: 'High-end hard construction including deep-set foundation engineering, civil contracting, structural steel, climate-insulated brickwork, and panoramic minimal-profile glazing installations.',
+          RU: 'Премиальное капитальное строительство, включая устройство фундаментов, гражданское строительство, кирпичную кладку и установку панорамного остекления.',
+          ES: 'Construcción pesada de alta gama que incluye cimentaciones profundas, contratación civil, acero estructural, mampostería termoaislante y acristalamiento panorámico.'
         },
         features: {
           EN: [
             'Deep-set structural foundation engineering',
-            'Monolithic concrete frame & pillar erection',
+            'Civil contracting & structural alignment',
             'High-efficiency insulated brickwork partitions',
             'Panoramic minimal-profile structural glazing'
           ],
           RU: [
             'Устройство фундаментов глубокого заложения',
-            'Возведение монолитных каркасов и колонн',
+            'Гражданское строительство и конструктивная привязка',
             'Кладка стен со сверхвысокой теплоизоляцией',
             'Монтаж панорамного безрамного остекления'
           ],
           ES: [
             'Ingeniería de cimientos estructurales profundos',
-            'Construcción de estructuras y pilares de hormigón',
+            'Contratación civil y alineación estructural',
             'Tabiques de mampostería con aislamiento eficiente',
             'Acristalamiento estructural panorámico de perfil mínimo'
           ]
@@ -811,25 +833,25 @@ export const serviceDivisions: ServiceDivision[] = [
         id: 'interiors-build',
         title: { EN: 'Interiors – Build and Finish', RU: 'Монтаж и чистовая отделка', ES: 'Construcción y Acabado de Interiores' },
         description: {
-          EN: 'High-precision interior finishing and fit-out including premium drywall engineering, custom wood paneling, custom stone installation, and perfect painting and decorative finishes.',
-          RU: 'Высокоточная отделка интерьеров премиум-класса, включая сложные гипсокартонные конструкции, монтаж деревянных панелей, обработку натурального камня и идеальную покраску.',
-          ES: 'Acabados de interiores de alta precisión que incluyen ingeniería de paneles de yeso premium, paneles de madera a medida, instalación de piedra personalizada y acabados decorativos y de pintura perfectos.'
+          EN: 'High-precision interior finishing and fit-out including high density gypsum ceiling engineering, custom wood paneling, custom stone installation, and perfect painting and decorative finishes.',
+          RU: 'Высокоточная отделка интерьеров премиум-класса, включая сложные гипсовые потолки, монтаж деревянных панелей, обработку натурального камня и идеальную покраску.',
+          ES: 'Acabados de interiores de alta precisión que incluyen ingeniería de techos de yeso de alta densidad, paneles de madera a medida, instalación de piedra personalizada y acabados decorativos y de pintura perfectos.'
         },
         features: {
           EN: [
-            'Premium drywall systems & acoustic treatment',
+            'High density gypsum ceiling systems & acoustic treatment',
             'Custom wall paneling & joinery installations',
             'Expert natural stone & bookmatched marble fitting',
             'Flawless microcement & premium paint finishes'
           ],
           RU: [
-            'Высококачественные гипсокартонные системы и шумоизоляция',
+            'Высококачественные гипсовые потолочные системы и шумоизоляция',
             'Монтаж индивидуальных настенных панелей и столярных изделий',
             'Профессиональная укладка натурального камня и мрамора «бабочкой»',
             'Безупречное нанесение микроцемента и премиальной краски'
           ],
           ES: [
-            'Sistemas de paneles de yeso premium y tratamiento acústico',
+            'Sistemas de techos de yeso de alta densidad y tratamiento acústico',
             'Instalaciones de carpintería y paneles de pared a medida',
             'Colocación experta de piedra natural y mármol combinado',
             'Microcemento impecable y acabados de pintura premium'

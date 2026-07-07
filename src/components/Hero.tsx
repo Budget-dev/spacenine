@@ -170,8 +170,8 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="hidden md:block absolute inset-0">
           {/* Day Background */}
           <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-              isNightMode ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
             }`}
             style={{
               backgroundImage: `url('https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2009_20_31%20AM.png')`,
@@ -181,11 +181,44 @@ export const Hero: React.FC<HeroProps> = ({
 
           {/* Night Background (warmer, rich shadows, glowing wardrobes) */}
           <div 
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-              isNightMode ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 1 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}
             style={{
               backgroundImage: `url('https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2009_30_50%20AM.png')`,
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Inspiring Spaces Background (Slide 2) */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 2 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+            style={{
+              backgroundImage: `url('https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2012_33_04%20PM.png')`,
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Designed for Beautiful Living Background (Slide 3) */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 3 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+            style={{
+              backgroundImage: `url('https://vennky.sirv.com/WhatsApp%20Image%202026-07-04%20at%208.07.00%20PM%20(2).jpeg')`,
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Luxury Architecture & Interior Design Background (Slide 4) */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out ${
+              mobileSlide === 4 ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
+            style={{
+              backgroundImage: `url('https://vennky.sirv.com/WhatsApp%20Image%202026-07-04%20at%208.07.00%20PM.jpeg')`,
             }}
             aria-hidden="true"
           />
@@ -281,52 +314,29 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Central visual text console */}
         <div className="max-w-3xl mt-12 md:mt-24">
           <div className="space-y-6" id="hero-content">
-            {/* Desktop-only Title/Subtitle */}
-            <div className="hidden md:block space-y-6">
-              <motion.h1 
-                key="hero-title-desktop"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-4xl md:text-6xl font-serif text-white tracking-tight leading-[1.1] font-medium drop-shadow-md"
-              >
-                {t.title[currentLang]}
-              </motion.h1>
-
-              <motion.p 
-                key="hero-sub-desktop"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-gray-200/90 text-sm md:text-base leading-relaxed max-w-2xl font-light"
-              >
-                {t.subtitle[currentLang]}
-              </motion.p>
-            </div>
-
-            {/* Mobile-only Title/Subtitle */}
-            <div className="block md:hidden min-h-[140px]">
+            {/* Responsive and Animated Title/Subtitle Console */}
+            <div className="min-h-[140px] md:min-h-[185px]">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={`hero-slide-mobile-${mobileSlide}`}
+                  key={`hero-slide-${mobileSlide}`}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.4 }}
-                  className="space-y-4"
+                  className="space-y-4 md:space-y-6"
                 >
-                  <h1 className="text-3xl font-serif text-white tracking-tight leading-[1.1] font-medium drop-shadow-md">
+                  <h1 className="text-3xl md:text-6xl font-serif text-white tracking-tight leading-[1.1] font-medium drop-shadow-md">
                     {mobileSlidesData[mobileSlide].title[currentLang]}
                   </h1>
 
-                  <p className="text-gray-200/90 text-xs leading-relaxed max-w-2xl font-light">
+                  <p className="text-gray-200/90 text-xs md:text-base leading-relaxed max-w-2xl font-light">
                     {mobileSlidesData[mobileSlide].subtitle[currentLang]}
                   </p>
                 </motion.div>
               </AnimatePresence>
 
               {mobileSlide >= 2 && (
-                <div className="flex space-x-1.5 pt-4">
+                <div className="flex space-x-1.5 pt-4 md:pt-6">
                   {[0, 1, 2, 3, 4].map((idx) => (
                     <button
                       key={idx}
@@ -400,8 +410,8 @@ export const Hero: React.FC<HeroProps> = ({
                   </div>
                   
                   <div className="flex items-center space-x-3">
-                    {/* Mobile Slide Dots inside the panel for perfect UI consolidation */}
-                    <div className="flex md:hidden space-x-1.5">
+                    {/* Slide Dots inside the panel for perfect UI consolidation */}
+                    <div className="flex space-x-1.5">
                       {[0, 1, 2, 3, 4].map((idx) => (
                         <button
                           key={idx}

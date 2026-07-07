@@ -54,7 +54,7 @@ const individualServices = [
       RU: 'Профессиональный подряд, монолитные работы и премиальные фасады.',
       ES: 'Contratación de precisión, marcos de hormigón y fachadas.'
     },
-    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=400'
+    image: 'https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2008_56_57%20PM.png'
   },
   {
     id: 'interiors-build' as const,
@@ -100,38 +100,21 @@ export const Header: React.FC<HeaderProps> = ({
       <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-100 transition-colors duration-300">
         <div className="max-w-5xl mx-auto px-6 h-[68px] md:h-[77px] flex items-center justify-between relative">
           
-          {/* Logo Brand: Sleek vector SVG logo */}
+          {/* Logo Brand: New custom brand logo image */}
           <div 
             className="flex flex-col items-center justify-center cursor-pointer group"
             onClick={() => handleNavClick('home')}
             id="logo-container"
           >
-            <svg 
-              viewBox="0 0 100 100" 
-              className="w-7 h-7 stroke-current text-gray-900 group-hover:text-gray-600 transition-colors duration-300" 
-              strokeWidth="7" 
-              fill="none" 
-              strokeLinecap="square"
-              strokeLinejoin="miter"
-            >
-              {/* Top border */}
-              <line x1="10" y1="10" x2="90" y2="10" />
-              {/* Right border */}
-              <line x1="90" y1="10" x2="90" y2="90" />
-              {/* Left top border */}
-              <line x1="10" y1="10" x2="10" y2="45" />
-              
-              {/* E: Left bottom vertical line + 3 horizontal bars */}
-              <line x1="10" y1="55" x2="10" y2="90" />
-              <line x1="10" y1="55" x2="45" y2="55" />
-              <line x1="10" y1="72.5" x2="40" y2="72.5" />
-              <line x1="10" y1="90" x2="45" y2="90" />
-              
-              {/* L: Right bottom vertical line + bottom bar connecting to right */}
-              <line x1="55" y1="55" x2="55" y2="90" />
-              <line x1="55" y1="90" x2="90" y2="90" />
-            </svg>
-            <span className="font-logo text-[9.5px] font-normal tracking-wide text-gray-900 mt-0.5 lowercase group-hover:text-gray-600 transition-colors duration-300">
+            <div className="h-12 md:h-15 overflow-hidden flex items-start justify-center">
+              <img 
+                src="https://vennky.sirv.com/iron%20spongs/ballari/ChatGPT%20Image%20Jul%207%2C%202026%2C%2006_14_34%20PM.png"
+                alt="spacenine architects logo"
+                className="h-16 md:h-20 w-auto object-contain transition-opacity duration-300 group-hover:opacity-85 object-top"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <span className="font-logo text-[9.5px] font-normal tracking-wide text-gray-900 mt-1 lowercase group-hover:text-gray-600 transition-colors duration-300">
               spacenine architects
             </span>
           </div>
@@ -328,31 +311,14 @@ export const Header: React.FC<HeaderProps> = ({
 
               <div className="border-t border-gray-100 pt-6 flex items-center justify-center">
                 <div className="flex flex-col items-center">
-                  <svg 
-                    viewBox="0 0 100 100" 
-                    className="w-9 h-9 stroke-current text-gray-900" 
-                    strokeWidth="7" 
-                    fill="none" 
-                    strokeLinecap="square"
-                    strokeLinejoin="miter"
-                  >
-                    {/* Top border */}
-                    <line x1="10" y1="10" x2="90" y2="10" />
-                    {/* Right border */}
-                    <line x1="90" y1="10" x2="90" y2="90" />
-                    {/* Left top border */}
-                    <line x1="10" y1="10" x2="10" y2="45" />
-                    
-                    {/* E: Left bottom vertical line + 3 horizontal bars */}
-                    <line x1="10" y1="55" x2="10" y2="90" />
-                    <line x1="10" y1="55" x2="45" y2="55" />
-                    <line x1="10" y1="72.5" x2="40" y2="72.5" />
-                    <line x1="10" y1="90" x2="45" y2="90" />
-                    
-                    {/* L: Right bottom vertical line + bottom bar connecting to right */}
-                    <line x1="55" y1="55" x2="55" y2="90" />
-                    <line x1="55" y1="90" x2="90" y2="90" />
-                  </svg>
+                  <div className="h-12 overflow-hidden flex items-start justify-center">
+                    <img 
+                      src="https://vennky.sirv.com/iron%20spongs/ballari/ChatGPT%20Image%20Jul%207%2C%202026%2C%2006_14_34%20PM.png"
+                      alt="spacenine architects logo"
+                      className="h-16 w-auto object-contain object-top"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
                   <span className="font-logo text-[10px] font-normal tracking-wide text-gray-900 mt-1 lowercase">
                     spacenine architects
                   </span>

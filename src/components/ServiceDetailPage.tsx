@@ -136,7 +136,7 @@ const servicesData: ServicePageData[] = [
       RU: 'Профессиональный генеральный подряд, монолитные работы, кирпичная кладка и фасады.',
       ES: 'Contratación general de precisión, marcos de hormigón, mampostería y acabados de fachada.'
     },
-    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2008_56_57%20PM.png',
     duration: { EN: '6-12 Months', RU: '6-12 Месяцев', ES: '6-12 Meses' },
     deliverables: {
       EN: [

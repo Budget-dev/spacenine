@@ -1,82 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, X, CheckSquare, Compass, Star, ArrowUpRight, ArrowLeft } from 'lucide-react';
-import { Language, PortfolioProject } from '../types';
-import { translations, portfolioProjects, testimonials } from '../data';
+import React from 'react';
+import { motion } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
+import { Language } from '../types';
+import { portfolioProjects } from '../data';
 
 interface PortfolioSectionProps {
   currentLang: Language;
 }
 
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang }) => {
-  const t = translations.portfolio;
-  const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
-
-  // Get matching testimonial if any
-  const getProjectTestimonial = (projectId: string) => {
-    if (projectId === 'project-1') return testimonials[0];
-    if (projectId === 'project-4') return testimonials[1];
-    return null;
-  };
-
-  // Auto-scroll on project selection
-  useEffect(() => {
-    if (selectedProject) {
-      const el = document.getElementById('portfolio');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-  }, [selectedProject]);
-
-  const handleBackToGrid = () => {
-    setSelectedProject(null);
-    setTimeout(() => {
-      const el = document.getElementById('portfolio');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 50);
-  };
-
-  const ft = {
-    back: {
-      EN: '← Back to Projects',
-      RU: '← Назад к проектам',
-      ES: '← Volver a Proyectos'
-    },
-    breadcrumbHome: {
-      EN: 'Portfolio',
-      RU: 'Портфолио',
-      ES: 'Portafolio'
-    },
-    technicalFeatures: {
-      EN: 'Project Scope & Deliverables',
-      RU: 'Состав проекта и материалы',
-      ES: 'Alcance y Entregables'
-    },
-    specsArea: {
-      EN: 'Main Dimension / Concept',
-      RU: 'Размер / Концепция',
-      ES: 'Dimensión / Concepto'
-    },
-    specsLocation: {
-      EN: 'Location',
-      RU: 'Локация',
-      ES: 'Ubicación'
-    },
-    specsYear: {
-      EN: 'Year Completed',
-      RU: 'Год завершения',
-      ES: 'Año de Finalización'
-    },
-    testimonialTitle: {
-      EN: 'Client Testimonial',
-      RU: 'Отзыв клиента',
-      ES: 'Testimonio del Cliente'
-    }
-  };
-
   // Explicit layout headings
   const sectionHeading = {
     EN: 'OUR PROJECTS',
@@ -84,10 +16,14 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
     ES: 'NUESTROS PROYECTOS'
   };
 
+  const handleProjectClick = (projectId: string) => {
+    window.location.hash = projectId;
+  };
+
   return (
     <section 
       id="portfolio" 
-      className="py-24 md:py-32 bg-white text-zinc-900 border-b border-zinc-100 overflow-hidden relative"
+      className="py-24 md:py-32 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 border-b border-zinc-100 dark:border-zinc-900 overflow-hidden relative"
     >
       {/* Soft ambient background glow */}
       <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none select-none" />
@@ -96,7 +32,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         
         {/* DESIGN CONTEXT HEADER WITH METRICS */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-24 border-b border-zinc-100 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-24 border-b border-zinc-100 dark:border-zinc-900 pb-16">
           {/* Left Side: Editorial Typography Heading & Statement */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -105,11 +41,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 space-y-6"
           >
-            <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-zinc-900 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
               {currentLang === 'RU' ? 'Жилые пространства, созданные с душой' : currentLang === 'ES' ? 'Espacios habitables creados con intención' : 'Living spaces shaped with intention'}
             </h2>
             
-            <p className="text-sm text-zinc-600 font-light leading-relaxed max-w-xl">
+            <p className="text-sm text-zinc-600 dark:text-zinc-300 font-light leading-relaxed max-w-xl">
               {currentLang === 'RU' 
                 ? 'Мы проектируем дома, которые выдерживают всю полноту семейной жизни — повседневные привычки, праздники и потребность в тишине. Каждый проект начинается с диалога и завершается зданием, заслужившим свое место.' 
                 : currentLang === 'ES' 
@@ -124,32 +60,32 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="lg:col-span-5 grid grid-cols-2 gap-x-8 gap-y-10 self-center border-l border-zinc-100 lg:pl-10"
+            className="lg:col-span-5 grid grid-cols-2 gap-x-8 gap-y-10 self-center border-l border-zinc-100 dark:border-zinc-900 lg:pl-10"
           >
             <div className="space-y-1.5">
-              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 block tracking-tight">4+</span>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block leading-tight">
+              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 dark:text-white block tracking-tight">4+</span>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block leading-tight">
                 {currentLang === 'RU' ? 'Жилых Проектов' : currentLang === 'ES' ? 'Proyectos Residenciales' : 'Residential Projects'}
               </span>
             </div>
             
             <div className="space-y-1.5">
-              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 block tracking-tight">2024—26</span>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block leading-tight">
+              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 dark:text-white block tracking-tight">2024—26</span>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block leading-tight">
                 {currentLang === 'RU' ? 'Текущий Портфолио' : currentLang === 'ES' ? 'Portafolio Actual' : 'Current Portfolio'}
               </span>
             </div>
             
             <div className="space-y-1.5">
-              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 block tracking-tight">3</span>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block leading-tight">
+              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 dark:text-white block tracking-tight">3</span>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block leading-tight">
                 {currentLang === 'RU' ? 'Районов · Телангана' : currentLang === 'ES' ? 'Distritos · Telangana' : 'Districts · Telangana'}
               </span>
             </div>
             
             <div className="space-y-1.5">
-              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 block tracking-tight">01 — 04</span>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block leading-tight">
+              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 dark:text-white block tracking-tight">01 — 04</span>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block leading-tight">
                 {currentLang === 'RU' ? 'Выдающиеся работы' : currentLang === 'ES' ? 'Diseños Destacados' : 'Featured Designs'}
               </span>
             </div>
@@ -170,11 +106,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.7 }}
                 className="group relative cursor-pointer"
-                onClick={() => setSelectedProject(portfolioProjects[0])}
+                onClick={() => handleProjectClick(portfolioProjects[0].id)}
                 id="portfolio-item-urban"
               >
                 {/* Image Wrap */}
-                <div className="relative overflow-hidden aspect-[4/3.3] bg-neutral-100 border border-neutral-200/50">
+                <div className="relative overflow-hidden aspect-[4/3.3] bg-neutral-100 dark:bg-zinc-900 border border-neutral-200/50 dark:border-zinc-800 rounded-none">
                   <img
                     src={portfolioProjects[0].image}
                     alt={portfolioProjects[0].title[currentLang]}
@@ -187,15 +123,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
 
                 {/* Overlapping Caption Box */}
                 <div 
-                  className="absolute top-[18%] -right-3 sm:-right-6 md:-right-10 z-20 w-[72%] max-w-[250px] bg-white border border-zinc-100 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374]"
+                  className="absolute top-[18%] -right-3 sm:-right-6 md:-right-10 z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none"
                 >
                   <div className="flex items-start justify-between">
-                    <span className="text-[#8a6f3e] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
+                    <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
                       {portfolioProjects[0].title[currentLang]}
                     </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                   </div>
-                  <p className="mt-2.5 text-neutral-500 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
+                  <p className="mt-2.5 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
                     {portfolioProjects[0].description[currentLang]}
                   </p>
                 </div>
@@ -210,11 +146,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.7 }}
                 className="group relative cursor-pointer"
-                onClick={() => setSelectedProject(portfolioProjects[2])}
+                onClick={() => handleProjectClick(portfolioProjects[2].id)}
                 id="portfolio-item-commercial"
               >
                 {/* Image Wrap */}
-                <div className="relative overflow-hidden aspect-[4/5] bg-neutral-100 border border-neutral-200/50">
+                <div className="relative overflow-hidden aspect-[4/5] bg-neutral-100 dark:bg-zinc-900 border border-neutral-200/50 dark:border-zinc-800 rounded-none">
                   <img
                     src={portfolioProjects[2].image}
                     alt={portfolioProjects[2].title[currentLang]}
@@ -226,15 +162,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
 
                 {/* Overlapping Caption Box */}
                 <div 
-                  className="absolute top-[22%] -right-3 sm:-right-6 md:-right-10 z-20 w-[72%] max-w-[250px] bg-white border border-zinc-100 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374]"
+                  className="absolute top-[22%] -right-3 sm:-right-6 md:-right-10 z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none"
                 >
                   <div className="flex items-start justify-between">
-                    <span className="text-[#8a6f3e] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
+                    <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
                       {portfolioProjects[2].title[currentLang]}
                     </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                   </div>
-                  <p className="mt-2.5 text-neutral-500 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
+                  <p className="mt-2.5 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
                     {portfolioProjects[2].description[currentLang]}
                   </p>
                 </div>
@@ -254,11 +190,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.7 }}
                 className="group relative cursor-pointer"
-                onClick={() => setSelectedProject(portfolioProjects[1])}
+                onClick={() => handleProjectClick(portfolioProjects[1].id)}
                 id="portfolio-item-interior"
               >
                 {/* Image Wrap */}
-                <div className="relative overflow-hidden aspect-[4/3.1] bg-neutral-100 border border-neutral-200/50">
+                <div className="relative overflow-hidden aspect-[4/3.1] bg-neutral-100 dark:bg-zinc-900 border border-neutral-200/50 dark:border-zinc-800 rounded-none">
                   <img
                     src={portfolioProjects[1].image}
                     alt={portfolioProjects[1].title[currentLang]}
@@ -270,15 +206,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
 
                 {/* Overlapping Caption Box */}
                 <div 
-                  className="absolute bottom-[18%] -left-3 sm:-left-6 md:-left-10 z-20 w-[72%] max-w-[250px] bg-white border border-zinc-100 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374]"
+                  className="absolute bottom-[18%] -left-3 sm:-left-6 md:-left-10 z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none"
                 >
                   <div className="flex items-start justify-between">
-                    <span className="text-[#8a6f3e] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
+                    <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
                       {portfolioProjects[1].title[currentLang]}
                     </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                   </div>
-                  <p className="mt-2.5 text-neutral-500 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
+                  <p className="mt-2.5 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
                     {portfolioProjects[1].description[currentLang]}
                   </p>
                 </div>
@@ -293,11 +229,11 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.7 }}
                 className="group relative cursor-pointer"
-                onClick={() => setSelectedProject(portfolioProjects[3])}
+                onClick={() => handleProjectClick(portfolioProjects[3].id)}
                 id="portfolio-item-innovative"
               >
                 {/* Image Wrap */}
-                <div className="relative overflow-hidden aspect-[3/4.5] bg-neutral-100 border border-neutral-200/50">
+                <div className="relative overflow-hidden aspect-[3/4.5] bg-neutral-100 dark:bg-zinc-900 border border-neutral-200/50 dark:border-zinc-800 rounded-none">
                   <img
                     src={portfolioProjects[3].image}
                     alt={portfolioProjects[3].title[currentLang]}
@@ -309,15 +245,15 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
 
                 {/* Overlapping Caption Box */}
                 <div 
-                  className="absolute bottom-[10%] -right-3 sm:-right-6 md:-right-10 z-20 w-[72%] max-w-[250px] bg-white border border-zinc-100 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374]"
+                  className="absolute bottom-[10%] -right-3 sm:-right-6 md:-right-10 z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none"
                 >
                   <div className="flex items-start justify-between">
-                    <span className="text-[#8a6f3e] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
+                    <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
                       {portfolioProjects[3].title[currentLang]}
                     </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                   </div>
-                  <p className="mt-2.5 text-neutral-500 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
+                  <p className="mt-2.5 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
                     {portfolioProjects[3].description[currentLang]}
                   </p>
                 </div>
@@ -330,150 +266,6 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
 
         {/* Spacer for offset grid layout */}
         <div className="h-16 md:h-28" />
-
-        {/* IMMERSIVE DETAILED LUXURY DARK OVERLAY MODAL */}
-        <AnimatePresence>
-          {selectedProject && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
-              id="portfolio-modal-overlay"
-              onClick={() => setSelectedProject(null)}
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 50, scale: 0.95 }}
-                transition={{ type: 'spring', damping: 25, stiffness: 180 }}
-                className="bg-white border border-neutral-200 rounded-3xl overflow-hidden max-w-4xl w-full shadow-2xl relative z-10 my-8 text-zinc-900"
-                onClick={(e) => e.stopPropagation()}
-                id="portfolio-modal"
-              >
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-6 right-6 p-2.5 bg-white/80 border border-neutral-200 text-neutral-600 rounded-full hover:bg-neutral-100 hover:text-black transition-all z-20 focus:outline-none cursor-pointer"
-                  id="close-portfolio-modal"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-
-                {/* Grid Layout inside Modal */}
-                <div className="grid grid-cols-1 md:grid-cols-2">
-                  
-                  {/* Left Column: Image */}
-                  <div className="relative h-64 md:h-full min-h-[340px]">
-                    <img
-                      src={selectedProject.image}
-                      alt={selectedProject.title[currentLang]}
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:bg-gradient-to-r md:from-black/20 md:to-transparent" />
-                    <div className="absolute bottom-6 left-6 text-white hidden md:block z-10">
-                      <span className="text-[9px] font-mono tracking-widest text-[#bca374] uppercase font-bold">
-                        SPACENINE ARCHITECTS
-                      </span>
-                      <p className="text-xs font-light mt-1 text-neutral-200">
-                        {t.specsLocation[currentLang]} {selectedProject.location[currentLang]}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Right Column: details */}
-                  <div className="p-8 space-y-6 max-h-[85vh] overflow-y-auto bg-white" id="modal-details-scroll">
-                    
-                    {/* Header */}
-                    <div className="space-y-2">
-                      <span className="text-xs font-mono font-bold text-[#bca374] tracking-widest uppercase">
-                        {selectedProject.categoryLabel[currentLang]}
-                      </span>
-                      <h3 className="text-xl md:text-2xl font-sans font-bold tracking-wide text-zinc-900 leading-tight">
-                        {selectedProject.title[currentLang]}
-                      </h3>
-                    </div>
-
-                    {/* Metadata chips */}
-                    <div className="grid grid-cols-3 gap-2 border-y border-neutral-150 py-3 text-center bg-neutral-50 rounded-xl border border-neutral-200/40">
-                      <div>
-                        <span className="text-[9px] font-mono text-neutral-400 block uppercase">
-                          {t.specsArea[currentLang]}
-                        </span>
-                        <span className="text-xs font-bold text-zinc-800 font-mono mt-0.5 block">
-                          {selectedProject.area}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-[9px] font-mono text-neutral-400 block uppercase">
-                          {t.specsLocation[currentLang]}
-                        </span>
-                        <span className="text-[10px] font-bold text-zinc-800 mt-0.5 block truncate px-1">
-                          {selectedProject.location[currentLang].split(',')[0]}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-[9px] font-mono text-neutral-400 block uppercase">
-                          {t.specsYear[currentLang]}
-                        </span>
-                        <span className="text-xs font-bold text-zinc-800 font-mono mt-0.5 block">
-                          {selectedProject.year}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Paragraph description */}
-                    <p className="text-xs text-neutral-600 font-light leading-relaxed">
-                      {selectedProject.description[currentLang]}
-                    </p>
-
-                     {/* Detailed Specifications Checklist */}
-                    <div className="space-y-3">
-                      <span className="text-xs font-mono uppercase tracking-widest text-[#8a6f3e] font-semibold flex items-center space-x-1.5">
-                        <Compass className="w-3.5 h-3.5 text-[#8a6f3e]" />
-                        <span>{currentLang === 'RU' ? 'Техническая интеграция' : currentLang === 'ES' ? 'Especificaciones Técnicas' : 'Custom Technical Features'}</span>
-                      </span>
-                      <ul className="space-y-2.5" id="project-specs-list">
-                        {selectedProject.details[currentLang].map((detail, idx) => (
-                          <li key={idx} className="flex items-start space-x-2 text-xs text-neutral-600">
-                            <CheckSquare className="w-4 h-4 text-[#8a6f3e] shrink-0 mt-0.5" />
-                            <span className="font-light">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Associated client testimonial */}
-                    {getProjectTestimonial(selectedProject.id) && (
-                      <div className="bg-neutral-50 border border-neutral-150 p-4 rounded-2xl space-y-2">
-                        <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-mono font-bold text-[#8a6f3e] tracking-wider uppercase">
-                            CLIENT TESTIMONIAL
-                          </span>
-                          <div className="flex items-center space-x-0.5 text-amber-500">
-                            {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="w-3 h-3 fill-amber-500 text-amber-500" />
-                            ))}
-                          </div>
-                        </div>
-                        <p className="text-xs font-serif italic text-zinc-700 leading-relaxed">
-                          "{getProjectTestimonial(selectedProject.id)?.text[currentLang]}"
-                        </p>
-                        <div className="pt-1.5 border-t border-neutral-200/60 flex items-center justify-between text-[10px] font-mono text-neutral-400">
-                          <span className="font-bold text-zinc-600">{getProjectTestimonial(selectedProject.id)?.author}</span>
-                          <span>{getProjectTestimonial(selectedProject.id)?.role[currentLang].split('(')[0]}</span>
-                        </div>
-                      </div>
-                    )}
-
-                  </div>
-
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
       </div>
     </section>

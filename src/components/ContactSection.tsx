@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle, Clock, Trash2, ShieldCheck } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle, Clock, Trash2, ShieldCheck, Instagram } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data';
 
@@ -158,7 +158,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 {t.quickLinks[currentLang]}
               </h3>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" id="contact-messengers">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3" id="contact-messengers">
                 <a
                   href="https://t.me/spacenine"
                   target="_blank"
@@ -186,6 +186,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <div>
                     <span className="text-xs font-bold font-mono tracking-wider block">WHATSAPP</span>
                     <span className="text-[10px] text-gray-500 block">+91 99521 20021</span>
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.instagram.com/spaceninearchitects?utm_source=qr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-3 bg-pink-50 hover:bg-pink-100 rounded-2xl flex items-center space-x-3 transition-colors text-pink-700"
+                >
+                  <div className="p-2 bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 rounded-xl text-white">
+                    <Instagram className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold font-mono tracking-wider block">INSTAGRAM</span>
+                    <span className="text-[10px] text-pink-600 block">@spaceninearchitects</span>
                   </div>
                 </a>
               </div>
