@@ -26,7 +26,7 @@ const individualServices = [
       RU: 'Индивидуальное планирование, генеральные планы и дизайн фасадов.',
       ES: 'Planificación espacial a medida, diseño de fachadas y planos.'
     },
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=400'
+    image: "https://vennky.sirv.com/Don't%20Just%20List%20It_%20Visualize%20It_%20(1).jpg"
   },
   {
     id: 'interior-design' as const,
@@ -40,7 +40,7 @@ const individualServices = [
       RU: 'Минималистичные пентхаусы и лаунж-зоны, проработанные до миллиметра.',
       ES: 'Penthouses minimalistas y salones de lujo diseñados al milímetro.'
     },
-    image: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=400'
+    image: "https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2009_20_31%20AM.png"
   },
   {
     id: 'architecture-build' as const,

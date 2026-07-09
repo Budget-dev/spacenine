@@ -11,6 +11,48 @@ interface ProjectDetailPageProps {
   onOpenConsultation: (brief: string) => void;
 }
 
+// Map project IDs to their custom image assets for each of the 4 services
+const projectServiceImages: Record<string, Record<string, string>> = {
+  'project-1': {
+    'architectural-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/Narendar/day%20view.jpg',
+    'interior-design': 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200',
+    'architecture-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/Narendar/day%20view.jpg',
+    'interiors-build': 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200',
+  },
+  'project-2': {
+    'architectural-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/night%20view.jpg',
+    'interior-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/interiors/Enscape_2024-08-29-23-55-39_Enscape%20scene%207.png',
+    'architecture-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/night%20view.jpg',
+    'interiors-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/interiors/Enscape_2024-08-30-00-04-53_Enscape%20scene%2011.png',
+  },
+  'project-3': {
+    'architectural-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/suresh/day%20view1.jpg',
+    'interior-design': 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200',
+    'architecture-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/suresh/IMG_3898%20(1).PNG',
+    'interiors-build': 'https://images.unsplash.com/photo-1617806118233-18e1db207f62?auto=format&fit=crop&q=80&w=1200',
+  },
+  'project-4': {
+    'architectural-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/elevation%202.jpg',
+    'interior-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-03-23-53-19_Enscape%20scene%201.png',
+    'architecture-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/elevation3.jpg',
+    'interiors-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-07-13-07-51_Enscape%20scene%2024.jpg',
+  },
+};
+
+const projectSupportedServices: Record<string, string[]> = {
+  'project-1': ['architectural-design', 'architecture-build', 'interiors-build'],
+  'project-2': ['architectural-design', 'interior-design', 'architecture-build', 'interiors-build'],
+  'project-3': ['architectural-design', 'architecture-build'],
+  'project-4': ['architectural-design', 'interior-design', 'architecture-build', 'interiors-build'],
+};
+
+const serviceLabels = {
+  'architectural-design': { EN: 'Architecture', RU: 'Архитектура', ES: 'Arquitectura' },
+  'interior-design': { EN: 'Interior Design', RU: 'Дизайн интерьеров', ES: 'Diseño de Interiores' },
+  'architecture-build': { EN: 'Arch Build', RU: 'Строительство', ES: 'Construcción' },
+  'interiors-build': { EN: 'Interior Build', RU: 'Чистовая отделка', ES: 'Acabado Interior' }
+};
+
 export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   currentLang,
   projectId,
@@ -19,10 +61,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 }) => {
   const project = portfolioProjects.find((p) => p.id === projectId);
   const [activeImage, setActiveImage] = useState<string>('');
+  const [activeService, setActiveService] = useState<string>('architectural-design');
 
   useEffect(() => {
     if (project) {
-      setActiveImage(project.image);
+      const supported = projectSupportedServices[project.id] || [];
+      const initialService = supported[0] || 'architectural-design';
+      setActiveService(initialService);
+      setActiveImage(projectServiceImages[project.id]?.[initialService] || project.image);
     }
   }, [project]);
 
@@ -128,10 +174,46 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           
           {/* Main Visual Frame & Thumbnails */}
           <div className="lg:col-span-8 space-y-4">
+            {/* Service switching tabs */}
+            <div className="overflow-x-auto scrollbar-none pb-1 select-none">
+              <div className="flex space-x-1.5 p-1 bg-neutral-100/80 dark:bg-zinc-900/60 rounded-full w-max border border-zinc-200/40 dark:border-zinc-800/80">
+                {(projectSupportedServices[project.id] || []).map((srvId) => {
+                  const isActive = activeService === srvId;
+                  return (
+                    <button
+                      key={srvId}
+                      onClick={() => {
+                        setActiveService(srvId);
+                        const img = projectServiceImages[project.id]?.[srvId];
+                        if (img) setActiveImage(img);
+                      }}
+                      className="relative px-4 py-1.5 text-xs font-mono uppercase tracking-wider rounded-full transition-colors cursor-pointer focus:outline-none"
+                    >
+                      {isActive && (
+                        <motion.span
+                          layoutId="activeDetailService"
+                          className="absolute inset-0 bg-white dark:bg-zinc-800 shadow-[0_2px_8px_rgba(0,0,0,0.05)] rounded-full z-0"
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                      <span className={`relative z-10 ${
+                        isActive 
+                          ? 'text-zinc-900 dark:text-white font-medium' 
+                          : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300'
+                      }`}>
+                        {serviceLabels[srvId as keyof typeof serviceLabels]?.[currentLang]}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <motion.div 
-              initial={{ opacity: 0, scale: 0.98 }}
+              key={activeService}
+              initial={{ opacity: 0.95, scale: 0.99 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4 }}
               className="relative aspect-[16/10] w-full rounded-none overflow-hidden bg-neutral-900 border border-neutral-200/40 dark:border-zinc-800 shadow-xl group"
             >
               <img

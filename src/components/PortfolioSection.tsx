@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import { Language } from '../types';
@@ -8,22 +8,190 @@ interface PortfolioSectionProps {
   currentLang: Language;
 }
 
+// Map project IDs to their custom image assets for each of the 4 services
+const projectServiceImages: Record<string, Record<string, string>> = {
+  'project-1': {
+    'architectural-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/Narendar/day%20view.jpg',
+    'interior-design': 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200',
+    'architecture-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/Narendar/day%20view.jpg',
+    'interiors-build': 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200',
+  },
+  'project-2': {
+    'architectural-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/night%20view.jpg',
+    'interior-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/interiors/Enscape_2024-08-29-23-55-39_Enscape%20scene%207.png',
+    'architecture-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/night%20view.jpg',
+    'interiors-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/sudeep%20reddy/interiors/Enscape_2024-08-30-00-04-53_Enscape%20scene%2011.png',
+  },
+  'project-3': {
+    'architectural-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/suresh/day%20view1.jpg',
+    'interior-design': 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200',
+    'architecture-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/suresh/IMG_3898%20(1).PNG',
+    'interiors-build': 'https://images.unsplash.com/photo-1617806118233-18e1db207f62?auto=format&fit=crop&q=80&w=1200',
+  },
+  'project-4': {
+    'architectural-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/elevation%202.jpg',
+    'interior-design': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-03-23-53-19_Enscape%20scene%201.png',
+    'architecture-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/elevation3.jpg',
+    'interiors-build': 'https://vennky.sirv.com/wetransfer_portfolio_2026-07-02_0759/venkat%20reddy/Enscape_2025-05-07-13-07-51_Enscape%20scene%2024.jpg',
+  },
+};
+
+// Supported services for each project
+const projectSupportedServices: Record<string, string[]> = {
+  'project-1': ['architectural-design', 'architecture-build', 'interiors-build'],
+  'project-2': ['architectural-design', 'interior-design', 'architecture-build', 'interiors-build'],
+  'project-3': ['architectural-design', 'architecture-build'],
+  'project-4': ['architectural-design', 'interior-design', 'architecture-build', 'interiors-build'],
+};
+
+// Concise labels for the project-level buttons in English, Russian, and Spanish
+const serviceLabels = {
+  'architectural-design': { EN: 'Architecture', RU: 'Архитектура', ES: 'Arq' },
+  'interior-design': { EN: 'Interiors', RU: 'Интерьеры', ES: 'Int' },
+  'architecture-build': { EN: 'Arch Build', RU: 'Строительство', ES: 'Construcción' },
+  'interiors-build': { EN: 'Interior Build', RU: 'Чистовая отделка', ES: 'Acabados' }
+};
+
+// Project card layout styling configuration to maintain unique editorial proportions for each project
+const projectCardStyles: Record<string, { aspect: string; caption: string }> = {
+  'project-1': {
+    aspect: 'aspect-[4/3.3]',
+    caption: 'top-[18%] -right-3 sm:-right-6 md:-right-10'
+  },
+  'project-2': {
+    aspect: 'aspect-[4/3.1]',
+    caption: 'bottom-[18%] -left-3 sm:-left-6 md:-left-10'
+  },
+  'project-3': {
+    aspect: 'aspect-[4/5]',
+    caption: 'top-[22%] -right-3 sm:-right-6 md:-right-10'
+  },
+  'project-4': {
+    aspect: 'aspect-[3/4.5]',
+    caption: 'bottom-[10%] -right-3 sm:-right-6 md:-right-10'
+  }
+};
+
+// Subcomponent for each Project Card
+interface ProjectCardProps {
+  project: typeof portfolioProjects[0];
+  currentLang: Language;
+  globalCategory: string;
+  onClick: () => void;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, currentLang, globalCategory, onClick }) => {
+  const [activeService, setActiveService] = useState<string>('architectural-design');
+  const styles = projectCardStyles[project.id] || { aspect: 'aspect-[4/3]', caption: 'bottom-4 right-4' };
+
+  // Synchronize card active service with the globally selected category
+  useEffect(() => {
+    const supported = projectSupportedServices[project.id] || [];
+    if (globalCategory !== 'all' && supported.includes(globalCategory)) {
+      setActiveService(globalCategory);
+    } else if (supported.length > 0) {
+      // Default to the first supported service
+      setActiveService(supported[0]);
+    }
+  }, [globalCategory, project.id]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6 }}
+      className="group relative cursor-pointer"
+      onClick={onClick}
+    >
+      {/* Dynamic Image frame preserving specific project aspects */}
+      <div className={`relative overflow-hidden ${styles.aspect} bg-neutral-100 dark:bg-zinc-900 border border-neutral-200/50 dark:border-zinc-800 rounded-none`}>
+        <motion.img
+          key={activeService}
+          initial={{ opacity: 0.82, scale: 1.01 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          src={projectServiceImages[project.id]?.[activeService] || project.image}
+          alt={project.title[currentLang]}
+          className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 transition-opacity duration-300" />
+      </div>
+
+      {/* Floating overlapping Caption Box with individual service switches inside */}
+      <div 
+        className={`absolute z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none ${styles.caption}`}
+      >
+        <div className="flex items-start justify-between">
+          <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
+            {project.title[currentLang]}
+          </span>
+          <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+        </div>
+        <p className="mt-2 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2">
+          {project.description[currentLang]}
+        </p>
+
+        {/* Project level sub-toggles to switch services & images on the fly */}
+        <div className="mt-3.5 pt-3 border-t border-zinc-100 dark:border-zinc-800/80">
+          <div className="flex flex-wrap gap-1">
+            {(projectSupportedServices[project.id] || []).map((srvId) => {
+              const isActive = activeService === srvId;
+              return (
+                <button
+                  key={srvId}
+                  onClick={(e) => {
+                    e.stopPropagation(); // Block opening the project page
+                    setActiveService(srvId);
+                  }}
+                  className={`text-[9px] font-mono tracking-wider px-2 py-1 uppercase transition-all duration-200 border cursor-pointer ${
+                    isActive
+                      ? 'bg-[#8a6f3e] text-white border-[#8a6f3e] dark:bg-[#d3bc8f] dark:text-zinc-950 dark:border-[#d3bc8f] font-semibold'
+                      : 'bg-transparent text-zinc-400 border-zinc-200/50 dark:border-zinc-800 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-400'
+                  }`}
+                >
+                  {serviceLabels[srvId as keyof typeof serviceLabels]?.[currentLang] || srvId}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang }) => {
-  // Explicit layout headings
-  const sectionHeading = {
-    EN: 'OUR PROJECTS',
-    RU: 'НАШИ ПРОЕКТЫ',
-    ES: 'NUESTROS PROYECTOS'
-  };
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+
+  const categories = [
+    { id: 'all', label: { EN: 'All Projects', RU: 'Все проекты', ES: 'Todos' } },
+    { id: 'architectural-design', label: { EN: 'Architecture', RU: 'Архитектура', ES: 'Arquitectura' } },
+    { id: 'interior-design', label: { EN: 'Interior Design', RU: 'Дизайн интерьеров', ES: 'Interiores' } },
+    { id: 'architecture-build', label: { EN: 'Arch Build', RU: 'Строительство', ES: 'Construcción' } },
+    { id: 'interiors-build', label: { EN: 'Interior Build', RU: 'Чистовая отделка', ES: 'Acabado Interior' } }
+  ];
 
   const handleProjectClick = (projectId: string) => {
     window.location.hash = projectId;
   };
 
+  // Filter projects based on top category selection
+  const filteredProjects = portfolioProjects.filter((project) => {
+    if (selectedCategory === 'all') return true;
+    const supported = projectSupportedServices[project.id] || [];
+    return supported.includes(selectedCategory);
+  });
+
+  // Distribute projects between Left and Right columns dynamically to preserve asymmetrical offsets
+  const leftColProjects = filteredProjects.filter((_, i) => i % 2 === 0);
+  const rightColProjects = filteredProjects.filter((_, i) => i % 2 !== 0);
+
   return (
     <section 
       id="portfolio" 
-      className="py-24 md:py-32 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 border-b border-zinc-100 dark:border-zinc-900 overflow-hidden relative"
+      className="py-12 md:py-16 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 border-b border-zinc-100 dark:border-zinc-900 overflow-hidden relative"
     >
       {/* Soft ambient background glow */}
       <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none select-none" />
@@ -31,15 +199,14 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         
-        {/* DESIGN CONTEXT HEADER WITH METRICS */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-24 border-b border-zinc-100 dark:border-zinc-900 pb-16">
-          {/* Left Side: Editorial Typography Heading & Statement */}
+        {/* DESIGN CONTEXT HEADER */}
+        <div className="mb-12 border-b border-zinc-100 dark:border-zinc-900 pb-8">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 space-y-6"
+            className="max-w-3xl space-y-6"
           >
             <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
               {currentLang === 'RU' ? 'Жилые пространства, созданные с душой' : currentLang === 'ES' ? 'Espacios habitables creados con intención' : 'Living spaces shaped with intention'}
@@ -54,218 +221,72 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
             </p>
           </motion.div>
 
-          {/* Right Side: High-End Architecture Metrics */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="lg:col-span-5 grid grid-cols-2 gap-x-8 gap-y-10 self-center border-l border-zinc-100 dark:border-zinc-900 lg:pl-10"
-          >
-            <div className="space-y-1.5">
-              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 dark:text-white block tracking-tight">4+</span>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block leading-tight">
-                {currentLang === 'RU' ? 'Жилых Проектов' : currentLang === 'ES' ? 'Proyectos Residenciales' : 'Residential Projects'}
-              </span>
+          {/* STYLISH MAIN CATEGORY TABS SELECTOR */}
+          <div className="mt-10 overflow-x-auto scrollbar-none pb-2 select-none">
+            <div className="flex space-x-1.5 p-1 bg-neutral-100/80 dark:bg-zinc-900/60 rounded-full w-max border border-zinc-200/40 dark:border-zinc-800/80">
+              {categories.map((cat) => {
+                const isActive = selectedCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    className="relative px-4 py-2 text-xs font-mono uppercase tracking-wider rounded-full transition-colors cursor-pointer focus:outline-none"
+                    style={{ WebkitTapHighlightColor: 'transparent' }}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeCategory"
+                        className="absolute inset-0 bg-white dark:bg-zinc-800 shadow-[0_2px_8px_rgba(0,0,0,0.05)] rounded-full z-0"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className={`relative z-10 ${
+                      isActive 
+                        ? 'text-zinc-900 dark:text-white font-medium' 
+                        : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300'
+                    }`}>
+                      {cat.label[currentLang]}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
-            
-            <div className="space-y-1.5">
-              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 dark:text-white block tracking-tight">2024—26</span>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block leading-tight">
-                {currentLang === 'RU' ? 'Текущий Портфолио' : currentLang === 'ES' ? 'Portafolio Actual' : 'Current Portfolio'}
-              </span>
-            </div>
-            
-            <div className="space-y-1.5">
-              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 dark:text-white block tracking-tight">3</span>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block leading-tight">
-                {currentLang === 'RU' ? 'Районов · Телангана' : currentLang === 'ES' ? 'Distritos · Telangana' : 'Districts · Telangana'}
-              </span>
-            </div>
-            
-            <div className="space-y-1.5">
-              <span className="text-2xl md:text-3xl font-mono font-bold text-zinc-900 dark:text-white block tracking-tight">01 — 04</span>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500 block leading-tight">
-                {currentLang === 'RU' ? 'Выдающиеся работы' : currentLang === 'ES' ? 'Diseños Destacados' : 'Featured Designs'}
-              </span>
-            </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* ASYMMETRIC PORTFOLIO GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-24 md:gap-y-0" id="portfolio-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 md:gap-y-0" id="portfolio-grid">
           
           {/* LEFT COLUMN */}
-          <div className="flex flex-col space-y-24 md:space-y-36">
-            
-            {/* Project 1: Urban Design */}
-            {portfolioProjects[0] && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.7 }}
-                className="group relative cursor-pointer"
-                onClick={() => handleProjectClick(portfolioProjects[0].id)}
-                id="portfolio-item-urban"
-              >
-                {/* Image Wrap */}
-                <div className="relative overflow-hidden aspect-[4/3.3] bg-neutral-100 dark:bg-zinc-900 border border-neutral-200/50 dark:border-zinc-800 rounded-none">
-                  <img
-                    src={portfolioProjects[0].image}
-                    alt={portfolioProjects[0].title[currentLang]}
-                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  {/* Fine linear gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 transition-opacity duration-300" />
-                </div>
-
-                {/* Overlapping Caption Box */}
-                <div 
-                  className="absolute top-[18%] -right-3 sm:-right-6 md:-right-10 z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
-                      {portfolioProjects[0].title[currentLang]}
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                  </div>
-                  <p className="mt-2.5 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
-                    {portfolioProjects[0].description[currentLang]}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Project 3: Commercial */}
-            {portfolioProjects[2] && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.7 }}
-                className="group relative cursor-pointer"
-                onClick={() => handleProjectClick(portfolioProjects[2].id)}
-                id="portfolio-item-commercial"
-              >
-                {/* Image Wrap */}
-                <div className="relative overflow-hidden aspect-[4/5] bg-neutral-100 dark:bg-zinc-900 border border-neutral-200/50 dark:border-zinc-800 rounded-none">
-                  <img
-                    src={portfolioProjects[2].image}
-                    alt={portfolioProjects[2].title[currentLang]}
-                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 transition-opacity duration-300" />
-                </div>
-
-                {/* Overlapping Caption Box */}
-                <div 
-                  className="absolute top-[22%] -right-3 sm:-right-6 md:-right-10 z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
-                      {portfolioProjects[2].title[currentLang]}
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                  </div>
-                  <p className="mt-2.5 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
-                    {portfolioProjects[2].description[currentLang]}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-
+          <div className="flex flex-col space-y-12 md:space-y-20">
+            {leftColProjects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                currentLang={currentLang}
+                globalCategory={selectedCategory}
+                onClick={() => handleProjectClick(project.id)}
+              />
+            ))}
           </div>
 
           {/* RIGHT COLUMN (OFFSET DOWNWARDS) */}
-          <div className="flex flex-col space-y-24 md:space-y-36 md:translate-y-28">
-            
-            {/* Project 2: Interior & Exterior */}
-            {portfolioProjects[1] && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.7 }}
-                className="group relative cursor-pointer"
-                onClick={() => handleProjectClick(portfolioProjects[1].id)}
-                id="portfolio-item-interior"
-              >
-                {/* Image Wrap */}
-                <div className="relative overflow-hidden aspect-[4/3.1] bg-neutral-100 dark:bg-zinc-900 border border-neutral-200/50 dark:border-zinc-800 rounded-none">
-                  <img
-                    src={portfolioProjects[1].image}
-                    alt={portfolioProjects[1].title[currentLang]}
-                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 transition-opacity duration-300" />
-                </div>
-
-                {/* Overlapping Caption Box */}
-                <div 
-                  className="absolute bottom-[18%] -left-3 sm:-left-6 md:-left-10 z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
-                      {portfolioProjects[1].title[currentLang]}
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                  </div>
-                  <p className="mt-2.5 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
-                    {portfolioProjects[1].description[currentLang]}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Project 4: Innovative Designs */}
-            {portfolioProjects[3] && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.7 }}
-                className="group relative cursor-pointer"
-                onClick={() => handleProjectClick(portfolioProjects[3].id)}
-                id="portfolio-item-innovative"
-              >
-                {/* Image Wrap */}
-                <div className="relative overflow-hidden aspect-[3/4.5] bg-neutral-100 dark:bg-zinc-900 border border-neutral-200/50 dark:border-zinc-800 rounded-none">
-                  <img
-                    src={portfolioProjects[3].image}
-                    alt={portfolioProjects[3].title[currentLang]}
-                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 transition-opacity duration-300" />
-                </div>
-
-                {/* Overlapping Caption Box */}
-                <div 
-                  className="absolute bottom-[10%] -right-3 sm:-right-6 md:-right-10 z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
-                      {portfolioProjects[3].title[currentLang]}
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                  </div>
-                  <p className="mt-2.5 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2 md:line-clamp-3">
-                    {portfolioProjects[3].description[currentLang]}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-
+          <div className="flex flex-col space-y-12 md:space-y-20 md:translate-y-16">
+            {rightColProjects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                currentLang={currentLang}
+                globalCategory={selectedCategory}
+                onClick={() => handleProjectClick(project.id)}
+              />
+            ))}
           </div>
 
         </div>
 
         {/* Spacer for offset grid layout */}
-        <div className="h-16 md:h-28" />
+        <div className="h-8 md:h-12" />
 
       </div>
     </section>

@@ -36,26 +36,26 @@ const servicesData: ServicePageData[] = [
       RU: 'Индивидуальное планирование, генеральные планы усадеб, дизайн фасадов и конструктивные чертежи.',
       ES: 'Planificación espacial a medida, diseño de fachadas, planos de terrenos y redacción estructural.'
     },
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200',
+    image: "https://vennky.sirv.com/Don't%20Just%20List%20It_%20Visualize%20It_%20(1).jpg",
     duration: { EN: '4-6 Weeks', RU: '4-6 Недель', ES: '4-6 Semanas' },
     deliverables: {
       EN: [
-        'Detailed site layout & master planning drawings',
-        'Sleek modern facade & exterior visual profiles',
-        'Full structural framing blueprints & math calculations',
-        'Sunlight orientation grids & thermal boundary planning'
+        'Detailed Site Planning & Master Layout Designs',
+        'Modern Facade Design & Exterior Elevation Concepts',
+        'Structural Drawings & Engineering Calculations',
+        'Sunlight Analysis, Building Orientation & Climate Planning'
       ],
       RU: [
-        'Детальный план участка и концепция генерального плана',
-        'Современные фасады и проработка внешних профилей',
-        'Полный комплект конструктивных чертежей и расчетов',
-        'Анализ инсоляции и теплотехнических границ здания'
+        'Детальное планирование участка и дизайн генерального плана',
+        'Современный дизайн фасадов и концепции внешних видов',
+        'Конструктивные чертежи и инженерные расчеты',
+        'Анализ солнечного света, ориентация здания и климатическое планирование'
       ],
       ES: [
-        'Diseño detallado del sitio y planos del plan maestro',
-        'Perfiles visuales exteriores y fachadas modernas',
-        'Planos estructurales completos y cálculos matemáticos',
-        'Redes de orientación de luz solar y aislamiento térmico'
+        'Planificación Detallada del Sitio y Diseños de Plan Maestro',
+        'Diseño de Fachadas Modernas y Conceptos de Elevación Exterior',
+        'Planos Estructurales y Cálculos de Ingeniería',
+        'Análisis de Luz Solar, Orientación del Edificio y Planificación Climática'
       ]
     },
     process: [
@@ -85,26 +85,26 @@ const servicesData: ServicePageData[] = [
       RU: 'Ультра-премиальные гардеробные, минималистичные пентхаусы и представительские лаунжи.',
       ES: 'Vestidores residenciales a medida, penthouses minimalistas y salones ejecutivos diseñados al milímetro.'
     },
-    image: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&q=80&w=1200',
+    image: "https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2009_20_31%20AM.png",
     duration: { EN: '3-5 Weeks', RU: '3-5 Недель', ES: '3-5 Semanas' },
     deliverables: {
       EN: [
-        'Photorealistic 3D interior renders from multiple angles',
-        'Sleek layout profiles, furniture sizing & spatial flow maps',
-        'Custom wardrobe & custom cabinet configuration sheets',
-        'Intelligent lighting schematics & electrical group plans'
+        'Photorealistic Interior Design Visualizations',
+        'Space Planning & Furniture Layout Design',
+        'Custom Wardrobes, Modular Cabinets & Storage Solutions',
+        'Lighting, Electrical & False Ceiling Design Plans'
       ],
       RU: [
-        'Фотореалистичные 3D-визуализации интерьеров с разных ракурсов',
-        'Эргономичные планировки, расстановка мебели и логика движения',
-        'Индивидуальные чертежи встроенной мебели и систем хранения',
-        'Схемы умного освещения и планы электрических групп'
+        'Фотореалистичные 3D-визуализации интерьеров',
+        'Планирование пространства и расстановка мебели',
+        'Индивидуальные гардеробные, модульные шкафы и системы хранения',
+        'Планы освещения, электрики и подвесных потолков'
       ],
       ES: [
-        'Renders de interiores fotorrealistas en 3D de múltiples ángulos',
-        'Distribución del flujo espacial y dimensionamiento de muebles',
-        'Fichas de configuración de armarios y gabinetes personalizados',
-        'Esquemas de iluminación inteligente y planos de electricidad'
+        'Visualizaciones Fotorrealistas de Diseño de Interiores',
+        'Planificación de Espacios y Diseño de Distribución de Muebles',
+        'Armarios a Medida, Gabinetes Modulares y Soluciones de Almacenamiento',
+        'Planos de Diseño de Iluminación, Electricidad y Techos Falsos'
       ]
     },
     process: [
@@ -138,22 +138,22 @@ const servicesData: ServicePageData[] = [
     duration: { EN: '6-12 Months', RU: '6-12 Месяцев', ES: '6-12 Meses' },
     deliverables: {
       EN: [
-        'Premium reinforced concrete structural foundations',
-        'Elite brick masonry with high thermal efficiency insulation',
-        'Custom natural stone, timber, or composite facade finishes',
-        'Full site logistics, material curation, and engineering safety'
+        'Strong Structural Construction with Quality Materials',
+        'Expert Building Execution & Durable Finishing',
+        'Premium Exterior Finishes & Material Selection',
+        'End-to-End Construction Management & Site Supervision'
       ],
       RU: [
-        'Премиальный железобетонный фундамент и несущий каркас',
-        'Кладка стен из поризованного кирпича с высокой теплоизоляцией',
-        'Облицовка фасадов натуральным камнем или термодеревом',
-        'Полная логистика на площадке, контроль поставок и ТБ'
+        'Прочные строительные конструкции и качественные материалы',
+        'Профессиональное возведение зданий и долговечная отделка',
+        'Премиальная отделка фасадов и селективные материалы',
+        'Комплексное управление строительством и авторский надзор'
       ],
       ES: [
-        'Cimientos estructurales de hormigón armado de primera calidad',
-        'Mampostería de ladrillo con aislamiento térmico de alta eficiencia',
-        'Acabados de fachadas de piedra natural o compuestos premium',
-        'Logística completa del sitio, curación de materiales y seguridad'
+        'Construcción Estructural Fuerte con Materiales de Calidad',
+        'Ejecución de Construcción Experta y Acabados Duraderos',
+        'Acabados Exteriores Premium y Selección de Materiales',
+        'Gestión de Construcción Integral y Supervisión en el Sitio'
       ]
     },
     process: [
@@ -190,19 +190,19 @@ const servicesData: ServicePageData[] = [
         'High-density acoustic partitions & gypsum ceiling engineering',
         'Marble, tile, and premium hardwood flooring installation',
         'Assembly & integration of custom luxury cabinets & kitchens',
-        'White-glove deep post-build cleaning & custom space perfume styling'
+        'Complete Interior Finishing & Project Handover'
       ],
       RU: [
         'Акустические перегородки и многоуровневые гипсовые потолки',
         'Укладка натурального мрамора, керамогранита и паркетной доски',
         'Сборка и интеграция встроенных премиальных шкафов и кухонь',
-        'Глубокий клининг после ремонта и финальная ароматизация комнат'
+        'Полная чистовая отделка интерьера и сдача проекта'
       ],
       ES: [
         'Tabiques acústicos y diseño de techos de yeso de alta densidad',
         'Instalación de suelos de mármol, baldosas y madera noble premium',
         'Montaje e integración de gabinetes y cocinas de lujo a medida',
-        'Limpieza profunda e instalación de fragancias exclusivas'
+        'Acabado Interior Completo y Entrega del Proyecto'
       ]
     },
     process: [
@@ -328,7 +328,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     {/* Scope / Deliverables List */}
                     <div className="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100 space-y-4">
                       <h4 className="text-xs uppercase font-mono tracking-wider font-bold text-gray-900 border-b border-gray-200 pb-2">
-                        {currentLang === 'RU' ? 'Что входит в пакет' : currentLang === 'ES' ? 'Qué está Incluido' : 'Scope & Deliverables'}
+                        {srv.id === 'architecture-build' || srv.id === 'interiors-build'
+                          ? (currentLang === 'RU' ? 'Объем работ' : currentLang === 'ES' ? 'Alcance del Trabajo' : 'Scope of Work')
+                          : (currentLang === 'RU' ? 'Что входит в пакет' : currentLang === 'ES' ? 'Qué está Incluido' : 'Scope & Deliverables')}
                       </h4>
                       <ul className="space-y-3">
                         {srv.deliverables[currentLang].map((item, idx) => (
