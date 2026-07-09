@@ -328,9 +328,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     {/* Scope / Deliverables List */}
                     <div className="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100 space-y-4">
                       <h4 className="text-xs uppercase font-mono tracking-wider font-bold text-gray-900 border-b border-gray-200 pb-2">
-                        {srv.id === 'architecture-build' || srv.id === 'interiors-build'
-                          ? (currentLang === 'RU' ? 'Объем работ' : currentLang === 'ES' ? 'Alcance del Trabajo' : 'Scope of Work')
-                          : (currentLang === 'RU' ? 'Что входит в пакет' : currentLang === 'ES' ? 'Qué está Incluido' : 'Scope & Deliverables')}
+                        {currentLang === 'RU' ? 'Объем работ' : currentLang === 'ES' ? 'Alcance del Trabajo' : 'Scope of Work'}
                       </h4>
                       <ul className="space-y-3">
                         {srv.deliverables[currentLang].map((item, idx) => (

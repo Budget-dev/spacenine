@@ -100,9 +100,9 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
       ES: 'Volver a Portafolio'
     },
     technicalFeatures: {
-      EN: 'Project Scope & Deliverables',
-      RU: 'Состав проекта и материалы',
-      ES: 'Alcance y Entregables'
+      EN: 'Scope of Work',
+      RU: 'Объем работ',
+      ES: 'Alcance del Trabajo'
     },
     specsArea: {
       EN: 'Dimensions',
@@ -356,7 +356,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             )}
           </div>
 
-          {/* Right Side: Scope of Deliverables */}
+          {/* Right Side: Scope of Work */}
           <div className="md:col-span-5 space-y-6">
             <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#8a6f3e] flex items-center space-x-2">
               <Compass className="w-4 h-4 text-[#8a6f3e]" />

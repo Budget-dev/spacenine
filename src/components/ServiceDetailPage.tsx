@@ -301,9 +301,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
         <div className="lg:col-span-7 space-y-8">
           <div className="bg-gray-50 p-8 md:p-10 rounded-3xl border border-gray-100 space-y-6 shadow-sm">
             <h3 className="text-lg font-serif font-medium text-gray-900 border-b border-gray-200 pb-3">
-              {service.id === 'architecture-build' || service.id === 'interiors-build'
-                ? (currentLang === 'RU' ? 'Объем работ' : currentLang === 'ES' ? 'Alcance del Trabajo' : 'Scope of Work')
-                : (currentLang === 'RU' ? 'Состав проекта и документация' : currentLang === 'ES' ? 'Alcance y Entregables' : 'Scope & Architectural Deliverables')}
+              {currentLang === 'RU' ? 'Объем работ' : currentLang === 'ES' ? 'Alcance del Trabajo' : 'Scope of Work'}
             </h3>
             <ul className="space-y-4">
               {service.deliverables[currentLang].map((item, idx) => (
