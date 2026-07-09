@@ -106,7 +106,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => handleNavClick('home')}
             id="logo-container"
           >
-            <div className="h-12 md:h-15 overflow-hidden flex items-start justify-center">
+            <div className="h-12 md:h-15 overflow-hidden flex items-start justify-center -translate-x-[4.5px] md:-translate-x-[7px]">
               <img 
                 src="https://vennky.sirv.com/iron%20spongs/ballari/ChatGPT%20Image%20Jul%207%2C%202026%2C%2006_14_34%20PM.png"
                 alt="spacenine architects logo"
@@ -183,7 +183,7 @@ export const Header: React.FC<HeaderProps> = ({
 
                                 {/* Content */}
                                 <div className="space-y-1">
-                                  <div className="text-xs font-bold font-mono tracking-wider text-gray-900 group-hover:text-black uppercase flex items-center gap-1.5">
+                                  <div className="text-xs font-bold font-sans tracking-wide text-gray-900 group-hover:text-black uppercase flex items-center gap-1.5">
                                     <span>{srv.label[currentLang]}</span>
                                     {selectedService === srv.id && (
                                       <span className="w-1.5 h-1.5 bg-black rounded-full" />
@@ -282,7 +282,7 @@ export const Header: React.FC<HeaderProps> = ({
                                   scrollToSection(srv.id);
                                   setIsMobileMenuOpen(false);
                                 }}
-                                className="block text-left text-xs uppercase font-mono tracking-wider text-gray-500 hover:text-black py-1"
+                                className="block text-left text-xs sm:text-[13px] font-sans text-gray-500 hover:text-black py-1.5 font-medium transition-colors"
                                 id={`mobile-srv-${srv.id}`}
                               >
                                 {srv.label[currentLang]}
@@ -311,7 +311,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               <div className="border-t border-gray-100 pt-6 flex items-center justify-center">
                 <div className="flex flex-col items-center">
-                  <div className="h-12 overflow-hidden flex items-start justify-center">
+                  <div className="h-12 overflow-hidden flex items-start justify-center -translate-x-[4.5px]">
                     <img 
                       src="https://vennky.sirv.com/iron%20spongs/ballari/ChatGPT%20Image%20Jul%207%2C%202026%2C%2006_14_34%20PM.png"
                       alt="spacenine architects logo"

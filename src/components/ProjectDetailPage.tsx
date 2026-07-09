@@ -175,8 +175,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           {/* Main Visual Frame & Thumbnails */}
           <div className="lg:col-span-8 space-y-4">
             {/* Service switching tabs */}
-            <div className="overflow-x-auto scrollbar-none pb-1 select-none">
-              <div className="flex space-x-1.5 p-1 bg-neutral-100/80 dark:bg-zinc-900/60 rounded-full w-max border border-zinc-200/40 dark:border-zinc-800/80">
+            <div className="overflow-x-auto scrollbar-none pb-2 select-none -mx-6 px-6">
+              <div className="flex items-center space-x-1 p-1 bg-neutral-100/80 dark:bg-zinc-900/60 rounded-full w-max border border-zinc-200/40 dark:border-zinc-800/80">
                 {(projectSupportedServices[project.id] || []).map((srvId) => {
                   const isActive = activeService === srvId;
                   return (
@@ -187,18 +187,19 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                         const img = projectServiceImages[project.id]?.[srvId];
                         if (img) setActiveImage(img);
                       }}
-                      className="relative px-4 py-1.5 text-xs font-mono uppercase tracking-wider rounded-full transition-colors cursor-pointer focus:outline-none"
+                      className="relative px-3.5 text-[11px] sm:text-xs font-sans font-medium uppercase tracking-wider rounded-full transition-all cursor-pointer focus:outline-none whitespace-nowrap flex items-center justify-center h-8"
+                      style={{ WebkitTapHighlightColor: 'transparent' }}
                     >
                       {isActive && (
                         <motion.span
                           layoutId="activeDetailService"
-                          className="absolute inset-0 bg-white dark:bg-zinc-800 shadow-[0_2px_8px_rgba(0,0,0,0.05)] rounded-full z-0"
+                          className="absolute inset-0 bg-white dark:bg-zinc-800 shadow-[0_2px_8px_rgba(0,0,0,0.06)] rounded-full z-0"
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
-                      <span className={`relative z-10 ${
+                      <span className={`relative z-10 transition-colors duration-200 ${
                         isActive 
-                          ? 'text-zinc-900 dark:text-white font-medium' 
+                          ? 'text-zinc-900 dark:text-white font-semibold' 
                           : 'text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300'
                       }`}>
                         {serviceLabels[srvId as keyof typeof serviceLabels]?.[currentLang]}
