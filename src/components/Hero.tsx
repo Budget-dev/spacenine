@@ -87,15 +87,6 @@ export const Hero: React.FC<HeroProps> = ({
     touchEndRef.current = null;
   };
 
-  // Auto-scroll all 5 slides every 15 seconds to show the complete design gallery automatically
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMobileSlide((prev) => (prev + 1) % 5);
-    }, 15000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   // Custom data for the 5 mobile slides
   const mobileSlidesData = [
     {
@@ -169,7 +160,7 @@ export const Hero: React.FC<HeroProps> = ({
               mobileSlide === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
             }`}
             style={{
-              backgroundImage: `url('https://vennky.sirv.com/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2011_04_33%20AM.png')`,
+              backgroundImage: `url('https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2009_20_31%20AM.png')`,
             }}
             aria-hidden="true"
           />

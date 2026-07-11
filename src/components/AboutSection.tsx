@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, ChevronRight } from 'lucide-react';
+import { Calendar, ChevronRight, Instagram } from 'lucide-react';
 import { Language } from '../types';
 import { translations } from '../data';
 
@@ -153,6 +153,25 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
                   : 'Every architectural element is bathed in mathematically calculated light angles and hidden profiles, elevating material depth and bringing sophisticated sensory warmth to every space.'
                 }
               </p>
+            </div>
+
+            {/* Social Media Connect Integration */}
+            <div className="pt-6 border-t border-zinc-100 dark:border-zinc-900/60 flex flex-wrap items-center gap-3">
+              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400">
+                {currentLang === 'RU' ? 'Связь в соцсетях:' : currentLang === 'ES' ? 'Conectar en redes:' : 'Connect on social media:'}
+              </span>
+              <a 
+                href="https://www.instagram.com/spaceninearchitects/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 text-sm font-medium tracking-wide text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-300 transition-all duration-300 group"
+                id="about-instagram-connect"
+              >
+                <Instagram className="w-4 h-4 text-zinc-900 dark:text-zinc-50 group-hover:scale-110 transition-transform duration-300" />
+                <span className="border-b border-zinc-200 dark:border-zinc-800 group-hover:border-zinc-900 dark:group-hover:border-zinc-100 transition-colors">
+                  @spaceninearchitects
+                </span>
+              </a>
             </div>
           </motion.div>
 

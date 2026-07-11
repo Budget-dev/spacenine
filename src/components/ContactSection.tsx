@@ -158,22 +158,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 {t.quickLinks[currentLang]}
               </h3>
               
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3" id="contact-messengers">
-                <a
-                  href="https://t.me/spacenine"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-3 bg-sky-50 hover:bg-sky-100 rounded-2xl flex items-center space-x-3 transition-colors text-sky-700"
-                >
-                  <div className="p-2 bg-sky-500 rounded-xl text-white">
-                    <Send className="w-4 h-4 transform rotate-[-25deg] translate-y-[-1px]" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold font-mono tracking-wider block">TELEGRAM</span>
-                    <span className="text-[10px] text-sky-600/70 block">@spacenine</span>
-                  </div>
-                </a>
-
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3" id="contact-messengers">
                 <a
                   href="https://wa.me/917702317235"
                   target="_blank"

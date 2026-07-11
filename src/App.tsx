@@ -39,7 +39,7 @@ const seoMetadata: Record<
     EN: {
       title: "About Us | Spacenine Architects - Elite Design Philosophy & Team",
       description: "Learn about Spacenine Architects, an award-winning architectural and interior design collective in Hyderabad. Crafting timeless luxury spaces with meticulous precision.",
-      keywords: "About Spacenine Architects, Top Architects Jubilee Hills, Luxury Interior Architecture Hyderabad, Professional Design Studio Hyderabad"
+      keywords: "About Spacenine Architects, Top Architects Kokapet, Luxury Interior Architecture Hyderabad, Professional Design Studio Hyderabad"
     },
     RU: {
       title: "О нас | Spacenine Architects - Философия дизайна и Команда",
@@ -73,7 +73,7 @@ const seoMetadata: Record<
     EN: {
       title: "Bespoke Architectural Design in Hyderabad | Spacenine Architects",
       description: "Premium architectural design planning and elevations for modern villas, luxury apartments, and commercial complexes in Hyderabad by Spacenine.",
-      keywords: "Architectural design Hyderabad, Villa architects Hyderabad, Modern house elevations, Luxury home planning, Jubilee Hills architects"
+      keywords: "Architectural design Hyderabad, Villa architects Hyderabad, Modern house elevations, Luxury home planning, Kokapet architects"
     },
     RU: {
       title: "Архитектурное проектирование в Хайдарабаде | Spacenine Architects",
@@ -90,7 +90,7 @@ const seoMetadata: Record<
     EN: {
       title: "Luxury Interior Designers in Hyderabad | Spacenine Architects",
       description: "Award-winning high-end interior designers in Hyderabad. Handcrafted residential living rooms, bespoke walk-in wardrobes, and modular premium kitchens.",
-      keywords: "Interior designers in Hyderabad, Best luxury interiors Hyderabad, Modern kitchen interior, Wardrobes design Hyderabad, Jubilee Hills interior designers"
+      keywords: "Interior designers in Hyderabad, Best luxury interiors Hyderabad, Modern kitchen interior, Wardrobes design Hyderabad, Kokapet interior designers"
     },
     RU: {
       title: "Дизайн Интерьера Премиум Класса в Хайдарабаде | Spacenine Architects",
@@ -107,7 +107,7 @@ const seoMetadata: Record<
     EN: {
       title: "Turnkey Architecture & Construction Services Hyderabad | Spacenine",
       description: "End-to-end architecture and premium home construction services in Hyderabad. We deliver flawless luxury villas from foundation to final paint.",
-      keywords: "Turnkey home construction Hyderabad, House builders Jubilee Hills, Design build firm Hyderabad, Premium villa construction"
+      keywords: "Turnkey home construction Hyderabad, House builders Kokapet, Design build firm Hyderabad, Premium villa construction"
     },
     RU: {
       title: "Архитектура и Строительство «Под Ключ» Хайдарабад | Spacenine",
@@ -140,8 +140,8 @@ const seoMetadata: Record<
   contact: {
     EN: {
       title: "Contact Elite Team | Spacenine Architects Hyderabad Office",
-      description: "Get in touch with Hyderabad's best architects & interior designers for a consultation. Start designing your luxury project in Jubilee Hills today.",
-      keywords: "Contact Spacenine Architects, Architecture offices Jubilee Hills, Best interior designer contact Hyderabad, Hire architect Hyderabad"
+      description: "Get in touch with Hyderabad's best architects & interior designers for a consultation. Start designing your luxury project in Kokapet today.",
+      keywords: "Contact Spacenine Architects, Architecture offices Kokapet, Best interior designer contact Hyderabad, Hire architect Hyderabad"
     },
     RU: {
       title: "Контакты | Spacenine Architects - Студия в Хайдарабаде",
@@ -321,16 +321,16 @@ export default function App() {
       "priceRange": "$$$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Jubilee Hills, Road No. 36",
+        "streetAddress": "Kokapet",
         "addressLocality": "Hyderabad",
         "addressRegion": "Telangana",
-        "postalCode": "500033",
+        "postalCode": "500075",
         "addressCountry": "IN"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "17.4325",
-        "longitude": "78.4071"
+        "latitude": "17.3995",
+        "longitude": "78.3283"
       },
       "description": langData.description,
       "openingHoursSpecification": {
@@ -347,7 +347,7 @@ export default function App() {
         "closes": "19:00"
       },
       "sameAs": [
-        "https://t.me/spacenine"
+        "https://www.instagram.com/spaceninearchitects/"
       ]
     };
 
