@@ -9,6 +9,7 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ServiceDetailPage } from './components/ServiceDetailPage';
 import { ProjectDetailPage } from './components/ProjectDetailPage';
+import { WhatsAppButton } from './components/WhatsAppButton';
 import { Language, ServicePageId } from './types';
 
 // Professional enterprise-grade SEO metadata mapping (35-years industry standard)
@@ -314,9 +315,9 @@ export default function App() {
       "@type": currentPage.includes('design') || currentPage.includes('build') ? "ArchitecturalOffice" : "LocalBusiness",
       "name": "Spacenine Architects",
       "alternateName": "Space Nine",
-      "image": "https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2009_20_31%20AM.png",
+      "image": "https://vennky.sirv.com/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2011_04_33%20AM.png",
       "url": cleanUrl,
-      "telephone": "+91-9952120021",
+      "telephone": "+91-7702317235",
       "priceRange": "$$$$",
       "address": {
         "@type": "PostalAddress",
@@ -662,6 +663,9 @@ export default function App() {
         currentLang={currentLang}
         scrollToSection={scrollToSection}
       />
+
+      {/* Global floating WhatsApp Contact button */}
+      <WhatsAppButton />
 
     </div>
   );

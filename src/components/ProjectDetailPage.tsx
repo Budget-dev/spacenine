@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { ArrowLeft, MapPin, Calendar, Compass, Star, CheckSquare, Layers } from 'lucide-react';
+import { ArrowLeft, MapPin, Calendar, Star, Layers } from 'lucide-react';
 import { Language, PortfolioProject } from '../types';
 import { portfolioProjects, testimonials, translations } from '../data';
 
@@ -40,17 +40,15 @@ const projectServiceImages: Record<string, Record<string, string>> = {
 };
 
 const projectSupportedServices: Record<string, string[]> = {
-  'project-1': ['architectural-design', 'architecture-build', 'interiors-build'],
-  'project-2': ['architectural-design', 'interior-design', 'architecture-build', 'interiors-build'],
-  'project-3': ['architectural-design', 'architecture-build'],
-  'project-4': ['architectural-design', 'interior-design', 'architecture-build', 'interiors-build'],
+  'project-1': ['architectural-design'],
+  'project-2': ['architectural-design', 'interior-design'],
+  'project-3': ['architectural-design'],
+  'project-4': ['architectural-design', 'interior-design'],
 };
 
 const serviceLabels = {
   'architectural-design': { EN: 'Architecture', RU: 'Архитектура', ES: 'Arquitectura' },
-  'interior-design': { EN: 'Interior Design', RU: 'Дизайн интерьеров', ES: 'Diseño de Interiores' },
-  'architecture-build': { EN: 'Arch Build', RU: 'Строительство', ES: 'Construcción' },
-  'interiors-build': { EN: 'Interior Build', RU: 'Чистовая отделка', ES: 'Acabado Interior' }
+  'interior-design': { EN: 'Interior Design', RU: 'Дизайн интерьеров', ES: 'Diseño de Interiores' }
 };
 
 export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
@@ -219,19 +217,13 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             >
               <img
                 src={activeImage || project.image}
-                alt={project.title[currentLang]}
+                alt={`${project.title[currentLang]} - Architectural design by Spacenine Architects`}
                 className="w-full h-full object-cover transition-all duration-700"
                 referrerPolicy="no-referrer"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
               
-              {/* Architectural Overlay Branding Tag */}
-              <div className="absolute top-6 left-6 text-white z-10">
-                <span className="text-[9px] font-mono tracking-widest text-[#bca374] uppercase font-bold bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-none border border-white/5">
-                  SPACENINE ARCHITECTS · {project.year}
-                </span>
-              </div>
-
               {/* Location Tag */}
               <div className="absolute bottom-6 left-6 text-white z-10 flex items-center space-x-2">
                 <MapPin className="w-3.5 h-3.5 text-[#bca374]" />
@@ -259,7 +251,13 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                         : 'border-transparent opacity-60 hover:opacity-100'
                     }`}
                   >
-                    <img src={imgUrl} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                    <img 
+                      src={imgUrl} 
+                      className="w-full h-full object-cover" 
+                      referrerPolicy="no-referrer" 
+                      loading="lazy"
+                      alt={`${project.title[currentLang]} gallery image ${i + 1}`}
+                    />
                   </button>
                 ))}
               </motion.div>
@@ -283,14 +281,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 <span className="text-neutral-400 font-light">{ft.specsLocation[currentLang]}</span>
                 <span className="font-semibold text-zinc-800 dark:text-zinc-200">{project.location[currentLang].split(',')[0]}</span>
               </div>
-              <div className="flex justify-between items-center text-xs">
-                <span className="text-neutral-400 font-light">{ft.specsArea[currentLang]}</span>
-                <span className="font-mono font-semibold text-zinc-800 dark:text-zinc-200">{project.area}</span>
-              </div>
-              <div className="flex justify-between items-center text-xs">
-                <span className="text-neutral-400 font-light">{ft.specsYear[currentLang]}</span>
-                <span className="font-mono font-semibold text-zinc-800 dark:text-zinc-200">{project.year}</span>
-              </div>
             </div>
 
 
@@ -304,7 +294,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 border-t border-zinc-100 dark:border-zinc-900 pt-16">
           
           {/* Left Side: Long Narrative */}
-          <div className="md:col-span-7 space-y-6">
+          <div className="md:col-span-8 space-y-6">
             <h3 className="text-lg md:text-xl font-sans font-semibold text-zinc-800 dark:text-zinc-100">
               {currentLang === 'RU' ? 'Концептуальное описание' : currentLang === 'ES' ? 'Descripción del Concepto' : 'The Design Narrative'}
             </h3>
@@ -330,33 +320,18 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 </p>
                 <div className="pt-3 border-t border-neutral-200/50 dark:border-zinc-800/60 flex items-center justify-between text-[11px] font-mono text-neutral-400">
                   <span className="font-bold text-zinc-700 dark:text-zinc-200">{testimonial.author}</span>
-                  <span>{testimonial.role[currentLang].split('(')[0]}</span>
+                  <span>{testimonial.role[currentLang]}</span>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Right Side: Scope of Work */}
-          <div className="md:col-span-5 space-y-6">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-[#8a6f3e] flex items-center space-x-2">
-              <Compass className="w-4 h-4 text-[#8a6f3e]" />
-              <span>{ft.technicalFeatures[currentLang]}</span>
-            </h3>
-            
-            <ul className="space-y-4" id="project-specs-detail-list">
-              {(project.deliverables ? project.deliverables[currentLang] : project.details[currentLang]).map((item, idx) => (
-                <li key={idx} className="flex items-start space-x-3 text-xs md:text-sm text-neutral-600 dark:text-neutral-300">
-                  <CheckSquare className="w-4 h-4 text-[#8a6f3e] shrink-0 mt-0.5" />
-                  <span className="font-light">{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Bottom Proposal CTA inside Column */}
-            <div className="pt-6 border-t border-neutral-100 dark:border-zinc-900 mt-8 space-y-4">
+          {/* Right Side: Proposal CTA Card */}
+          <div className="md:col-span-4 space-y-6">
+            <div className="p-6 bg-zinc-50 dark:bg-zinc-900 border border-neutral-200/40 dark:border-zinc-800 space-y-4">
               <div>
                 <h4 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{ft.ctaTitle[currentLang]}</h4>
-                <p className="text-[11px] text-zinc-500 leading-normal mt-1">{ft.ctaDesc[currentLang]}</p>
+                <p className="text-[11px] text-zinc-500 leading-normal mt-2">{ft.ctaDesc[currentLang]}</p>
               </div>
               <button
                 onClick={handleCtaClick}

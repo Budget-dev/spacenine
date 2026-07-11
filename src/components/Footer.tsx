@@ -268,7 +268,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
             <h3 className="mb-4 text-xs font-semibold tracking-wider font-mono text-zinc-400 dark:text-zinc-500 uppercase">
               {ft.quickLinks[currentLang]}
             </h3>
-            <nav className="space-y-3 text-sm">
+            <nav aria-label="Footer quick links" className="space-y-3 text-sm">
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -403,7 +403,7 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
           <p className="text-xs text-zinc-400 dark:text-zinc-500 font-light">
             &copy; {new Date().getFullYear()} spacenine architects. {translations.footer.rights[currentLang]}
           </p>
-          <nav className="flex gap-6 text-xs text-zinc-400 dark:text-zinc-500">
+          <nav aria-label="Footer legal links" className="flex gap-6 text-xs text-zinc-400 dark:text-zinc-500">
             <a href="#privacy" className="transition-colors hover:text-zinc-900 dark:hover:text-white">
               {ft.privacy[currentLang]}
             </a>

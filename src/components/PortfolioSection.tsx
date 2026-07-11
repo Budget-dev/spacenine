@@ -38,18 +38,16 @@ const projectServiceImages: Record<string, Record<string, string>> = {
 
 // Supported services for each project
 const projectSupportedServices: Record<string, string[]> = {
-  'project-1': ['architectural-design', 'architecture-build', 'interiors-build'],
-  'project-2': ['architectural-design', 'interior-design', 'architecture-build', 'interiors-build'],
-  'project-3': ['architectural-design', 'architecture-build'],
-  'project-4': ['architectural-design', 'interior-design', 'architecture-build', 'interiors-build'],
+  'project-1': ['architectural-design'],
+  'project-2': ['architectural-design', 'interior-design'],
+  'project-3': ['architectural-design'],
+  'project-4': ['architectural-design', 'interior-design'],
 };
 
 // Concise labels for the project-level buttons in English, Russian, and Spanish
 const serviceLabels = {
   'architectural-design': { EN: 'Architecture', RU: 'Архитектура', ES: 'Arq' },
-  'interior-design': { EN: 'Interiors', RU: 'Интерьеры', ES: 'Int' },
-  'architecture-build': { EN: 'Arch Build', RU: 'Строительство', ES: 'Construcción' },
-  'interiors-build': { EN: 'Interior Build', RU: 'Чистовая отделка', ES: 'Acabados' }
+  'interior-design': { EN: 'Interiors', RU: 'Интерьеры', ES: 'Int' }
 };
 
 // Project card layout styling configuration to maintain unique editorial proportions for each project
@@ -121,20 +119,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, currentLang, globalC
 
       {/* Floating overlapping Caption Box with individual service switches inside */}
       <div 
-        className={`absolute z-20 w-[72%] max-w-[250px] bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-5 shadow-[0_15px_40px_rgba(0,0,0,0.06)] transition-all duration-500 group-hover:border-[#bca374] rounded-none ${styles.caption}`}
+        className={`absolute z-20 w-[65%] max-w-[190px] md:max-w-[210px] bg-white/30 dark:bg-zinc-950/40 backdrop-blur-xl border border-white/40 dark:border-white/10 p-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.4),_0_10px_30px_rgba(0,0,0,0.12)] transition-all duration-500 group-hover:border-[#bca374]/60 rounded-none ${styles.caption}`}
       >
         <div className="flex items-start justify-between">
-          <span className="text-[#8a6f3e] dark:text-[#d3bc8f] font-semibold tracking-wide text-sm md:text-[15px] font-sans">
+          <span className="text-[#725a2e] dark:text-[#ebd19f] font-semibold tracking-wide text-xs md:text-sm font-sans">
             {project.title[currentLang]}
           </span>
-          <ArrowUpRight className="w-4 h-4 text-[#8a6f3e] dark:text-[#d3bc8f] shrink-0 ml-2 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+          <ArrowUpRight className="w-3.5 h-3.5 text-[#725a2e] dark:text-[#ebd19f] shrink-0 ml-1.5 mt-0.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
         </div>
-        <p className="mt-2 text-neutral-500 dark:text-neutral-400 font-sans text-[10px] md:text-[11px] leading-relaxed font-light line-clamp-2">
+        <p className="mt-1.5 text-neutral-800 dark:text-neutral-200 font-sans text-[10px] md:text-[10.5px] leading-relaxed font-normal line-clamp-2">
           {project.description[currentLang]}
         </p>
 
         {/* Project level sub-toggles to switch services & images on the fly */}
-        <div className="mt-3.5 pt-3 border-t border-zinc-100 dark:border-zinc-800/80">
+        <div className="mt-2.5 pt-2 border-t border-white/30 dark:border-white/5">
           <div className="flex flex-wrap gap-1">
             {(projectSupportedServices[project.id] || []).map((srvId) => {
               const isActive = activeService === srvId;
@@ -145,10 +143,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, currentLang, globalC
                     e.stopPropagation(); // Block opening the project page
                     setActiveService(srvId);
                   }}
-                  className={`text-[9px] font-sans font-medium tracking-wide px-2 py-1 uppercase transition-all duration-200 border cursor-pointer ${
+                  className={`text-[8.5px] font-sans font-medium tracking-wide px-1.5 py-0.5 uppercase transition-all duration-200 border cursor-pointer ${
                     isActive
-                      ? 'bg-[#8a6f3e] text-white border-[#8a6f3e] dark:bg-[#d3bc8f] dark:text-zinc-950 dark:border-[#d3bc8f] font-semibold'
-                      : 'bg-transparent text-zinc-400 border-zinc-200/50 dark:border-zinc-800 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-400'
+                      ? 'bg-[#8a6f3e]/90 text-white border-[#8a6f3e] dark:bg-[#d3bc8f]/90 dark:text-zinc-950 dark:border-[#d3bc8f] font-semibold shadow-sm'
+                      : 'bg-white/40 text-zinc-700 border-white/30 dark:bg-black/20 dark:text-zinc-300 dark:border-white/5 hover:bg-white/60 dark:hover:bg-black/45'
                   }`}
                 >
                   {serviceLabels[srvId as keyof typeof serviceLabels]?.[currentLang] || srvId}
@@ -168,9 +166,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({ currentLang 
   const categories = [
     { id: 'all', label: { EN: 'All Projects', RU: 'Все проекты', ES: 'Todos' } },
     { id: 'architectural-design', label: { EN: 'Architecture', RU: 'Архитектура', ES: 'Arquitectura' } },
-    { id: 'interior-design', label: { EN: 'Interior Design', RU: 'Дизайн интерьеров', ES: 'Interiores' } },
-    { id: 'architecture-build', label: { EN: 'Arch Build', RU: 'Строительство', ES: 'Construcción' } },
-    { id: 'interiors-build', label: { EN: 'Interior Build', RU: 'Чистовая отделка', ES: 'Acabado Interior' } }
+    { id: 'interior-design', label: { EN: 'Interior Design', RU: 'Дизайн интерьеров', ES: 'Interiores' } }
   ];
 
   const handleProjectClick = (projectId: string) => {

@@ -11,14 +11,14 @@ export const navItems: NavItem[] = [
 export const translations = {
   hero: {
     title: {
-      EN: 'Design of private and commercial interiors',
-      RU: 'Дизайн частных и коммерческих интерьеров',
-      ES: 'Diseño de interiores privados y comerciales'
+      EN: 'Designed to Inspire. Built to Last.',
+      RU: 'Создано вдохновлять. Построено на века.',
+      ES: 'Diseñado para Inspirar. Construido para Durar.'
     },
     subtitle: {
-      EN: 'spacenine architects — full-cycle interior design studio. We turn spaces into refined, atmospheric stories.',
-      RU: 'spacenine architects — студия интерьерного дизайна полного цикла. Мы превращаем пространства в изысканные, атмосферные истории.',
-      ES: 'spacenine architects — estudio de diseño de interiores de ciclo completo. Convertimos los espacios en historias refinadas y atmosféricas.'
+      EN: 'Creating architectural landmarks and sophisticated interiors that combine beauty, purpose, and precision in every detail.',
+      RU: 'Создаем архитектурные достопримечательности и изысканные интерьеры, сочетающие красоту, пользу и точность в каждой детали.',
+      ES: 'Creando hitos arquitectónicos e interiores sofisticados que combinan belleza, propósito y precisión en cada detalle.'
     },
     cta: {
       EN: 'Start project',
@@ -240,7 +240,7 @@ export const translations = {
     addressLabel: { EN: 'Studio Address', RU: 'Адрес бюро', ES: 'Dirección del Estudio' },
     address: { EN: '9, Amrita Shergill Marg, New Delhi, India', RU: 'Нью-Дели, ул. Амрита Шергилл Марг, д. 9', ES: 'Calle Amrita Shergill Marg, 9, Nueva Delhi' },
     phoneLabel: { EN: 'Direct Line', RU: 'Телефон', ES: 'Teléfono Directo' },
-    phone: { EN: '+91 99521 20021', RU: '+91 99521 20021', ES: '+91 99521 20021' },
+    phone: { EN: '+91 7702 317 235', RU: '+91 7702 317 235', ES: '+91 7702 317 235' },
     emailLabel: { EN: 'General Inquiries', RU: 'Электронная почта', ES: 'Consultas Generales' },
     email: { EN: 'studio@spacenine.design', RU: 'studio@spacenine.design', ES: 'studio@spacenine.design' },
     formName: { EN: 'Your Name', RU: 'Ваше имя', ES: 'Su Nombre' },
@@ -874,7 +874,7 @@ export const serviceDivisions: ServiceDivision[] = [
       RU: 'Великолепный дизайн невозможен без безупречного исполнения и профессионального снабжения. Мы привозим оригинальную европейскую мебель напрямую от фабрик и сдаем полностью очищенный и готовый к жизни объект.',
       ES: 'Un diseño magnífico no es solo sobre el concepto; requiere una ejecución impecable y un abastecimiento seleccionado. Importamos mobiliario europeo original directamente de los fabricantes y entregamos un espacio limpio y estilizado.'
     },
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://vennky.sirv.com/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2012_01_05%20PM.png',
     offerings: [
       {
         id: 'sourcing',
@@ -941,23 +941,23 @@ export const serviceDivisions: ServiceDivision[] = [
 export const testimonials: Testimonial[] = [
   {
     id: 'test-1',
-    author: 'Dr. Ananya Goel',
-    role: { EN: 'Owner of Malabar Hill Mansion, Mumbai', RU: 'Владелец роскошной виллы в Малабар Хиллс, Мумбаи', ES: 'Propietaria de Mansión en Malabar Hill, Mumbai' },
+    author: 'Narendar',
+    role: { EN: 'Ramayanpet, Telangana', RU: 'Рамаянпет, Телангана', ES: 'Ramayanpet, Telangana' },
     text: {
-      EN: 'Working with spacenine architects was an extraordinary experience. They built our walk-in closet and master bedroom exactly as shown in the 3D visual plans, pin-to-pin, without any variations. The light scenarios are simply divine.',
-      RU: 'Сотрудничество с spacenine architects было потрясающим опытом. Они реализовали нашу гардеробную и спальню точно так, как было показано на визуализациях — пиксель в пиксель, без расхождений. Сценарии освещения просто божественны.',
-      ES: 'Trabajar con spacenine architects fue una experiencia extraordinaria. Construyeron nuestro vestidor y dormitorio principal exactamente como se mostraba en los planos 3D, clavo a clavo. Las luces son simplemente divinas.'
+      EN: 'Working with spacenine architects was an extraordinary experience. They built our residential villa exactly as shown in the 3D visual plans, pin-to-pin, without any variations. The light scenarios are simply divine.',
+      RU: 'Сотрудничество с spacenine architects было потрясающим опытом. Они реализовали нашу виллу точно так, как было показано на визуализациях — пиксель в пиксель, без расхождений. Сценарии освещения просто божественны.',
+      ES: 'Trabajar con spacenine architects fue una experiencia extraordinaria. Construyeron nuestra villa exactamente como se mostraba en los planos 3D, clavo a clavo. Las luces son simplemente divinas.'
     },
     rating: 5
   },
   {
     id: 'test-2',
-    author: 'Vikramaditya Birla',
-    role: { EN: 'Managing Director of Birla & Sons', RU: 'Управляющий директор Birla & Sons', ES: 'Director Gerente de Birla & Sons' },
+    author: 'Venkat Reddy',
+    role: { EN: 'Hyderabad, Telangana', RU: 'Хайдарабад, Телангана', ES: 'Hyderabad, Telangana' },
     text: {
-      EN: 'The professional design for our executive lounge exceeded our expectations. The attention to acoustics and the custom meeting furniture represent the exact level of luxury and utility our brand stands for.',
-      RU: 'Проект представительского офиса превзошел все ожидания. Внимание к акустике и изготовленная под заказ мебель полностью соответствуют тому уровню роскоши и практичности, к которому стремится наша компания.',
-      ES: 'El diseño profesional para nuestro salón ejecutivo superó nuestras expectativas. La atención a la acústica y el mobiliario a medida representan el nivel exacto de lujo de nuestra marca.'
+      EN: 'Working with spacenine architects for our grand villa was absolute perfection. They delivered every detail exactly as promised, from the majestic dining hall to the custom paneling. The execution is flawless.',
+      RU: 'Сотрудничество с spacenine architects при создании нашей гранд-виллы было абсолютным совершенством. Они проработали каждую деталь в точности так, как обещали, от величественного обеденного зала до индивидуальных панелей. Исполнение безупречно.',
+      ES: 'Trabajar con spacenine architects para nuestra gran villa fue una perfección absoluta. Entregaron cada detalle exactamente como prometieron, desde el majestuoso comedor hasta los paneles a medida. La ejecución es impecable.'
     },
     rating: 5
   }

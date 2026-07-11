@@ -86,7 +86,7 @@ const servicesData: ServicePageData[] = [
       RU: 'Ультра-премиальные гардеробные, минималистичные пентхаусы и представительские лаунжи.',
       ES: 'Vestidores residenciales a medida, penthouses minimalistas y salones ejecutivos diseñados al milímetro.'
     },
-    image: "https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2009_20_31%20AM.png",
+    image: "https://vennky.sirv.com/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2011_04_33%20AM.png",
     duration: { EN: '3-5 Weeks', RU: '3-5 Недель', ES: '3-5 Semanas' },
     deliverables: {
       EN: [
@@ -184,7 +184,7 @@ const servicesData: ServicePageData[] = [
       RU: 'Перегородки, собственное мебельное производство, укладка мрамора и сдача под ключ.',
       ES: 'Particiones interiores de alta densidad, carpintería a medida, revestimiento de mármol y entrega.'
     },
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://vennky.sirv.com/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2012_01_05%20PM.png',
     duration: { EN: '2-4 Months', RU: '2-4 Месяца', ES: '2-4 Meses' },
     deliverables: {
       EN: [
@@ -285,7 +285,8 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
           >
             <img 
               src={service.image} 
-              alt={service.title[currentLang]} 
+              alt={`${service.title[currentLang]} - Professional service by Spacenine Architects`} 
+              loading="lazy"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-700"
             />

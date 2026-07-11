@@ -87,11 +87,11 @@ export const Hero: React.FC<HeroProps> = ({
     touchEndRef.current = null;
   };
 
-  // Auto-scroll all 5 slides every 6 seconds to show the complete design gallery automatically
+  // Auto-scroll all 5 slides every 15 seconds to show the complete design gallery automatically
   useEffect(() => {
     const interval = setInterval(() => {
       setMobileSlide((prev) => (prev + 1) % 5);
-    }, 6000);
+    }, 15000);
 
     return () => clearInterval(interval);
   }, []);
@@ -169,7 +169,7 @@ export const Hero: React.FC<HeroProps> = ({
               mobileSlide === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
             }`}
             style={{
-              backgroundImage: `url('https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2009_20_31%20AM.png')`,
+              backgroundImage: `url('https://vennky.sirv.com/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2011_04_33%20AM.png')`,
             }}
             aria-hidden="true"
           />
@@ -353,6 +353,7 @@ export const Hero: React.FC<HeroProps> = ({
                   onClick={onOpenConsultation}
                   className="group flex items-center space-x-4 bg-white hover:bg-gray-100 text-gray-900 rounded-full pl-8 pr-3 py-3 font-medium transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 cursor-pointer"
                   id="start-project-cta"
+                  aria-label="Start your interior design project with Spacenine Architects"
                 >
                   <span className="text-sm tracking-wider uppercase font-semibold">
                     {t.cta[currentLang]}

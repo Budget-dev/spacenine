@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+Sitemap: https://www.spaceninearchitects.com/sitemap.xml
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /login/
+Disallow: /*.json$
+Disallow: /thank-you/

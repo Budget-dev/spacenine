@@ -40,7 +40,7 @@ const individualServices = [
       RU: 'Минималистичные пентхаусы и лаунж-зоны, проработанные до миллиметра.',
       ES: 'Penthouses minimalistas y salones de lujo diseñados al milímetro.'
     },
-    image: "https://vennky.sirv.com/ChatGPT%20Image%20Jul%205%2C%202026%2C%2009_20_31%20AM.png"
+    image: "https://vennky.sirv.com/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2011_04_33%20AM.png"
   },
   {
     id: 'architecture-build' as const,
@@ -68,7 +68,7 @@ const individualServices = [
       RU: 'Собственное производство мебели, укладка мрамора и сдача под ключ.',
       ES: 'Carpintería a medida, revestimiento de mármol y entrega premium.'
     },
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=400'
+    image: 'https://vennky.sirv.com/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2012_01_05%20PM.png'
   }
 ];
 
@@ -109,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="h-12 md:h-15 overflow-hidden flex items-start justify-center -translate-x-[4.5px] md:-translate-x-[7px]">
               <img 
                 src="https://vennky.sirv.com/iron%20spongs/ballari/ChatGPT%20Image%20Jul%207%2C%202026%2C%2006_14_34%20PM.png"
-                alt="spacenine architects logo"
+                alt="Spacenine Architects logo — Interior Design Studio"
                 className="h-16 md:h-20 w-auto object-contain transition-opacity duration-300 group-hover:opacity-85 object-top"
                 referrerPolicy="no-referrer"
               />
@@ -120,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden md:flex items-center md:absolute md:left-1/2 md:-translate-x-1/2" id="desktop-nav">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center md:absolute md:left-1/2 md:-translate-x-1/2" id="desktop-nav">
             <ul className="flex items-center gap-8">
               {navItems.map((item) => {
                 if (item.id === 'services') {
@@ -174,7 +174,7 @@ export const Header: React.FC<HeaderProps> = ({
                                 <div className="w-24 h-16 shrink-0 overflow-hidden rounded-lg bg-gray-100 border border-gray-100/60 relative">
                                   <img 
                                     src={srv.image} 
-                                    alt={srv.label[currentLang]} 
+                                    alt={`${srv.label[currentLang]} - Interior design by Spacenine Architects`} 
                                     referrerPolicy="no-referrer"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                   />
@@ -314,7 +314,7 @@ export const Header: React.FC<HeaderProps> = ({
                   <div className="h-12 overflow-hidden flex items-start justify-center -translate-x-[4.5px]">
                     <img 
                       src="https://vennky.sirv.com/iron%20spongs/ballari/ChatGPT%20Image%20Jul%207%2C%202026%2C%2006_14_34%20PM.png"
-                      alt="spacenine architects logo"
+                      alt="Spacenine Architects logo — Interior Design Studio"
                       className="h-16 w-auto object-contain object-top"
                       referrerPolicy="no-referrer"
                     />

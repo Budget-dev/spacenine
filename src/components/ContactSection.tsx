@@ -175,7 +175,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </a>
 
                 <a
-                  href="https://wa.me/919952120021"
+                  href="https://wa.me/917702317235"
                   target="_blank"
                   rel="noreferrer"
                   className="p-3 bg-gray-100 hover:bg-gray-200 rounded-2xl flex items-center space-x-3 transition-colors text-black"
@@ -185,7 +185,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   </div>
                   <div>
                     <span className="text-xs font-bold font-mono tracking-wider block">WHATSAPP</span>
-                    <span className="text-[10px] text-gray-500 block">+91 99521 20021</span>
+                    <span className="text-[10px] text-gray-500 block">+91 7702 317 235</span>
                   </div>
                 </a>
 
