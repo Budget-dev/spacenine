@@ -238,7 +238,11 @@ export const translations = {
     },
     quickLinks: { EN: 'Direct Messengers', RU: 'Быстрая связь', ES: 'Mensajería Directa' },
     addressLabel: { EN: 'Studio Address', RU: 'Адрес бюро', ES: 'Dirección del Estudio' },
-    address: { EN: 'Kokapet, Hyderabad, India', RU: 'Кокапет, Хайдарабад, Индия', ES: 'Kokapet, Hyderabad, India' },
+    address: { 
+      EN: 'H.No.4-112, Flat No.503, Sree Nivaas Chambers, Kokapet, Gandipet Mandal, Ranga Reddy Dist, Telangana-500075.', 
+      RU: 'H.No.4-112, Flat No.503, Sree Nivaas Chambers, Кокапет, Гандипет Мандал, Ранга Редди, Телангана-500075.', 
+      ES: 'H.No.4-112, Flat No.503, Sree Nivaas Chambers, Kokapet, Gandipet Mandal, Ranga Reddy Dist, Telangana-500075.' 
+    },
     phoneLabel: { EN: 'Direct Line', RU: 'Телефон', ES: 'Teléfono Directo' },
     phone: { EN: '+91 7702 317 235', RU: '+91 7702 317 235', ES: '+91 7702 317 235' },
     emailLabel: { EN: 'General Inquiries', RU: 'Электронная почта', ES: 'Consultas Generales' },
@@ -261,7 +265,11 @@ export const translations = {
     },
     info: {
       addressLabel: { EN: 'Studio Address', RU: 'Адрес бюро', ES: 'Dirección del Estudio' },
-      address: { EN: 'Kokapet, Hyderabad, India', RU: 'Кокапет, Хайдарабад, Индия', ES: 'Kokapet, Hyderabad, India' },
+      address: { 
+        EN: 'H.No.4-112, Flat No.503, Sree Nivaas Chambers, Kokapet, Gandipet Mandal, Ranga Reddy Dist, Telangana-500075.', 
+        RU: 'H.No.4-112, Flat No.503, Sree Nivaas Chambers, Кокапет, Гандипет Мандал, Ранга Редди, Телангана-500075.', 
+        ES: 'H.No.4-112, Flat No.503, Sree Nivaas Chambers, Kokapet, Gandipet Mandal, Ranga Reddy Dist, Telangana-500075.' 
+      },
       phoneLabel: { EN: 'Direct Line', RU: 'Телефон', ES: 'Teléfono Directo' },
       emailLabel: { EN: 'General Inquiries', RU: 'Электронная почта', ES: 'Consultas Generales' },
       hoursLabel: { EN: 'Working Hours', RU: 'Часы работы', ES: 'Horario de Atención' },

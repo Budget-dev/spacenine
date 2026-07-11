@@ -321,7 +321,7 @@ export default function App() {
       "priceRange": "$$$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Kokapet",
+        "streetAddress": "H.No.4-112, Flat No.503, Sree Nivaas Chambers, Kokapet, Gandipet Mandal, Ranga Reddy Dist",
         "addressLocality": "Hyderabad",
         "addressRegion": "Telangana",
         "postalCode": "500075",
