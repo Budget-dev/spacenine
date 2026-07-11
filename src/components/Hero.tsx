@@ -87,19 +87,14 @@ export const Hero: React.FC<HeroProps> = ({
     touchEndRef.current = null;
   };
 
-  // Auto-scroll only the last three slides (2, 3, 4) every 10 seconds on mobile
+  // Auto-scroll all 5 slides every 6 seconds to show the complete design gallery automatically
   useEffect(() => {
-    if (mobileSlide < 2) return;
-
     const interval = setInterval(() => {
-      setMobileSlide((prev) => {
-        if (prev < 2) return 2; // Safeguard
-        return prev === 4 ? 2 : prev + 1;
-      });
-    }, 10000);
+      setMobileSlide((prev) => (prev + 1) % 5);
+    }, 6000);
 
     return () => clearInterval(interval);
-  }, [mobileSlide]);
+  }, []);
 
   // Custom data for the 5 mobile slides
   const mobileSlidesData = [

@@ -293,27 +293,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               </div>
             </div>
 
-            {/* Key Spaces Metric List */}
-            {project.keySpaces && project.keySpaces.length > 0 && (
-              <div className="space-y-3">
-                <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-500 flex items-center space-x-1.5">
-                  <Layers className="w-3.5 h-3.5 text-[#bca374]" />
-                  <span>{ft.keySpacesTitle[currentLang]}</span>
-                </h4>
-                <div className="grid grid-cols-2 gap-2 bg-neutral-50 dark:bg-zinc-900 p-4 rounded-none border border-neutral-200/30 dark:border-zinc-800">
-                  {project.keySpaces.map((space, idx) => (
-                    <div key={idx} className="border-b border-neutral-200/40 dark:border-zinc-800/60 pb-1.5 last:border-0">
-                      <span className="text-[10px] text-zinc-400 block font-light leading-tight">
-                        {space.name[currentLang]}
-                      </span>
-                      <span className="text-[11px] font-mono text-zinc-700 dark:text-zinc-200 font-medium block">
-                        {space.size}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+
           </div>
 
         </div>

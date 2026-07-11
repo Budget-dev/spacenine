@@ -5,7 +5,7 @@
 
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-serif: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-logo: "Outfit", sans-serif;
 }
