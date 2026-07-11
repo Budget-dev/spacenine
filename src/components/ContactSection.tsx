@@ -98,6 +98,23 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       localStorage.setItem('spacenine_inquiries', JSON.stringify(updated));
       setSavedInquiries(updated);
 
+      // Construct WhatsApp message and redirect
+      const whatsappNumber = "917702317235";
+      const waText = `Hello Spacenine Architects,
+
+I would like to request a design consultation.
+
+Name: ${name}
+Phone: ${phone || 'Not provided'}
+Email: ${email || 'Not provided'}
+Message: ${message || 'No additional message'}`;
+
+      const encodedText = encodeURIComponent(waText);
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+      // Redirect or open WhatsApp
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
       setIsSubmitting(false);
       setIsSuccess(true);
       onClearPrefilledBrief();
@@ -295,7 +312,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="e.g. John Doe"
+                        placeholder="e.g. Rajesh Kumar"
                         className={`w-full p-3.5 bg-gray-50 border rounded-xl text-sm transition-all focus:bg-white focus:ring-2 focus:ring-black/10 focus:outline-none ${
                           errors.name ? 'border-red-500 focus:border-red-500' : 'border-gray-100 focus:border-black'
                         }`}
@@ -313,7 +330,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         type="tel"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="+91 98765 43210"
                         className={`w-full p-3.5 bg-gray-50 border border-gray-100 rounded-xl text-sm transition-all focus:bg-white focus:border-black focus:ring-2 focus:ring-black/10 focus:outline-none`}
                         id="form-input-phone"
                       />
@@ -330,7 +347,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="john@example.com"
+                        placeholder="rajesh@example.com"
                         className="w-full p-3.5 bg-gray-50 border border-gray-100 rounded-xl text-sm transition-all focus:bg-white focus:border-black focus:ring-2 focus:ring-black/10 focus:outline-none"
                         id="form-input-email"
                       />
