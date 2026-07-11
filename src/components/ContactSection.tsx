@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle, Clock, Trash2, ShieldCheck, Instagram } from 'lucide-react';
+import { LeafletMap } from './LeafletMap';
 import { Language } from '../types';
 import { translations } from '../data';
 
@@ -247,6 +248,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </span>
                 {currentLang === 'RU' ? 'Мы защищаем личную информацию клиентов и подписываем NDA перед разработкой проекта.' : currentLang === 'ES' ? 'Protegemos la información privada del cliente y firmamos acuerdos de confidencialidad antes de iniciar.' : 'We protect client privacy with absolute discretion. All layouts and render specifications are fully secured under NDA.'}
               </div>
+            </div>
+
+            {/* Interactive Leaflet Map for Contact Section */}
+            <div className="space-y-3">
+              <span className="text-xs font-mono uppercase tracking-widest text-gray-400 block font-semibold">
+                {currentLang === 'RU' ? 'Карта проезда:' : currentLang === 'ES' ? 'Mapa de ubicación:' : 'Interactive Studio Map:'}
+              </span>
+              <LeafletMap 
+                lat={17.394996643066406} 
+                lng={78.33814239501953} 
+                zoom={16} 
+                height="260px" 
+                id="contact-leaflet-map"
+              />
             </div>
 
           </motion.div>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter, Check } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter, Check, MapPin } from 'lucide-react';
 import { Language } from '../types';
 import { translations, navItems } from '../data';
 
@@ -376,6 +376,27 @@ export const Footer: React.FC<FooterProps> = ({ currentLang, scrollToSection }) 
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{ft.followLN[currentLang]}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              {/* Map Location Link */}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <a
+                      href="https://www.google.com/maps?q=17.394996643066406,78.33814239501953&z=17&hl=en"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center h-10 w-10 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-700 transition-all text-zinc-400 dark:text-zinc-500 cursor-pointer"
+                      id="footer-google-map-link"
+                    >
+                      <MapPin className="h-4.5 w-4.5 text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors" />
+                      <span className="sr-only">Location Map</span>
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{currentLang === 'RU' ? 'Посмотреть на Google Картах' : currentLang === 'ES' ? 'Ver en Google Maps' : 'View on Google Maps'}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>

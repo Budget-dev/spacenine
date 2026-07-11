@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, ChevronRight, Instagram } from 'lucide-react';
+import { LeafletMap } from './LeafletMap';
 import { Language } from '../types';
 import { translations } from '../data';
 
@@ -172,6 +173,20 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ currentLang }) => {
                   @spaceninearchitects
                 </span>
               </a>
+            </div>
+
+            {/* Interactive Leaflet Map for About Column */}
+            <div className="pt-6 border-t border-zinc-100 dark:border-zinc-900/60">
+              <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-3">
+                {currentLang === 'RU' ? 'Локация бюро:' : currentLang === 'ES' ? 'Ubicación del estudio:' : 'Studio Location:'}
+              </span>
+              <LeafletMap 
+                lat={17.394996643066406} 
+                lng={78.33814239501953} 
+                zoom={16} 
+                height="200px" 
+                id="about-leaflet-map"
+              />
             </div>
           </motion.div>
 
